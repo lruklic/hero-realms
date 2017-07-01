@@ -2,6 +2,8 @@ package runner;
 
 import static spark.Spark.*;
 
+import ws.GameWebSocketHandler;
+
 /**
  * Starting point of web application.   
  * 
@@ -13,9 +15,13 @@ public class Runner {
 
 	public static void main(String[] args) {
 		
-		staticFileLocation("/public");
+		System.out.println("Server started ...");
 		
-		redirect.get("", "/");
+		externalStaticFileLocation("src/main/resources/public");
+		
+		webSocket("/gamesocket/*", GameWebSocketHandler.class);
+		webSocketIdleTimeoutMillis(5 * 60000);
+
 		redirect.get("/", "/index.html");
 		
 	}
