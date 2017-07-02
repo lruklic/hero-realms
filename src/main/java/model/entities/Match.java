@@ -14,6 +14,12 @@ public class Match {
 	
 	private Game game;
 	
+	/**
+	 * Prevent standard object creation.
+	 */
+	protected Match() {
+	}
+	
 	public static Match getInstance() {
 		if(instance == null) {
 			instance = new Match();

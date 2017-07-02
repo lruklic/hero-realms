@@ -1,18 +1,16 @@
 package ws;
 
-import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Future;
 
 import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WriteCallback;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
-import utils.Util;
-
+import model.entities.Match;
 
 /**
  * Handler for WebSocket that is used for communication between server (game instance) and browser clients (players).
@@ -23,29 +21,63 @@ import utils.Util;
 @WebSocket
 public class GameWebSocketHandler {
 
-	static Map<Session, String> userUsernameMap = new HashMap<>();
+	static Map<String, Session> usernameSessionMap = new HashMap<>();
 	
 	@OnWebSocketConnect
-	public void onConnect(Session user) throws Exception {
+	public void onConnect(Session session) throws Exception {
 
-		String[] urlParts = user.getUpgradeRequest().getRequestURI().getPath().split("/");
+		String[] urlParts = session.getUpgradeRequest().getRequestURI().getPath().split("/");
 		String username = urlParts[urlParts.length - 1];
 		
+		if (!usernameSessionMap.containsKey(session)) {
+			usernameSessionMap.put(username, session);
+		}
+		
+		if (usernameSessionMap.values().size() == 2) {
+			System.out.println("Match started.");
+			Match match = Match.getInstance();
+			
+		}
+		
 		System.out.println("User " + username + " connected.");
-       
-		//user.getRemote().sendStringByFuture(uuid);
        
     }
 	
 	@OnWebSocketClose
-    public void onClose(Session user, int statusCode, String reason) {
-        System.out.println("User " + user.toString() + " disconnected because of " + reason);
+    public void onClose(Session session, int statusCode, String reason) {
+        System.out.println("User " + session.toString() + " disconnected because of " + reason);
 	}
 	
 	@OnWebSocketMessage
-    public void onMessage(Session user, String message) {
+    public void onMessage(Session session, String message) {
 		System.out.println("Message: " + message);
         //Chat.broadcastMessage(sender = Chat.userUsernameMap.get(user), msg = message);
     }
+	
+	public static void broadcastMessage() {
+		
+	}
+	
+	public static void sendMessage(String username, String message) {
+		Session userSession = usernameSessionMap.get(username);
+		if (userSession == null) {
+			// throw NoSuchUser
+			return;
+		}
+		userSession.getRemote().sendString(message, new WriteCallback() {
+			
+			@Override
+			public void writeSuccess() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void writeFailed(Throwable x) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
 	
 }

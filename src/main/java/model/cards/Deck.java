@@ -9,9 +9,11 @@ package model.cards;
  */
 public interface Deck {
 
-	public Card drawACard();
+	public Card drawCard();
 	
 	public void shuffle();
 	
 	public void putCardOnTop(Card card);
+	
+	public int cardsRemaining();
 }

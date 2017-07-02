@@ -27,7 +27,7 @@ public class NormalGame implements Game {
 
 	@Override
 	public void updateMarket() {
-		market.add(deck.drawACard());
+		market.add(deck.drawCard());
 	}
 
 	@Override
