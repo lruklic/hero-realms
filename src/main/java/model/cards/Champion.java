@@ -16,6 +16,8 @@ public class Champion implements Card {
 	
 	private int cost;
 	
+	private boolean tapped;
+	
 	@Override
 	public int getCost() {
 		return cost;
@@ -28,6 +30,6 @@ public class Champion implements Card {
 
 	@Override
 	public void goIntoPlay(Player player) {
-		
-	}		
+		player.getBoard().add(this);
+	}
 }

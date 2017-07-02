@@ -1,8 +1,10 @@
 package model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.cards.Card;
+import model.cards.Champion;
 import model.cards.Deck;
 import model.enums.HeroClass;
 
@@ -29,10 +31,32 @@ public class PlayerImpl implements Player {
 	
 	private List<Card> hand;
 	
-	private List<Card> board;
+	private List<Champion> board;
 	
+	private int gold;
+	
+	private static final int NORMAL_NUMBER_OF_CARDS_IN_HAND = 5;
+	
+	public PlayerImpl() {
+		this(HeroClass.NONE);
+	}
+	
+	public PlayerImpl(HeroClass heroClass) {
+		this.heroClass = heroClass;
+		this.health = this.heroClass.getHealth();
+		this.deck = getDeckForClass(this.heroClass);
+		this.deck.shuffle();
+		this.gold = 0;
+		this.board = new ArrayList<>();
+		this.discardPile = new ArrayList<>();
+		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
+	}
+
 	@Override
 	public void draw() {
+		if(deck.isEmpty()) {
+			deck.fillWithCards(discardPile);
+		}
 		hand.add(deck.drawCard());
 	}
 
@@ -64,14 +88,34 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public void endTurn() {
-		// TODO Auto-generated method stub
-		
+		for(Card card : hand) {
+			//TODO if not a champion, go to discard pile
+			discardPile.add(card);
+		}
+		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
+		//TODO prepare all champions
 	}
 
 	@Override
 	public void increaseGold(int number) {
-		// TODO Auto-generated method stub
-		
+		gold += number;
 	}
 	
+	private void drawAHand(int numberOfCards) {
+		this.hand = new ArrayList<>();
+		for(int i = 0; i < numberOfCards; i++) {
+			draw();
+		}
+	}
+
+	//TODO decide where to put this
+	private static Deck getDeckForClass(HeroClass heroClass) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Champion> getBoard() {
+		return board;
+	}
 }

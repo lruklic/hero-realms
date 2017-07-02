@@ -3,6 +3,7 @@ package model.entities;
 import java.util.List;
 
 import model.cards.Card;
+import model.cards.Champion;
 import model.cards.Deck;
 
 /**
@@ -29,4 +30,6 @@ public interface Player {
 	public void endTurn();
 	
 	public void increaseGold(int number);
+	
+	public List<Champion> getBoard();
 }

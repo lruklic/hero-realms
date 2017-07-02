@@ -1,6 +1,7 @@
 package model.cards;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
@@ -35,5 +36,17 @@ public class DeckImpl implements Deck {
 	public int cardsRemaining() {
 		return cards.size();
 	}
-
+	
+	@Override
+	public boolean isEmpty() {
+		return cards.empty();
+	}
+	
+	@Override
+	public void fillWithCards(List<Card> cards) {
+		for(Card card : cards) {
+			this.cards.push(card);
+		}
+		shuffle();
+	}
 }

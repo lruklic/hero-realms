@@ -1,5 +1,7 @@
 package model.cards;
 
+import java.util.List;
+
 /**
  * 
  * Utility interface which defines a deck, container for cards
@@ -16,4 +18,8 @@ public interface Deck {
 	public void putCardOnTop(Card card);
 	
 	public int cardsRemaining();
+	
+	public boolean isEmpty();
+	
+	public void fillWithCards(List<Card> cards);
 }
