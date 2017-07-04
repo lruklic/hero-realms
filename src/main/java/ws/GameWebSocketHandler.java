@@ -10,8 +10,6 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
-import model.entities.Match;
-
 /**
  * Handler for WebSocket that is used for communication between server (game instance) and browser clients (players).
  * 
@@ -33,13 +31,11 @@ public class GameWebSocketHandler {
 			usernameSessionMap.put(username, session);
 		}
 		
-		if (usernameSessionMap.values().size() == 2) {
-			System.out.println("Match started.");
-			Match match = Match.getInstance();
-			
-		}
-		
 		System.out.println("User " + username + " connected.");
+		
+		if (usernameSessionMap.values().size() == 2) {
+			MatchWebSocketBridge.createMatch((String) usernameSessionMap.keySet().toArray()[0],  (String) usernameSessionMap.keySet().toArray()[1]);
+		}
        
     }
 	

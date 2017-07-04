@@ -15,7 +15,7 @@ public class Runner {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Server started ...");
+		System.out.println("Server started on port 4567 ...");
 		
 		externalStaticFileLocation("src/main/resources/public");
 		

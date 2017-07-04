@@ -9,7 +9,8 @@ function initWS(username) {
     };
 
     webSocket.onmessage = function (msg) { 
-        
+        console.log(new Date().getTime());
+        console.log(msg)
     };
 
     webSocket.onclose = function () { 
