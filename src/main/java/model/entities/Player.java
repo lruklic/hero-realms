@@ -3,8 +3,9 @@ package model.entities;
 import java.util.List;
 
 import model.cards.Card;
-import model.cards.Champion;
 import model.cards.Deck;
+import model.cards.implementation.Action;
+import model.cards.implementation.Champion;
 
 /**
  * 
@@ -17,7 +18,9 @@ public interface Player {
 
 	public void draw();
 	
-	public void discard();
+	public void discard(Card card);
+	
+	public void play(Card card);
 	
 	public List<Card> getHand();
 
@@ -31,5 +34,19 @@ public interface Player {
 	
 	public void increaseGold(int number);
 	
+	public void increaseHealth(int number);
+	
+	public void increaseDamage(int number);
+	
 	public List<Champion> getBoard();
+	
+	public List<Card> getActions();
+	
+	public void buy(Card card);
+	
+	public int getHealth();
+
+	public int getDamage();
+
+	public int getGold();
 }

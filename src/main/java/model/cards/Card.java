@@ -1,6 +1,9 @@
 package model.cards;
 
+import java.util.List;
+
 import model.entities.Player;
+import model.enums.AbilityTrigger;
 import model.enums.Faction;
 
 /**
@@ -13,10 +16,15 @@ import model.enums.Faction;
  */
 public interface Card {
 
+	public String getName();
+	
 	public int getCost();
 	
 	public Faction getFaction();
 	
 	public void goIntoPlay(Player player);
 	
+	public void activate(Player player, AbilityTrigger trigger);
+	
+	public List<Ability> getAbilities();
 }

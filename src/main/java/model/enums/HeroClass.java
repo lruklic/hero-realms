@@ -1,5 +1,9 @@
 package model.enums;
 
+import model.cards.Deck;
+import model.cards.implementation.DeckImplementation;
+import model.cards.implementation.Item;
+
 /**
  * Unique player class that defines starting deck and hero power.
  * 
@@ -9,17 +13,52 @@ package model.enums;
 
 public enum HeroClass {
 
-	CLERIC(55),
+	CLERIC(55) {
+		@Override
+		public Deck getDeck() {
+			return null;
+		}
+	},
 	
-	FIGHTER(60),
+	FIGHTER(60) {
+		@Override
+		public Deck getDeck() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	},
 	
-	RANGER(58),
+	RANGER(58) {
+		@Override
+		public Deck getDeck() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	},
 	
-	THIEF(52),
+	THIEF(52) {
+		@Override
+		public Deck getDeck() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	},
 	
-	WIZARD(50),
+	WIZARD(50) {
+		@Override
+		public Deck getDeck() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	},
 	
-	NONE(50);
+	NONE(50) {
+		@Override
+		public Deck getDeck() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	};
 	
 	private int health;
 	
@@ -30,4 +69,6 @@ public enum HeroClass {
 	public int getHealth() {
 		return this.health;
 	}
+	
+	public abstract Deck getDeck();
 }

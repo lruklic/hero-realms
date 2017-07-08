@@ -1,9 +1,12 @@
-package model.cards;
+package model.cards.implementation;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
+
+import model.cards.Card;
+import model.cards.Deck;
 
 /**
  * Deck implementation
@@ -12,9 +15,16 @@ import java.util.Stack;
  *
  */
 
-public class DeckImpl implements Deck {
+public class DeckImplementation implements Deck {
 
 	private Stack<Card> cards;
+	
+	public DeckImplementation(List<Card> cards) {
+		this.cards = new Stack<>();
+		for(Card card : cards) {
+			this.cards.push(card);
+		}
+	}
 	
 	@Override
 	public Card drawCard() {
