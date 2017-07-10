@@ -1,0 +1,87 @@
+body {
+    background-color: #615151
+}
+
+.row-tile {
+    margin-top: 3%;    
+}
+
+.center {
+    text-align: center;
+}
+
+.shadow {
+    -moz-box-shadow: 3px 3px 4px #000; 
+    -webkit-box-shadow: 3px 3px 4px #000; 
+    box-shadow: 3px 3px 4px #000; 
+}
+
+/* TEMP solution */
+.opponent-deck-text {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    display: table;
+    height: 75px;
+    left: 27%;
+    top: 0;
+    position: absolute;
+    width: 114px;
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
+}
+
+.opponent-combat-counter {
+    position: absolute;
+    left: 15%;
+    top: 38%;
+}
+
+.opponent-playable-nonpermanent {
+    position: relative;
+    z-index: 99;
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+
+.ability-picker {
+    background: blanchedalmond;
+    border-radius: 25px;
+    font-family: cursive;
+    border-color: #a0a2a1;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+/*.opponent-playable-nonpermanent:hover {
+    transform: scale(3.5);
+}*/
+
+.margin2 {
+    margin-top: 2%;
+}
+
+.top50 {
+    top: 50%;
+}
+
+.transparent0 {
+    opacity: 0;
+}
+
+.transparent05 {
+    opacity: 0.5;
+}
+
+.opponent-deck-text span, .opponent-combat-counter span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.opponent-deck-text:hover {
+  opacity: 1;
+}
