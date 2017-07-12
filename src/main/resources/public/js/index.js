@@ -28,7 +28,11 @@ function gui() {
     
     $(".opponent-playable-nonpermanent").click(function() {
         if ($(this).hasClass('scaled')) {
-            $(this).removeClass('scaled').css("transform", "scale(1)");
+            var transform = "scale(1)";
+            if ($(this).hasClass("rotated")) {
+                transform += "rotate(90deg)";
+            }
+            $(this).removeClass('scaled').css("transform", transform);
         } else {
             $(this).addClass("scaled").css("transform", "scale(3.5)");        
         }       
@@ -50,6 +54,12 @@ function gui() {
             //.classed("hidden", true);
     });
 
+    d3.selectAll(".ability-picker").on("click", function() {
+        var id = d3.select(this.parentNode).attr("id").split("-")[2];
+        tapAndActivate(id);
+        update("opponent", "combat", 5);
+    });
+
 /*    $(".opponent-playable-nonpermanent").mouseenter(function() {
         $(this).siblings("div").removeClass("hidden")
     });*/
@@ -62,3 +72,27 @@ function gui() {
             $(this).css("transform", "scale(1)");
         });*/
 }
+/**
+ * Updates value on token.
+ * 
+ * @target player, opponent
+ * @category gold, combat, health
+ * @value final value in token after update
+ */
+function update(target, category, value) {
+    d3.select("svg." + target  + "-" + category + "-token text").transition().duration(1000).tween("text", function() {
+        var that = d3.select(this);
+        var i = d3.interpolateNumber(that.text(), value);
+        return function(t) { that.text(Math.round(i(t))); };
+    });
+}
+
+function tapAndActivate(id) {
+    var cardObject = d3.select("#opponent-card-" + id + " img")
+    
+    cardObject.transition().duration(300)
+        .style("transform", "rotate(90deg)");
+
+    cardObject.classed("rotated", true);
+}
+

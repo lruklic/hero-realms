@@ -43,15 +43,22 @@
                 <div class="row center">
                     <img id="opponent-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
                 </div>
-                <div class="row center margin2">
-                    <div id="opponent-card-1" class="col-md-6 card-container">
+                <div class="row center margin2 flex-container">
+                    <div id="opponent-card-1" class="column card-container">
                         <img class="shadow opponent-playable-nonpermanent mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">
                         <div class="transparent0 ability-picker margin2">
                             <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
                             +3 Combat and change unit faction this turn
                         </div>
                     </div>
-                    <div id="opponent-card-2" class="col-md-6 card-container">
+                    <div id="opponent-card-2" class="column card-container">
+                        <img class="shadow opponent-playable-nonpermanent mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
+                        <div class="transparent0 ability-picker margin2">
+                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
+                            Change faction
+                        </div>
+                    </div>
+                    <div id="opponent-card-3" class="column card-container">
                         <img class="shadow opponent-playable-nonpermanent mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
                         <div class="transparent0 ability-picker margin2">
                             <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
@@ -64,17 +71,17 @@
             <div class="col-xs-3 col-md-3">
 <!--                <img id="opponent-combat-counter-image" src="images/combat2.jpg" alt="Combat" height="50" width="55">                    
                 <span class="opponent-combat-counter"><span>5</span></span>-->
-                <svg height="50" width="50">
+                <svg class="opponent-health-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="limegreen" />
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">55</text>
                 </svg>
-                <svg height="50" width="50">
+                <svg class="opponent-combat-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="red" />
-                    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">8</text>
+                    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">0</text>
                 </svg>
-                <svg height="50" width="50">
+                <svg class="opponent-gold-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="yellow" />
-                    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">5</text>
+                    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">0</text>
                 </svg>
                 <!--Health, gold, damage-->
             </div>

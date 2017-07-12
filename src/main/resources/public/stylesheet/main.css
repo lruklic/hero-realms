@@ -1,5 +1,5 @@
 body {
-    background-color: #615151
+    background-color: #cfcfcf
 }
 
 .row-tile {
@@ -14,6 +14,14 @@ body {
     -moz-box-shadow: 3px 3px 4px #000; 
     -webkit-box-shadow: 3px 3px 4px #000; 
     box-shadow: 3px 3px 4px #000; 
+}
+
+.flex-container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
 }
 
 /* TEMP solution */
