@@ -4,7 +4,6 @@ import java.util.List;
 
 import model.cards.Card;
 import model.cards.Deck;
-import model.cards.implementation.Action;
 import model.cards.implementation.Champion;
 
 /**
@@ -49,4 +48,6 @@ public interface Player {
 	public int getDamage();
 
 	public int getGold();
+	
+	public Option pickAnOption(List<Option> options);
 }

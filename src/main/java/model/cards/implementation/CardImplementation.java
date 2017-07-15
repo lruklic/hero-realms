@@ -2,7 +2,7 @@ package model.cards.implementation;
 
 import java.util.List;
 
-import model.cards.Ability;
+import model.abilities.Ability;
 import model.cards.Card;
 import model.entities.Player;
 import model.enums.AbilityTrigger;

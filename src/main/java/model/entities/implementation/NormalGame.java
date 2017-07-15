@@ -1,9 +1,11 @@
-package model.entities;
+package model.entities.implementation;
 
 import java.util.List;
 
 import model.cards.Card;
 import model.cards.Deck;
+import model.entities.Game;
+import model.entities.Player;
 
 /**
  * 

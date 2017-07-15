@@ -1,4 +1,4 @@
-package model.entities;
+package model.entities.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import model.cards.Card;
 import model.cards.Deck;
 import model.cards.implementation.Action;
 import model.cards.implementation.Champion;
+import model.entities.Option;
+import model.entities.Player;
 import model.enums.HeroClass;
 
 /**
@@ -172,5 +174,10 @@ public class PlayerImplementation implements Player {
 	@Override
 	public int getGold() {
 		return gold;
+	}
+	
+	@Override
+	public Option pickAnOption(List<Option> options) {
+		return null;
 	}
 }

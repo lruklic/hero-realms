@@ -1,0 +1,97 @@
+{ "cards" : [
+				{
+					"name" : "Gold",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Coin",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "GOLD"			
+						}
+					]
+				},
+				{
+					"name" : "Orc grunt",
+					"image" : "",
+					"cost" : 3,
+					"type" : "CHAMPION",
+					"description" : "Orc",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Prayer beads",
+					"image" : "",
+					"cost" : "-1";
+					"type" : "ITEM",
+					"description" : "Holy relic",
+					"faction" : "NONE",
+					"class" : "CLERIC",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "CONDITIONAL",
+							"condition" : "champions >= 2",
+							"abilities" : [ {
+								"trigger" : "DEFAULT",
+								"type" : "COMPOSITE",
+								"abilities" : [
+									{ 	"trigger" : "DEFAULT",
+										"type" : "REPEATING2",
+										"ability" : {
+											"trigger" : "DEFAULT",
+											"type": "GOLD"
+										}
+									},
+									{
+										"trigger" : "DEFAULT",
+										"type" : "REPEATING5",
+										"ability" : {
+											"trigger" : "DEFAULT",
+											"type": "HEAL"
+										}
+									}
+								]},
+								{
+								"trigger" : "DEFAULT",
+								"type" : "CHOICE",
+								"abilities" : [
+									{ 	"trigger" : "DEFAULT",
+										"type" : "REPEATING2",
+										"ability" : {
+											"trigger" : "DEFAULT",
+											"type": "GOLD"
+										}
+									},
+									{
+										"trigger" : "DEFAULT",
+										"type" : "REPEATING5",
+										"ability" : {
+											"trigger" : "DEFAULT",
+											"type": "HEAL"
+										}
+									}
+								]}
+							]
+						}
+					]
+				}
+]}

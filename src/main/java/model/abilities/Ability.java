@@ -1,4 +1,4 @@
-package model.cards;
+package model.abilities;
 
 import model.entities.Player;
 import model.enums.AbilityTrigger;

@@ -2,6 +2,7 @@ package model.cards;
 
 import java.util.List;
 
+import model.abilities.Ability;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.Faction;
