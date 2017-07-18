@@ -44,6 +44,7 @@ public class JsonUtils {
 			int cost = Integer.parseInt(object.get("cost").getAsString());
 			JsonArray jAbilities = object.getAsJsonArray("abilities");
 			List<Ability> abilities = parseAbilities(jAbilities);
+
 			cards.add(new CardImplementation(abilities, faction, cost, name) {
 
 				@Override
@@ -95,10 +96,10 @@ public class JsonUtils {
 	}
 
 	private static Ability parseConditionalAbility(JsonObject object) {
-		JsonArray jAbilities = object.getAsJsonArray("abilities");
 		String condition = object.get("condition").getAsString();
-		List<Ability> abilities = parseAbilities(jAbilities);
-		return AbilityFactory.getConditionalAbility(abilities.get(0), abilities.get(1), condition);
+		Ability fulfilledAbility = parseAbility(object.getAsJsonObject("fulfilled"));
+		Ability unfulfilledAbility = parseAbility(object.getAsJsonObject("unfulfilled"));
+		return AbilityFactory.getConditionalAbility(fulfilledAbility, unfulfilledAbility, condition);
 	}
 
 	private static Ability parseChoiceAbility(JsonObject object) {

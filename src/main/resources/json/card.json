@@ -19,6 +19,8 @@
 					"image" : "",
 					"cost" : 3,
 					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : YES,
 					"description" : "Orc",
 					"faction" : "WILD",
 					"class" : "NONE",
@@ -50,7 +52,7 @@
 							"trigger" : "DEFAULT",
 							"type" : "CONDITIONAL",
 							"condition" : "champions >= 2",
-							"abilities" : [ {
+							"fulfilled" : {
 								"trigger" : "DEFAULT",
 								"type" : "COMPOSITE",
 								"abilities" : [
@@ -69,8 +71,9 @@
 											"type": "HEAL"
 										}
 									}
-								]},
-								{
+								]
+							},
+							"unfulfilled" : {
 								"trigger" : "DEFAULT",
 								"type" : "CHOICE",
 								"abilities" : [
@@ -89,7 +92,78 @@
 											"type": "HEAL"
 										}
 									}
-								]}
+								]
+							}
+						}
+					]
+				},
+				{
+					"name" : "Rampage",
+					"image" : "",
+					"cost" : "6",
+					"type" : "ACTION",
+					"description" : "Orc",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "COMPOSITE",
+											"abilities" : [
+												{
+													"trigger" : "DEFAULT",
+													"type" : "DRAW"
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "CHOICE",
+													"abilities" : [
+														{
+															"trigger" : "DEFAULT",
+															"type" : "COMPOSITE",
+															"abilities" : [
+																{
+																	"trigger" : "DEFAULT",
+																	"type" : "DRAW"
+																},
+																{
+																	"trigger" : "DEFAULT",
+																	"type" : "SELFDISCARD"
+																}
+															]
+														},
+														{
+															"type" : "EMPTY"
+														}
+													]
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "SELFDISCARD"
+												}
+											]
+										},
+										{
+											"type" : "EMPTY"
+										}
+									] 
+								}
 							]
 						}
 					]

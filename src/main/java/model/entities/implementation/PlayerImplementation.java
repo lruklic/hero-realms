@@ -5,7 +5,6 @@ import java.util.List;
 
 import model.cards.Card;
 import model.cards.Deck;
-import model.cards.implementation.Action;
 import model.cards.implementation.Champion;
 import model.entities.Option;
 import model.entities.Player;
@@ -27,27 +26,27 @@ public class PlayerImplementation implements Player {
 	 * Health left. Initial value if defined by hero class.
 	 */
 	private int health;
-	
+
 	private int damage;
 
 	private int gold;
-	
+
 	private Deck deck;
-	
+
 	private List<Card> discardPile;
-	
+
 	private List<Card> hand;
-	
+
 	private List<Champion> board;
-	
+
 	private List<Card> actions;
-	
+
 	private static final int NORMAL_NUMBER_OF_CARDS_IN_HAND = 5;
-	
+
 	public PlayerImplementation() {
 		this(HeroClass.NONE);
 	}
-	
+
 	public PlayerImplementation(HeroClass heroClass) {
 		this.heroClass = heroClass;
 		this.health = this.heroClass.getHealth();
@@ -62,7 +61,7 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void draw() {
-		if(deck.isEmpty()) {
+		if (deck.isEmpty()) {
 			deck.fillWithCards(discardPile);
 		}
 		hand.add(deck.drawCard());
@@ -73,17 +72,17 @@ public class PlayerImplementation implements Player {
 		hand.remove(card);
 		discardPile.add(card);
 	}
-	
+
 	@Override
 	public void play(Card card) {
 		hand.remove(card);
 		card.goIntoPlay(this);
 	}
-	
+
 	@Override
 	public void buy(Card card) {
 		if (gold < card.getCost()) {
-			//TODO can't buy this
+			// TODO can't buy this
 		} else {
 			gold -= card.getCost();
 			discardPile.add(card);
@@ -108,17 +107,17 @@ public class PlayerImplementation implements Player {
 	@Override
 	public void startTurn() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void endTurn() {
-		for(Card card : actions) {
-			//TODO if not a champion, go to discard pile
+		for (Card card : actions) {
+			// TODO if not a champion, go to discard pile
 			discardPile.add(card);
 		}
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
-		for(Champion champion : board) {
+		for (Champion champion : board) {
 			champion.setTapped(false);
 		}
 	}
@@ -127,25 +126,25 @@ public class PlayerImplementation implements Player {
 	public void increaseGold(int number) {
 		gold += number;
 	}
-	
+
 	@Override
 	public void increaseDamage(int number) {
 		damage += number;
 	}
-	
+
 	@Override
 	public void increaseHealth(int number) {
 		health += number;
 	}
-	
+
 	private void drawAHand(int numberOfCards) {
 		this.hand = new ArrayList<>();
-		for(int i = 0; i < numberOfCards; i++) {
+		for (int i = 0; i < numberOfCards; i++) {
 			draw();
 		}
 	}
 
-	//TODO decide where to put this
+	// TODO decide where to put this
 	private static Deck getDeckForClass(HeroClass heroClass) {
 		// TODO Auto-generated method stub
 		return null;
@@ -160,7 +159,7 @@ public class PlayerImplementation implements Player {
 	public List<Card> getActions() {
 		return actions;
 	}
-	
+
 	@Override
 	public int getHealth() {
 		return health;
@@ -175,9 +174,9 @@ public class PlayerImplementation implements Player {
 	public int getGold() {
 		return gold;
 	}
-	
+
 	@Override
-	public Option pickAnOption(List<Option> options) {
+	public <T> Option<T> pickAnOption(List<Option<T>> options) {
 		return null;
 	}
 }

@@ -1,10 +1,9 @@
 package model.entities;
 
-public interface Option {
+public interface Option<T> {
 
-	public Object getStoredEntity();
-	
+	public T getStoredEntity();
+
 	public String getOptionString();
-	
-	
+
 }
