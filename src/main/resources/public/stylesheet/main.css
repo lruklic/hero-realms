@@ -103,6 +103,8 @@ body {
 
 .flip-container {
 	perspective: 1000px;
+    position: absolute;
+    z-index: 99;
 }
 
 .flip-container, .front, .back {
@@ -110,10 +112,14 @@ body {
 	height: 98px;
 }
 
-/* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-    transform: rotateY(180deg);
+#market-tile {
+    min-height: 180px;
 }
+
+/* flip the pane when hovered */
+/*.flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+}*/
 
 .flipper {
 	transition: 0.6s;
@@ -130,8 +136,9 @@ body {
 	left: 0;
 }
 
-.absolute {
+#animation {
     position: absolute;
+    z-index: 999;
 }
 
 /* front pane, placed above back */

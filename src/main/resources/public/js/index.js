@@ -25,28 +25,43 @@ function gui() {
             $(this).css("opacity", 1);
             $("#opponent-deck-image-text").css("opacity", 1);
         });
-    
-    $(".scalable").click(function() {
+
+    $("#market-tile").on("click", ".market-slot", function() {
+        var idArray = $(this).attr("id").split("-");
+        var id = idArray[idArray.length - 1];
+        acquire(id);
+    });
+
+    $(".container").on("contextmenu", ".scalable", function() {
         if ($(this).hasClass('scaled')) {
             var transform = "scale(1)";
             if ($(this).hasClass("rotated")) {
                 transform += "rotate(90deg)";
             }
-            d3.select(this).classed('scaled', false)
-                .style("transform", transform)
+            $(this).removeClass('scaled')
+                .css("transform", transform);
+            d3.select($(this).parents(".flip-container").get(0))
                 .transition().duration(200)
                 .style("z-index", 99);
         } else {
             var maxZIndex = 0;
-            d3.selectAll(".scalable").each(function() {
+
+            $(".scalable").parents(".flip-container").each(function() {
                 var zIndex = Number(d3.select(this).style("z-index"));
                 if (zIndex > maxZIndex) maxZIndex = zIndex;
             });
+
+/*            d3.selectAll(".scalable").each(function() {
+                var zIndex = Number(d3.select(this).style("z-index"));
+                if (zIndex > maxZIndex) maxZIndex = zIndex;
+            });*/
             
-            d3.select(this).classed("scaled", true)
-                .style("transform", "scale(3.5)")
-                .style("z-index", Number(maxZIndex) + 1);        
+            $(this).addClass("scaled")
+                .css("transform", "scale(3.5)")
+            $(this).parents(".flip-container")
+                .css("z-index", Number(maxZIndex) + 2);        
         }       
+        return false;
     });
 
     d3.selectAll(".opponent-playable-nonpermanent.mouseenter-trigger, .player-playable-nonpermanent.mouseenter-trigger").on("mouseenter", function() {
@@ -118,18 +133,10 @@ function tapAndActivate(target, id) {
     cardObject.classed("rotated", true);
 }
 
-function acquire() {
-    d3.select(".flipper").style("transform", "rotateY(180deg)");
-    
-    //var clone = $(".flipper").clone(); 
-    var offset = $(".flipper img").offset(); 
-    
-/*    clone.attr("id", "animation").css({
-        "position" : "absolute",
-        "left"     : offset.left + 150,
-        "top"      : offset.top,
-        "opacity" : 0
-    }).appendTo($(".container"));*/
+function acquire(id) {
+    d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(180deg)");
+
+    var offset = $("#market-container-" + id + " .flipper img").offset(); 
 
     var endPoint = $("#player-discard-pile-image").offset();
 
@@ -148,8 +155,16 @@ function acquire() {
         .attr("width", 114)
         .attr("height", 75);
 
-    animation.transition().delay(710 + 510).duration(100)
+    animation.transition().delay(1220).duration(100)
         .style("opacity", 0)
 
+    setTimeout(function() {
+        d3.select("#market-slot-img-" + id).attr("src", "images/0013.jpg")
+    }, 800)
+
+    setTimeout(function() {
+        d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(0deg)")
+        animation.attr("width", 150).attr("height", 98);
+    }, 1330);
     
 }

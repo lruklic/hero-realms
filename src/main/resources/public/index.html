@@ -10,8 +10,10 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">      	
         <link rel="stylesheet" type="text/css" href="stylesheet/main.css">      	        
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+        <script src="js/util/util.js"></script>        
         <script src="js/index.js"></script>
         <script src="js/socket.js"></script>
+        <script src="js/init/boardInit.js"></script>        
    
     </head>
     <body>
@@ -84,35 +86,7 @@
                 <!--Health, gold, damage-->
             </div>
         </div>
-        <div id="market-tile" class="row row-tile">
-            <div class="col-xs-2 col-md-2">
-                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                    <div class="flipper">
-                        <div class="front">
-                            <img class="shadow market-slot-1 scalable rotated rotated90" src="images/0001.jpg" alt="Market slot 1" height="150" width="98">
-                        </div>
-                        <div class="back">
-                            <img class="shadow market-slot-1 scalable rotated rotated90" src="images/back-rotate-none.jpg" alt="Market slot 1" height="150" width="98">
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <img class="shadow market-slot-2 scalable rotated rotated90" src="images/0002.jpg" alt="Market slot 2" height="150" width="98">                
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <img class="shadow market-slot-3 scalable rotated rotated90" src="images/0003.jpg" alt="Market slot 3" height="150" width="98">                
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <img class="shadow market-slot-4 scalable rotated rotated90" src="images/0011.jpg" alt="Market slot 4" height="150" width="98">
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <img class="shadow market-slot-5 scalable rotated rotated90" src="images/0012.jpg" alt="Market slot 1" height="150" width="98">
-            </div>
-            <div class="col-xs-2 col-md-2">
-                <img class="shadow market-slot-firegem scalable rotated rotated90" src="images/fire-gem.jpg" alt="Market fire gem slot" height="150" width="98">
-            </div>            
+        <div id="market-tile" class="row row-tile">    
         </div>
         <div id="player-tile" class="row row-tile">
             <div class="col-xs-3 col-md-3">
@@ -174,59 +148,5 @@
 
     <img id="animation" class="shadow absolute transparent0" src="images/back-rotate-right.jpg" alt="Animate" height="98" width="150">
 
-<!--        <div class="tile is-ancestor is-vertical">
-            <div class="tile is-parent">
-                <div class="tile is-vertical is-child">
-                    <input id="username">
-                    <button id="wsconnect">Connect</button>                                                                                                                                                             
-                </div>
-                <div class="tile is-vertical is-child">
-                    <input id="message" placeholder="Type your message">
-                    <button id="sendMessage">Send</button>
-                </div>
-            </div>
-            <div class="tile is-parent is-vertical">
-                <div id="opponent-tile">
-                    <div class="columns">
-                        <div class="column is-one-quarter">
-                            Decks
-                        </div>
-                        <div class="column">
-                            Opponent board
-                        </div>
-                        <div class="column is-one-quarter">
-                            <p>Health</p>
-                            <p>Battle</p>
-                            <p>Gold</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="market-tile">
-                    <div class="columns">
-                        <div class="column">1</div>
-                        <div class="column">2</div>
-                        <div class="column">3</div>
-                        <div class="column">4</div>
-                        <div class="column">5</div>
-                        <div class="column">FG</div>                         
-                    </div>
-                </div>
-                <div id="player-tile">
-                    <div class="columns">
-                        <div class="column is-one-quarter">
-                            Decks
-                        </div>
-                        <div class="column">
-                            Player board
-                        </div>
-                        <div class="column is-one-quarter">
-                            <p>Health</p>
-                            <p>Battle</p>
-                            <p>Gold</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </body>
 </html>
