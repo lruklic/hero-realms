@@ -7,7 +7,7 @@ body {
 }
 
 .row-tile {
-    margin-top: 3%;    
+    margin-top: 2%;    
 }
 
 .center {
@@ -97,9 +97,9 @@ body {
   vertical-align: middle;
 }
 
-.opponent-deck-text:hover, .player-deck-text:hover {
+/*.opponent-deck-text:hover, .player-deck-text:hover {
   opacity: 1;
-}
+}*/
 
 .flip-container {
 	perspective: 1000px;
@@ -113,7 +113,11 @@ body {
 }
 
 #market-tile {
-    min-height: 180px;
+    min-height: 150px;
+}
+
+#player-hand-tile {
+    text-align: center;
 }
 
 /* flip the pane when hovered */
@@ -141,6 +145,16 @@ body {
     z-index: 999;
 }
 
+#deck-text {
+    position: absolute;
+    display: table;
+}
+
+.centered {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
 /* front pane, placed above back */
 .front {
 	z-index: 2;

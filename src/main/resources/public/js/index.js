@@ -19,12 +19,24 @@ function gui() {
 
     $("#opponent-deck-image")
         .mouseenter(function() {
-            $(this).css("opacity", 0.5);
+            $(this).css("opacity", 0.3);
+            
+            var offset = $(this).offset();
+
+            $("#deck-text")
+                .css({
+                    "top" : offset.top,
+                    "left" : offset.left
+                })
+                .width($(this).width())
+                .height($(this).height())
+                .removeClass("hidden");
         })
-        .mouseleave(function() {
-            $(this).css("opacity", 1);
-            $("#opponent-deck-image-text").css("opacity", 1);
-        });
+
+    $("#deck-text").mouseleave(function() {
+        $("#opponent-deck-image").css("opacity", 1);
+        $("#deck-text").addClass("hidden");
+    });
 
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
