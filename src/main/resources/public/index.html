@@ -21,7 +21,7 @@
     <body>
 
     <div class="container">
-        <div id="connect-tile" class="row row-tile">
+        <div id="connect-tile" class="row row-tile hidden">
             <div class="col-xs-6 col-md-6">
                 <input id="username">
                 <button id="wsconnect">Connect</button>                                                                                                                                                             
@@ -104,9 +104,9 @@
                         </svg>
                     </div>-->
                 </div>
-                <div class="row center margin2">
-                    <img id="player-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
-                </div>
+                <div class="player-nonpermanent-board row center margin2">
+<!--                    <img id="player-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
+-->                </div>
             </div>
             <div class="col-xs-1 col-md-1">
 
@@ -127,9 +127,10 @@
         </div>    
         <div id="player-hand-tile" class="row row-tile">
             <div class="player-hand">
-                <svg id="hand-0001" class="hand-card scalable"><image xlink:href="images/0001.jpg"/></svg>
-                <svg id="hand-0002" class="hand-card rest scalable"><image xlink:href="images/0002.jpg"/></svg>
-                <svg id="hand-0003" class="hand-card rest scalable"><image xlink:href="images/0003.jpg"/></svg>
+                <svg id="hand-0001" type="action" class="hand-card scalable"><image xlink:href="images/0001.jpg"/></svg>
+                <svg id="hand-0002" type="action" class="hand-card rest scalable"><image xlink:href="images/0002.jpg"/></svg>
+                <svg id="hand-0003" type="action" class="hand-card rest scalable"><image xlink:href="images/0003.jpg"/></svg>
+                <svg id="hand-0004" type="champion" class="hand-card rest scalable"><image xlink:href="images/0004.png"/></svg>                
                 
             </div>
         </div>    

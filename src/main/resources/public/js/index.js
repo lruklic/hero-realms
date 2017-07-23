@@ -111,6 +111,13 @@ function gui() {
         update("opponent", "combat", 5);
     });
 
+    d3.selectAll(".hand-card").on("click", function() {
+        var handCard = d3.select(this);
+        var id = handCard.attr("id").split("-")[1];
+        var type = handCard.attr("type");
+        playCard(id, type);
+    });
+
 /*    $(".opponent-playable-nonpermanent").mouseenter(function() {
         $(this).siblings("div").removeClass("hidden")
     });*/
@@ -153,7 +160,13 @@ function tapAndActivate(target, id) {
     cardObject.classed("rotated", true);
 }
 
-function playCard(id) {
+function playCard(id, type) {
+    var boardSelector;
+    if (type == "champion") {
+        boardSelector = ".player-permanent-board";
+    } else {
+        boardSelector = ".player-nonpermanent-board";
+    }
     // check if permanent or nonpermanent
 
     var animation = d3.select("#animation");
@@ -167,19 +180,19 @@ function playCard(id) {
         .classed("shadow", false)
         .style("display", "inherit");
 
-    var selection = d3.selectAll(".player-playable-field");
+    var selection = d3.selectAll(boardSelector + " .player-playable-field");
     var oldSelectionSize = selection.size();
     var percentageSize = 100 / (oldSelectionSize + 1);
 
-    $(".player-permanent-board")
+    $(boardSelector)
         .append('<div class="player-playable-field player-playable-' + (oldSelectionSize + 1) + '" style="width: 0%">' +
             '<svg height="126px" width="90px" class="scalable transparent0"><image xlink:href="' + playedCardImg + '"/></svg>' + '</div>')
 
-    d3.selectAll(".player-playable-field").transition().duration(500).style("width", percentageSize + "%");
+    d3.selectAll(boardSelector + " .player-playable-field").transition().duration(500).style("width", percentageSize + "%");
 
-    var lastElement = d3.select(".player-playable-" + (oldSelectionSize + 1) + " svg");
+    var lastElement = d3.select(boardSelector + " .player-playable-" + (oldSelectionSize + 1) + " svg");
     lastElement.transition().duration(500).on("end", function() { 
-        var endPoint = $(".player-playable-" + (oldSelectionSize + 1) + " svg").offset();
+        var endPoint = $(boardSelector + " .player-playable-" + (oldSelectionSize + 1) + " svg").offset();
 
         animation
             .transition().delay(510).duration(500)

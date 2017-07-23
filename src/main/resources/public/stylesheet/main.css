@@ -14,10 +14,20 @@ body {
     text-align: center;
 }
 
-.shadow {
+.display-none {
+    display: none;
+}
+
+/*.shadow {
     -moz-box-shadow: 3px 3px 4px #000; 
     -webkit-box-shadow: 3px 3px 4px #000; 
     box-shadow: 3px 3px 4px #000; 
+}*/
+
+.shadow {
+    -webkit-filter: drop-shadow( -5px -5px 5px #000 );
+            filter: drop-shadow( -5px -5px 5px #000 ); /* Same syntax as box-shadow, except 
+                                                       for the spread property */
 }
 
 .flex-container {
