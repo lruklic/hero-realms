@@ -1,5 +1,5 @@
 $(function() {
-    var images = ['0001.jpg', '0002.jpg', '0003.jpg', '0011.jpg', '0012.jpg', '0013.jpg', 'fire-gem.jpg', 'koska.jpg'];
+    var images = ['AC-DARREW.jpg', 'AC-FIRGEM.jpg', 'AC-INFLUE.jpg', 'AC-THEROT.jpg', 'CH-CAPKOS.jpg', 'CH-CULPRI.jpg', 'CH-DEACUL.jpg', 'CH-RAYEND.jpg'];
     preload(images);
 
 });

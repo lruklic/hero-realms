@@ -15,6 +15,8 @@
         <script src="js/init/pageInit.js"></script>                
         <script src="js/init/boardInit.js"></script>         
         <script src="js/index.js"></script>
+        <script src="js/interface.js"></script>
+        <script src="js/actions.js"></script>        
         <script src="js/socket.js"></script>
        
     </head>
@@ -43,24 +45,17 @@
                 --></div>
             </div>            
             <div class="col-xs-9 col-md-9 center">
-                <div class="row center">
+                <div class="opponent-nonpermanent-board row center">
                     <img id="opponent-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
                 </div>
-                <div class="row center margin2 flex-container">
-                    <div id="opponent-card-1" class="column card-container">
+                <div class="opponent-permanent-board row center margin2">
+                <!--  <div id="opponent-card-1" data-hp="4" data-guard="true" class="column card-container">
                         <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">
-                    </div>
-                    <div id="opponent-card-2" class="column card-container">
-                        <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
-                    </div>
-                    <div id="opponent-card-3" class="column card-container">
-                        <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
-                    </div>
+                    -->
                 </div>
 
             </div>
             <div class="col-xs-1 col-md-1">
-
                 <svg class="opponent-health-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="limegreen" />
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">55</text>
@@ -76,8 +71,9 @@
                 <!--Health, gold, damage-->
             </div>
         </div>
-        <div id="market-tile" class="row row-tile">    
-        </div>
+        
+        <div id="market-tile" class="row row-tile"></div>
+
         <div id="player-board-tile" class="row row-tile">
             <div class="col-xs-2 col-md-2">
                 <div class="row center">
@@ -90,26 +86,10 @@
                 </div>
             </div>            
             <div class="col-xs-9 col-md-9 center">
-
-                <div class="player-permanent-board row center margin2">
-                    <div class="player-playable-field player-playable-1" style="width: 100%">
-                        <svg height="126px" width="90px" class="player-playable-nonpermanent scalable mouseenter-trigger">
-                            <image xlink:href="images/koska.jpg"/>
-                        </svg>
-                        <!--<img class="shadow player-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">-->
-                    </div>
-<!--                    <div class="player-playable-field player-playable-2">
-                        <svg height="114px" width="81px" class="scalable">
-                            <image xlink:href="images/0003.jpg" height="100%" width="100%"/>
-                        </svg>
-                    </div>-->
-                </div>
-                <div class="player-nonpermanent-board row center margin2">
-<!--                    <img id="player-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
--->                </div>
+                <div class="player-permanent-board row center margin2"></div>
+                <div class="player-nonpermanent-board row center margin2"></div>
             </div>
             <div class="col-xs-1 col-md-1">
-
                 <svg class="player-health-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="limegreen" />
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">55</text>
@@ -124,15 +104,10 @@
                 </svg>
                 <!--Health, gold, damage-->
             </div>
-        </div>    
+        </div>  
+
         <div id="player-hand-tile" class="row row-tile">
-            <div class="player-hand">
-                <svg id="hand-0001" type="action" class="hand-card scalable"><image xlink:href="images/0001.jpg"/></svg>
-                <svg id="hand-0002" type="action" class="hand-card rest scalable"><image xlink:href="images/0002.jpg"/></svg>
-                <svg id="hand-0003" type="action" class="hand-card rest scalable"><image xlink:href="images/0003.jpg"/></svg>
-                <svg id="hand-0004" type="champion" class="hand-card rest scalable"><image xlink:href="images/0004.png"/></svg>                
-                
-            </div>
+            <div class="player-hand"></div>
         </div>    
     </div>    
     <svg id="animation" height="98px" width="150px" class="absolute transparent0">

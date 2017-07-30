@@ -39,6 +39,10 @@ body {
     float: left;
 }
 
+.card-container {
+    float: left;
+}
+
 svg image {
     width: 100%;
     height: 100%;
