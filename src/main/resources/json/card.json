@@ -15,31 +15,6 @@
 					]
 				},
 				{
-					"name" : "Orc grunt",
-					"image" : "",
-					"cost" : 3,
-					"type" : "CHAMPION",
-					"health" : 3,
-					"guard" : YES,
-					"description" : "Orc",
-					"faction" : "WILD",
-					"class" : "NONE",
-					"abilities" : [
-						{
-							"trigger" : "DEFAULT",
-							"type" : "REPEATING2",
-							"ability" : {
-								"trigger" : "DEFAULT",
-								"type" : "DAMAGE" 
-							}
-						},
-						{
-							"trigger" : "FACTION",
-							"type" : "DRAW"
-						}
-					]
-				},
-				{
 					"name" : "Prayer beads",
 					"image" : "",
 					"cost" : "-1";
@@ -94,77 +69,6 @@
 									}
 								]
 							}
-						}
-					]
-				},
-				{
-					"name" : "Rampage",
-					"image" : "",
-					"cost" : "6",
-					"type" : "ACTION",
-					"description" : "Orc",
-					"faction" : "WILD",
-					"class" : "NONE",
-					"abilities" : [
-						{
-							"trigger" : "DEFAULT",
-							"type" : "COMPOSITE",
-							"abilities" : [
-								{
-									"trigger" : "DEFAULT",
-									"type" : "REPEATING6",
-									"ability" : {
-										"trigger" : "DEFAULT",
-										"type" : "DAMAGE"
-									}
-								},
-								{
-									"trigger" : "DEFAULT",
-									"type" : "CHOICE",
-									"abilities" : [
-										{
-											"trigger" : "DEFAULT",
-											"type" : "COMPOSITE",
-											"abilities" : [
-												{
-													"trigger" : "DEFAULT",
-													"type" : "DRAW"
-												},
-												{
-													"trigger" : "DEFAULT",
-													"type" : "CHOICE",
-													"abilities" : [
-														{
-															"trigger" : "DEFAULT",
-															"type" : "COMPOSITE",
-															"abilities" : [
-																{
-																	"trigger" : "DEFAULT",
-																	"type" : "DRAW"
-																},
-																{
-																	"trigger" : "DEFAULT",
-																	"type" : "SELFDISCARD"
-																}
-															]
-														},
-														{
-															"type" : "EMPTY"
-														}
-													]
-												},
-												{
-													"trigger" : "DEFAULT",
-													"type" : "SELFDISCARD"
-												}
-											]
-										},
-										{
-											"type" : "EMPTY"
-										}
-									] 
-								}
-							]
 						}
 					]
 				},
@@ -1528,6 +1432,515 @@
 						{
 							"trigger" : "FACTION",
 							"type" : "DRAW"
+						}
+					]
+				},
+				// Wild champions (7 in total)
+				{
+					"name" : "Orc grunt",
+					"image" : "",
+					"cost" : 3,
+					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : "YES",
+					"description" : "Orc",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Wolf Shaman",
+					"image" : "",
+					"cost" : 2,
+					"type" : "CHAMPION",
+					"health" : 4,
+					"guard" : "NO",
+					"description" : "Orc",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "+1 DAMAGE for each other WILD card you have in play."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Dire Wolf",
+					"image" : "",
+					"cost" : 5,
+					"type" : "CHAMPION",
+					"health" : 5,
+					"guard" : "YES",
+					"description" : "Giant Wolf",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						}
+					]
+				},
+				{
+					"name" : "Broelyn, Loreweaver",
+					"image" : "",
+					"cost" : 4,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "NO",
+					"description" : "Elf Mage",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DISCARD"
+						}
+					]
+				},
+				{
+					"name" : "Torgen Rocksplitter",
+					"image" : "",
+					"cost" : 7,
+					"type" : "CHAMPION",
+					"health" : 7,
+					"guard" : "YES",
+					"description" : "Troll Warrior",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING4",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DISCARD"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Cron, the Berserker",
+					"image" : "",
+					"cost" : 6,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "NO",
+					"description" : "Human Warrior",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING5",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Grak, Storm Giant",
+					"image" : "",
+					"cost" : 8,
+					"type" : "CHAMPION",
+					"health" : 7,
+					"guard" : "YES",
+					"description" : "Giant",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "COMPOSITE",
+											"abilities" : [
+												{
+													"trigger" : "DEFAULT",
+													"type" : "DRAW"
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "SELFDISCARD"
+												}
+											]
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "CHOICE",
+							"abilities" : [
+								{
+									"trigger" : "FACTION",
+									"type" : "COMPOSITE",
+									"abilities" : [
+										{
+											"trigger" : "FACTION",
+											"type" : "DRAW"
+										},
+										{
+											"trigger" : "FACTION",
+											"type" : "SELFDISCARD"
+										}
+									]
+								},
+								{
+									"trigger" : "FACTION",
+									"type" : "EMPTY"
+								}
+							]
+						}
+					]
+				},
+				// Wild actions (6 in total)
+				{
+					"name" : "Rampage",
+					"image" : "",
+					"cost" : 6,
+					"type" : "ACTION",
+					"description" : "Orc",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "COMPOSITE",
+											"abilities" : [
+												{
+													"trigger" : "DEFAULT",
+													"type" : "DRAW"
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "CHOICE",
+													"abilities" : [
+														{
+															"trigger" : "DEFAULT",
+															"type" : "COMPOSITE",
+															"abilities" : [
+																{
+																	"trigger" : "DEFAULT",
+																	"type" : "DRAW"
+																},
+																{
+																	"trigger" : "DEFAULT",
+																	"type" : "SELFDISCARD"
+																}
+															]
+														},
+														{
+															"type" : "EMPTY"
+														}
+													]
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "SELFDISCARD"
+												}
+											]
+										},
+										{
+											"type" : "EMPTY"
+										}
+									] 
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Elven Gift",
+					"image" : "",
+					"cost" : 2,
+					"type" : "ACTION",
+					"description" : "Elf",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "GOLD"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "COMPOSITE",
+											"abilities" : [
+												{
+													"trigger" : "DEFAULT",
+													"type" : "DRAW"
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "SELFDISCARD"
+												}
+											]
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Elven Curse",
+					"image" : "",
+					"cost" : 3,
+					"type" : "ACTION",
+					"description" : "Elf Curse",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DISCARD"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Spark",
+					"image" : "",
+					"cost" : 1,
+					"type" : "ACTION",
+					"description" : "Spell",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DISCARD"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Wolf Form",
+					"image" : "",
+					"cost" : 5,
+					"type" : "ACTION",
+					"description" : "Wolf",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING8",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DISCARD"
+								}
+							]
+						},
+						{
+							"trigger" : "SACRIFICE",
+							"type" : "DISCARD"
+						}
+					]
+				},
+				{
+					"name" : "Nature's Bounty",
+					"image" : "",
+					"cost" : 4,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "WILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DISCARD"
+						},
+						{
+							"trigger" : "SACRIFICE",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "SACRIFICE",
+								"type" : "DAMAGE"
+							}
 						}
 					]
 				},
