@@ -85,10 +85,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						},
@@ -110,10 +110,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING2",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "GOLD" 
 							}
 						},
@@ -135,17 +135,17 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "CHOICE",
 							"abilities" : [
-								{ 	"trigger" : "DEFAULT",
+								{ 	"trigger" : "TAP",
 									"type" : "GOLD"
 									},
 									{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING2",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type": "DAMAGE"
 									}
 								}
@@ -165,23 +165,23 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING4",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "CHOICE",
 									"abilities" : [
 										{
-											"trigger" : "DEFAULT",
+											"trigger" : "TAP",
 											"type" : "STUN"
 										},
 										{
@@ -205,10 +205,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING2",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE"
 							}
 						}
@@ -226,10 +226,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "GOLD"
 							}
 						},
@@ -499,15 +499,15 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						},
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "+ 1 damage for each other CHAMPION you have in play"
 						}
 					]
@@ -524,15 +524,15 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING2",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						},
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "+ 1 damage for each other GUARD you have in play"
 						}
 					]
@@ -549,15 +549,15 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "CHOICE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "GOLD"
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "+1 HEAL for each CHAMPION you have in play"
 								}
 							]
@@ -576,19 +576,19 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING2",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "HEAL"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "DRAW"
 								}
 							]
@@ -611,22 +611,22 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING2",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING3",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "HEAL"
 									}
 								}
@@ -650,22 +650,22 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "CHOICE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING3",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING4",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "HEAL"
 									}
 								}
@@ -685,19 +685,19 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING5",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "DRAW"
 								}
 							]
@@ -706,7 +706,7 @@
 							"trigger" : "FACTION",
 							"type" : "REPEATING6",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "HEAL"
 							}
 						}
@@ -989,15 +989,15 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE"
 							}
 						},
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "DRAW"
 						}
 					]
@@ -1014,15 +1014,15 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "CHOICE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "GOLD"
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "DAMAGE"
 								}
 							]
@@ -1049,10 +1049,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING2",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE"
 							}
 						}
@@ -1070,7 +1070,7 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "Take a champion from your discard pile and put it on top of your deck"
 						},
 						{
@@ -1091,41 +1091,41 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING4",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "CHOICE",
 									"abilities" : [
 										{
-											"trigger" : "DEFAULT",
+											"trigger" : "TAP",
 											"type" : "CHOICE",
 											"abilities" : [
 												{
-													"trigger" : "DEFAULT",
+													"trigger" : "TAP",
 													"type" : "SELFDISCARD"
 												},
 												{
-													"trigger" : "DEFAULT",
+													"trigger" : "TAP",
 													"type" : "REPEATING2",
 													"ability" : {
-														"trigger" : "DEFAULT",
+														"trigger" : "TAP",
 														"type" : "SELFDISCARD"
 													}
 												}
 											]
 										},
 										{
-											"trigger" : "DEFAULT",
+											"trigger" : "TAP",
 											"type" : "EMPTY"
 										}
 									]
@@ -1150,19 +1150,19 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING3",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "You may sacrifice a card in your hand or discard pile. If you do, gain an adidional 3 DAMAGE"
 								}
 							]
@@ -1181,19 +1181,19 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING2",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "You may sacrifice a card in your hand or discard pile. If you do, gain an adidional 2 DAMAGE"
 								}
 							]
@@ -1448,10 +1448,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING2",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						},
@@ -1473,19 +1473,19 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING2",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "+1 DAMAGE for each other WILD card you have in play."
 								}
 							]
@@ -1504,10 +1504,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						},
@@ -1515,7 +1515,7 @@
 							"trigger" : "FACTION",
 							"type" : "REPEATING4",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						}
@@ -1533,10 +1533,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING2",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "GOLD" 
 							}
 						},
@@ -1558,19 +1558,19 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING4",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "DISCARD"
 								}
 							]
@@ -1589,10 +1589,10 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "REPEATING5",
 							"ability" : {
-								"trigger" : "DEFAULT",
+								"trigger" : "TAP",
 								"type" : "DAMAGE" 
 							}
 						},
@@ -1614,37 +1614,37 @@
 					"class" : "NONE",
 					"abilities" : [
 						{
-							"trigger" : "DEFAULT",
+							"trigger" : "TAP",
 							"type" : "COMPOSITE",
 							"abilities" : [
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "REPEATING6",
 									"ability" : {
-										"trigger" : "DEFAULT",
+										"trigger" : "TAP",
 										"type" : "DAMAGE"
 									}
 								},
 								{
-									"trigger" : "DEFAULT",
+									"trigger" : "TAP",
 									"type" : "CHOICE",
 									"abilities" : [
 										{
-											"trigger" : "DEFAULT",
+											"trigger" : "TAP",
 											"type" : "COMPOSITE",
 											"abilities" : [
 												{
-													"trigger" : "DEFAULT",
+													"trigger" : "TAP",
 													"type" : "DRAW"
 												},
 												{
-													"trigger" : "DEFAULT",
+													"trigger" : "TAP",
 													"type" : "SELFDISCARD"
 												}
 											]
 										},
 										{
-											"trigger" : "DEFAULT",
+											"trigger" : "TAP",
 											"type" : "EMPTY"
 										}
 									]
