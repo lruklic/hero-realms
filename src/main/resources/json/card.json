@@ -1072,4 +1072,463 @@
 						}
 					]
 				},
+				// Necros champions (7 in total)
+				{
+					"name" : "Rayla Endweaver",
+					"image" : "",
+					"cost" : 4,
+					"type" : "CHAMPION",
+					"health" : 4,
+					"guard" : "NO",
+					"description" : "Human Mage",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						},
+						{
+							"trigger" : "DEFAULT",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Cult Priest",
+					"image" : "",
+					"cost" : 3,
+					"type" : "CHAMPION",
+					"health" : 4,
+					"guard" : "NO",
+					"description" : "Human",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "CHOICE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "GOLD"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DAMAGE"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Death Cultist",
+					"image" : "",
+					"cost" : 2,
+					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : "YES",
+					"description" : "Human",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Varrick, the Necromancer",
+					"image" : "",
+					"cost" : 5,
+					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : "NO",
+					"description" : "Human Necromancer",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "Take a champion from your discard pile and put it on top of your deck"
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Tyrannor, the Devourer",
+					"image" : "",
+					"cost" : 8,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "YES",
+					"description" : "Hemon",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING4",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "CHOICE",
+											"abilities" : [
+												{
+													"trigger" : "DEFAULT",
+													"type" : "SELFDISCARD"
+												},
+												{
+													"trigger" : "DEFAULT",
+													"type" : "REPEATING2",
+													"ability" : {
+														"trigger" : "DEFAULT",
+														"type" : "SELFDISCARD"
+													}
+												}
+											]
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Krythos, Master Vampire",
+					"image" : "",
+					"cost" : 7,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "NO",
+					"description" : "Vampire",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "You may sacrifice a card in your hand or discard pile. If you do, gain an adidional 3 DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Lys, the Unseen",
+					"image" : "",
+					"cost" : 6,
+					"type" : "CHAMPION",
+					"health" : 5,
+					"guard" : "YES",
+					"description" : "Vampire",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "You may sacrifice a card in your hand or discard pile. If you do, gain an adidional 2 DAMAGE"
+								}
+							]
+						}
+					]
+				},
+				// Necros actions (6 in total)
+				{
+					"name" : "The Rot",
+					"image" : "",
+					"cost" : 3,
+					"type" : "ACTION",
+					"description" : "Curse",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING4",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "SACRIFICE"
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								},
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Death Touch",
+					"image" : "",
+					"cost" : 1,
+					"type" : "ACTION",
+					"description" : "Curse",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "SACRIFICE"
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								},
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Influence",
+					"image" : "",
+					"cost" : 2,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						},
+						{
+							"trigger" : "SACRIFICE",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "SACRIFICE",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Life Drain",
+					"image" : "",
+					"cost" : 6,
+					"type" : "ACTION",
+					"description" : "Curse",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING8",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "SACRIFICE"
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								},
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Dark Reward",
+					"image" : "",
+					"cost" : 5,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "GOLD"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "SACRIFICE"
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								},
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING6",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Dark Energy",
+					"image" : "",
+					"cost" : 4,
+					"type" : "ACTION",
+					"description" : "Spell",
+					"faction" : "NECROS",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING7",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
 ]}
