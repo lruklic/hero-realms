@@ -356,11 +356,11 @@
 					]
 				},
 				{
-					"name" : "Longsword",
+					"name" : "Throwing Axe",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
-					"description" : "Melee Weapon, Sword",
+					"description" : "Ranged Weapon, Axe",
 					"faction" : "NONE",
 					"class" : "NONE",
 					"abilities" : [
@@ -394,17 +394,17 @@
 					]
 				},
 				{
-					"name" : "Throwing Axe",
+					"name" : "Longsword",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
-					"description" : "Ranged Weapon, Axe",
+					"description" : "Melee Weapon, Sword",
 					"faction" : "NONE",
 					"class" : "NONE",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
-							"type" : "REPEATING2",
+							"type" : "REPEATING3",
 							"ability" : {
 								"trigger" : "DEFAULT",
 								"type" : "DAMAGE"
@@ -474,6 +474,119 @@
 											"trigger" : "DEFAULT",
 											"type" : "DAMAGE"
 										}
+									}
+								}
+							]			
+						}
+					]
+				},
+				// Ranger class
+				{
+					"name" : "Ranger Gold",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Coin",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "GOLD"
+						}
+					]
+				},
+				{
+					"name" : "Ranger Ruby",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Gem",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Horn of Calling",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Instrument",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "GOLD"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "Next champion you acquire this turn costs 1 GOLD less."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Hunting Bow",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Ranged Weapon, Bow",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}			
+						}
+					]
+				},
+				{
+					"name" : "Black Arrow",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Arrow",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DAMAGE"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CONDITIONAL",
+									"condition" : "bow >= 1",
+									"fulfilled" : {
+										"trigger" : "DEFAULT",
+										"type" : "DRAW"
+									},
+									"unfulfilled" : {
+										"trigger" : "DEFAULT",
+										"type" : "EMPTY"
 									}
 								}
 							]			
