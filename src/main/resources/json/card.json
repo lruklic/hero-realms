@@ -297,7 +297,7 @@
 								},
 								{
 									"trigger" : "DEFAULT",
-									"type" : "Next action you acquire this turn costs 1 GOLD less."
+									"type" : "NEXTACTIONCOSTSONELESS"
 								}
 							]
 						}
@@ -534,7 +534,7 @@
 								},
 								{
 									"trigger" : "DEFAULT",
-									"type" : "Next champion you acquire this turn costs 1 GOLD less."
+									"type" : "NEXTCHAMPIONCOSTSONELESS"
 								}
 							]
 						}
@@ -1057,7 +1057,11 @@
 						},
 						{
 							"trigger" : "TAP",
-							"type" : "+ 1 damage for each other CHAMPION you have in play"
+							"type" : "REPEATINGOTHERCHAMPION",
+							"ability" : {
+								"trigger" : "TAP",
+								"type" : "DAMAGE"
+							}
 						}
 					]
 				},
@@ -1082,7 +1086,11 @@
 						},
 						{
 							"trigger" : "TAP",
-							"type" : "+ 1 damage for each other GUARD you have in play"
+							"type" : "REPEATINGOTHERGUARD",
+							"ability" : {
+								"trigger" : "TAP",
+								"type" : "DAMAGE"
+							}
 						}
 					]
 				},
@@ -1107,7 +1115,11 @@
 								},
 								{
 									"trigger" : "TAP",
-									"type" : "+1 HEAL for each CHAMPION you have in play"
+									"type" : "REPEATINGCHAMPION",
+									"ability" : {
+										"trigger" : "TAP",
+										"type" : "HEAL"
+									}
 								}
 							]
 						}
@@ -1144,7 +1156,15 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "Gain 2 HEAL for each CHAMPION you have in play"
+							"type" : "REPEATINGCHAMPION",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "REPEATING2",
+								"ability" : {
+									"trigger" : "FACTION",
+									"type" : "HEAL"
+								}
+							}
 						}
 					]
 				},
@@ -1320,7 +1340,11 @@
 								},
 								{
 									"trigger" : "DEFAULT",
-									"type" : "+1 HEAL for each CHAMPION you have in play"
+									"type" : "REPEATINGCHAMPION",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
 								}
 							]
 						},
@@ -1353,7 +1377,15 @@
 								},
 								{
 									"trigger" : "DEFAULT",
-									"type" : "+2 DAMAGE for each champion you have in play"
+									"type" : "REPEATINGCHAMPION",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "REPEATING2",
+										"ability" : {
+											"trigger" : "DEFAULT",
+											"type" : "DAMAGE"
+										}
+									}
 								}
 							]
 						},
@@ -2083,7 +2115,11 @@
 								},
 								{
 									"trigger" : "TAP",
-									"type" : "+1 DAMAGE for each other WILD card you have in play."
+									"type" : "REPEATINGOTHERWILD",
+									"ability" : {
+										"trigger" : "TAP",
+										"type" : "HEAL"
+									}
 								}
 							]
 						}
