@@ -593,6 +593,34 @@
 						}
 					]
 				},
+				// Fire Gem
+				{
+					"name" : "Fire Gem",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Gem",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}			
+						},
+						{
+							"trigger" : "SACRIFICE",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "SACRIFICE",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
 				// Guild Champions (6 in total)
 				{
 					"name" : "Parov, the Enforcer",
