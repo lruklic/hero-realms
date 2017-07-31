@@ -119,7 +119,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "Put the next card you acquire this turn on top of your deck"
+							"type" : "NEXTCARDACQUIREDTOTOPDECK"
 						}
 					]
 				},
@@ -263,7 +263,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "Put the next action you acquire this turn on top of your deck"
+							"type" : "NEXTACTIONACQUIREDTOTOPDECK"
 						}
 					]
 				},
@@ -350,7 +350,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "Put the next card you acquire this turn into your hand"
+							"type" : "NEXTCARDACQUIREDTOHAND"
 						}
 					]
 				},
@@ -474,7 +474,7 @@
 									"abilities" : [
 										{
 											"trigger" : "DEFAULT",
-											"type" : "You may put a card from your discard pile on top of your deck"
+											"type" : "CARDFROMDISCARDTOTOPDECK"
 										},
 										{
 											"trigger" : "DEFAULT",
@@ -1071,7 +1071,7 @@
 					"abilities" : [
 						{
 							"trigger" : "TAP",
-							"type" : "Take a champion from your discard pile and put it on top of your deck"
+							"type" : "CARDFROMDISCARDTOTOPDECK"
 						},
 						{
 							"trigger" : "FACTION",
