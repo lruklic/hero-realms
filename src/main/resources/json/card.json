@@ -1,16 +1,70 @@
 { "cards" : [
+				// Default class (7 coins, ruby, dagger and shortsword)
 				{
 					"name" : "Gold",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
-					"description" : "Coin",
+					"description" : "Currency, Coin",
 					"faction" : "NONE",
 					"class" : "NONE",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
-							"type" : "GOLD"			
+							"type" : "GOLD"
+						}
+					]
+				},
+				{
+					"name" : "Ruby",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Gem",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Dagger",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Melee Weapon, Dagger",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "DAMAGE"			
+						}
+					]
+				},
+				{
+					"name" : "Shortsword",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Melee Weapon, Sword",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}			
 						}
 					]
 				},
