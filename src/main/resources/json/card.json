@@ -303,6 +303,115 @@
 						}
 					]
 				},
+				// Fighter class
+				{
+					"name" : "Fighter Gold",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Coin",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "GOLD"
+						}
+					]
+				},
+				{
+					"name" : "Fighter Ruby",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Gem",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Shield Bearer",
+					"image" : "",
+					"cost" : -1,
+					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : "YES",
+					"description" : "Human",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "TAP",
+							"type" : "EMPTY"
+						}
+					]
+				},
+				{
+					"name" : "Longsword",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Melee Weapon, Sword",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CONDITIONAL",
+									"condition" : "combat >= 7",
+									"fulfilled" : {
+										"trigger" : "DEFAULT",
+										"type" : "DRAW"
+									},
+									"unfulfilled" : {
+										"trigger" : "DEFAULT",
+										"type" : "EMPTY"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Throwing Axe",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Ranged Weapon, Axe",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}			
+						}
+					]
+				},
 				// Guild Champions (6 in total)
 				{
 					"name" : "Parov, the Enforcer",
