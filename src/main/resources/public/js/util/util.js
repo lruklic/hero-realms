@@ -23,3 +23,25 @@ function button(clazz, content) {
 function itag(clazz) {
     return '<i class="' + clazz + '"></i>';
 }
+
+function divCardPermanent(index, id, player, hp, guard, widthPercentage, content) {
+    return '<div id="' + player + '-card-' + index + '" data-id="' + id + '" data-hp="' + hp + '"' +
+        ' data-guard="' + guard + '" class="card-container" style="width:' + widthPercentage +'%">' + content + '</div>'; 
+}
+
+function imgSvg(src) {
+    return '<svg height="126px" width="90px" class="scalable mouseenter-trigger">'
+        + '<image xlink:href="images/' + src + '.jpg"/></svg>'
+}
+
+function imgCardSvg(index, id, src, type, isFirst) {
+    var rest = "rest";
+    if (isFirst) rest = "";
+
+    return '<svg id="hand-' + index + '" data-id="' + id + '" data-type="' + type + '" class="hand-card scalable ' + rest + '">'
+        + '<image xlink:href="images/' + src + '.jpg"/>' + '</svg>'
+}
+
+function imgCard(src) {
+    return '<img class="shadow scalable mouseenter-trigger" src="images/' + src + '.jpg" alt="' + src + '" height="114" width="75"></img>';
+}

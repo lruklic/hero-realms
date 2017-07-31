@@ -1,5 +1,57 @@
 var cardAbilityHover = {"id" : null, "active" : false};
 
+var board = {
+    "opponent" : {
+        "health" : 55,
+        "damage" : 0,
+        "gold" : 0,
+        "deck" : 23,
+        "permanent" : [
+            {"id" : "001", "code" : "CH-CAPKOS"},
+            {"id" : "002", "code" : "CH-CAPKOS"}, 
+            {"id" : "003", "code" : "CH-CAPKOS"}            
+        ],
+        "nonpermanent" : [
+        ]
+    },
+    "market" : [
+        {"id" : "004", "code" : "CH-RAYEND"},
+        {"id" : "005", "code" : "CH-CULPRI"},
+        {"id" : "006", "code" : "CH-DEACUL"},
+        {"id" : "007", "code" : "AC-THEROT"},
+        {"id" : "008", "code" : "AC-INFLUE"},
+        {"id" : "009", "code" : "AC-FIRGEM"}
+    ],
+    "player" : {
+        "health" : 55,
+        "damage" : 0,
+        "gold" : 0,
+        "deck" : 20,
+        "permanent" : [
+            {"id" : "010", "code" : "CH-CAPKOS"}
+        ],
+        "nonpermanent" : [
+        ],
+        "hand" : [
+            {"id" : "011", "code" : "CH-RAYEND"},
+            {"id" : "012", "code" : "CH-CULPRI"},
+            {"id" : "013", "code" : "CH-DEACUL"},
+            {"id" : "014", "code" : "AC-FIRGEM"}
+            /*{"id" : "014", "code" : "CH-VARNEC"} */       
+        ]
+    }
+}
+
+var cards = {
+    "CH-CAPKOS" : {"type" : "champion"},
+    "CH-RAYEND" : {"type" : "champion"},
+    "CH-CULPRI" : {"type" : "champion"},
+    "CH-DEACUL" : {"type" : "champion"},
+    "AC-THEROT" : {"type" : "action"},
+    "AC-INFLUE" : {"type" : "action"},
+    "AC-FIRGEM" : {"type" : "action"}
+}
+
 $(function() {
 
     gui();
@@ -19,18 +71,38 @@ function gui() {
 
     $("#opponent-deck-image")
         .mouseenter(function() {
-            $(this).css("opacity", 0.5);
+            $(this).css("opacity", 0.3);
+            
+            var offset = $(this).offset();
+
+            $("#deck-text")
+                .css({
+                    "top" : offset.top,
+                    "left" : offset.left
+                })
+                .width($(this).width())
+                .height($(this).height())
+                .removeClass("hidden");
         })
-        .mouseleave(function() {
-            $(this).css("opacity", 1);
-            $("#opponent-deck-image-text").css("opacity", 1);
-        });
+
+    $("#deck-text").mouseleave(function() {
+        $("#opponent-deck-image").css("opacity", 1);
+        $("#deck-text").addClass("hidden");
+    });
 
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
         acquire(id);
     });
+
+    $(".hand-card")
+        .mouseenter(function() {
+            $(this).css("transform", "translate(0px, -20px)")
+        })
+        .mouseleave(function() {
+            $(this).css("transform", "translate(0px, 0px)")
+        })
 
     $(".container").on("contextmenu", ".scalable", function() {
         if ($(this).hasClass('scaled')) {
@@ -50,11 +122,6 @@ function gui() {
                 var zIndex = Number(d3.select(this).style("z-index"));
                 if (zIndex > maxZIndex) maxZIndex = zIndex;
             });
-
-/*            d3.selectAll(".scalable").each(function() {
-                var zIndex = Number(d3.select(this).style("z-index"));
-                if (zIndex > maxZIndex) maxZIndex = zIndex;
-            });*/
             
             $(this).addClass("scaled")
                 .css("transform", "scale(3.5)")
@@ -91,80 +158,16 @@ function gui() {
         update("opponent", "combat", 5);
     });
 
-/*    $(".opponent-playable-nonpermanent").mouseenter(function() {
-        $(this).siblings("div").removeClass("hidden")
-    });*/
-
-/*    $(".opponent-playable-nonpermanent")
-        .mouseenter(function() {
-            $(this).css("transform", "scale(2)");
-        })
-        .mouseleave(function() {
-            $(this).css("transform", "scale(1)");
-        });*/
-}
-/**
- * Updates value on token.
- * 
- * @target player, opponent
- * @category gold, combat, health
- * @value final value in token after update
- */
-function update(target, category, value) {
-    d3.select("svg." + target  + "-" + category + "-token text").transition().duration(1000).tween("text", function() {
-        var that = d3.select(this);
-        var i = d3.interpolateNumber(that.text(), value);
-        return function(t) { that.text(Math.round(i(t))); };
+    d3.selectAll(".hand-card").on("click", function() {
+        var handCard = d3.select(this);
+        var id = handCard.attr("id").split("-")[1];
+        var type = handCard.attr("data-type");
+        playCard(id, type);
     });
+
 }
 
-function tapAndActivate(target, id) {
-    var cardObject = d3.select("#" + target + "-card-" + id + " img")
-    
-    cardObject.classed("mouseenter-trigger", false);
 
-    d3.select(cardObject.node().parentNode)
-        .select(".ability-picker")
-        .style("display", "none");
 
-    cardObject.transition().duration(300)
-        .style("transform", "rotate(90deg)");
 
-    cardObject.classed("rotated", true);
-}
 
-function acquire(id) {
-    d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(180deg)");
-
-    var offset = $("#market-container-" + id + " .flipper img").offset(); 
-
-    var endPoint = $("#player-discard-pile-image").offset();
-
-    var animation = d3.select("#animation");
-
-    animation
-        .style("top", offset.top + "px")
-        .style("left", offset.left + "px")
-        .transition().delay(700).duration(1)
-        .style("opacity", 1);
-    
-    //console.log(endPoint.top + " " + endPoint.left);
-    animation.transition().delay(710).duration(500)
-        .style("top", endPoint.top + "px")
-        .style("left", endPoint.left + "px")
-        .attr("width", 114)
-        .attr("height", 75);
-
-    animation.transition().delay(1220).duration(100)
-        .style("opacity", 0)
-
-    setTimeout(function() {
-        d3.select("#market-slot-img-" + id).attr("src", "images/0013.jpg")
-    }, 800)
-
-    setTimeout(function() {
-        d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(0deg)")
-        animation.attr("width", 150).attr("height", 98);
-    }, 1330);
-    
-}

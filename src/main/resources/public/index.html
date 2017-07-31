@@ -8,18 +8,22 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">      	
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">      	
-        <link rel="stylesheet" type="text/css" href="stylesheet/main.css">      	        
+        <link rel="stylesheet" type="text/css" href="stylesheet/main.css">        
+        	        
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-        <script src="js/util/util.js"></script>        
+        <script src="js/util/util.js"></script>
+        <script src="js/init/pageInit.js"></script>                
+        <script src="js/init/boardInit.js"></script>         
         <script src="js/index.js"></script>
+        <script src="js/interface.js"></script>
+        <script src="js/actions.js"></script>        
         <script src="js/socket.js"></script>
-        <script src="js/init/boardInit.js"></script>        
-   
+       
     </head>
     <body>
 
     <div class="container">
-        <div id="connect-tile" class="row row-tile">
+        <div id="connect-tile" class="row row-tile hidden">
             <div class="col-xs-6 col-md-6">
                 <input id="username">
                 <button id="wsconnect">Connect</button>                                                                                                                                                             
@@ -30,47 +34,28 @@
             </div>
         </div>
         <div id="opponent-tile" class="row row-tile">
-            <div class="col-xs-3 col-md-3">
+            <div class="col-xs-2 col-md-2">
                 <div class="row center">
                     <img id="opponent-deck-image" class="shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
-                    <span class="opponent-deck-text"><span>Deck: 12</span></span>
-                </div>
+                    <!--<span class="opponent-deck-text"><span>Deck: 12</span></span>
+                --></div>
                 <div class="row center margin2">
                     <img id="opponent-discard-pile-image" class="shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                    
-                    <span class="opponent-deck-text margin2 top50"><span>Discard pile: 3</span></span>
-                </div>
+                    <!--<span class="opponent-deck-text margin2 top50"><span>Discard pile: 3</span></span>
+                --></div>
             </div>            
-            <div class="col-xs-6 col-md-6 center">
-                <div class="row center">
+            <div class="col-xs-9 col-md-9 center">
+                <div class="opponent-nonpermanent-board row center">
                     <img id="opponent-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
                 </div>
-                <div class="row center margin2 flex-container">
-                    <div id="opponent-card-1" class="column card-container">
+                <div class="opponent-permanent-board row center margin2">
+                <!--  <div id="opponent-card-1" data-hp="4" data-guard="true" class="column card-container">
                         <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">
-                        <div class="transparent0 ability-picker margin2">
-                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
-                            +3 Combat and change unit faction this turn
-                        </div>
-                    </div>
-                    <div id="opponent-card-2" class="column card-container">
-                        <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
-                        <div class="transparent0 ability-picker margin2">
-                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
-                            Change faction
-                        </div>
-                    </div>
-                    <div id="opponent-card-3" class="column card-container">
-                        <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
-                        <div class="transparent0 ability-picker margin2">
-                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
-                            Change faction
-                        </div>
-                    </div>
+                    -->
                 </div>
 
             </div>
-            <div class="col-xs-3 col-md-3">
-
+            <div class="col-xs-1 col-md-1">
                 <svg class="opponent-health-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="limegreen" />
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">55</text>
@@ -86,10 +71,11 @@
                 <!--Health, gold, damage-->
             </div>
         </div>
-        <div id="market-tile" class="row row-tile">    
-        </div>
-        <div id="player-tile" class="row row-tile">
-            <div class="col-xs-3 col-md-3">
+        
+        <div id="market-tile" class="row row-tile"></div>
+
+        <div id="player-board-tile" class="row row-tile">
+            <div class="col-xs-2 col-md-2">
                 <div class="row center">
                     <img id="player-deck-image" class="shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
                     <span class="player-deck-text"><span>Deck: 12</span></span>
@@ -99,36 +85,11 @@
                     <span class="player-deck-text margin2 top50"><span>Discard pile: 3</span></span>
                 </div>
             </div>            
-            <div class="col-xs-6 col-md-6 center">
-                <div class="row center margin2 flex-container">
-                    <div id="player-card-1" class="column card-container">
-                        <img class="shadow player-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">
-                        <div class="transparent0 ability-picker margin2">
-                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
-                            +3 Combat and change unit faction this turn
-                        </div>
-                    </div>
-                    <div id="player-card-2" class="column card-container">
-                        <img class="shadow player-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
-                        <div class="transparent0 ability-picker margin2">
-                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
-                            Change faction
-                        </div>
-                    </div>
-                    <div id="player-card-3" class="column card-container">
-                        <img class="shadow player-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">                                         
-                        <div class="transparent0 ability-picker margin2">
-                            <img src="images/go-back.png" alt="Tap" height="20" width="20"> 
-                            Change faction
-                        </div>
-                    </div>
-                </div>
-                <div class="row center">
-                    <img id="player-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
-                </div>
+            <div class="col-xs-9 col-md-9 center">
+                <div class="player-permanent-board row center margin2"></div>
+                <div class="player-nonpermanent-board row center margin2"></div>
             </div>
-            <div class="col-xs-3 col-md-3">
-
+            <div class="col-xs-1 col-md-1">
                 <svg class="player-health-token" height="50" width="50">
                     <circle cx="25" cy="25" r="20" stroke="black" stroke-width="1.5" fill="limegreen" />
                     <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-weight="bold">55</text>
@@ -143,10 +104,21 @@
                 </svg>
                 <!--Health, gold, damage-->
             </div>
-        </div>        
-    </div>    
+        </div>  
 
-    <img id="animation" class="shadow absolute transparent0" src="images/back-rotate-right.jpg" alt="Animate" height="98" width="150">
+        <div id="player-hand-tile" class="row row-tile">
+            <div class="player-hand"></div>
+        </div>    
+    </div>    
+    <svg id="animation" height="98px" width="150px" class="absolute transparent0">
+        <image xlink:href="images/back-rotate-right.jpg" height="100%" width="100%"/>
+    </svg>
+    <!--<img id="animation" class="absolute transparent0" src="images/back-rotate-right.jpg" alt="Animate" height="98" width="150">
+   --> <div id="deck-text" class="hidden">
+        <div class="centered">
+            <strong>Deck: 23 left</strong>
+        </div>
+    </div>
 
     </body>
 </html>
