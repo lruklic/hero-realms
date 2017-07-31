@@ -17,9 +17,9 @@
 				{
 					"name" : "Prayer beads",
 					"image" : "",
-					"cost" : "-1";
+					"cost" : -1,
 					"type" : "ITEM",
-					"description" : "Holy relic",
+					"description" : "Holy Relic",
 					"faction" : "NONE",
 					"class" : "CLERIC",
 					"abilities" : [
