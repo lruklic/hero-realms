@@ -68,6 +68,22 @@
 						}
 					]
 				},
+				// Cleric class (6 coins, prayer beads, 2 followers, spiked mace, bless, resurrect)
+				{
+					"name" : "Cleric Gold",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Coin",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "GOLD"
+						}
+					]
+				},
 				{
 					"name" : "Prayer beads",
 					"image" : "",
@@ -123,6 +139,23 @@
 									}
 								]
 							}
+						}
+					]
+				},
+				{
+					"name" : "Follower",
+					"image" : "",
+					"cost" : -1,
+					"type" : "CHAMPION",
+					"health" : 1,
+					"guard" : "YES",
+					"description" : "Human",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "TAP",
+							"type" : "DAMAGE"
 						}
 					]
 				},
