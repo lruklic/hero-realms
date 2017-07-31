@@ -1163,7 +1163,31 @@
 								},
 								{
 									"trigger" : "TAP",
-									"type" : "You may sacrifice a card in your hand or discard pile. If you do, gain an adidional 3 DAMAGE"
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "TAP",
+											"type" : "COMPOSITE",
+											"abilities" : [
+												{
+													"trigger" : "TAP",
+													"type" : "SACRIFICE"
+												},
+												{
+													"trigger" : "TAP",
+													"type" : "REPEATING3",
+													"ability" : {
+														"trigger" : "TAP",
+														"type" : "DAMAGE"
+													}
+												}
+											]
+										},
+										{
+											"trigger" : "TAP",
+											"type" : "EMPTY"
+										}
+									]
 								}
 							]
 						}
@@ -1194,7 +1218,31 @@
 								},
 								{
 									"trigger" : "TAP",
-									"type" : "You may sacrifice a card in your hand or discard pile. If you do, gain an adidional 2 DAMAGE"
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "TAP",
+											"type" : "COMPOSITE",
+											"abilities" : [
+												{
+													"trigger" : "TAP",
+													"type" : "SACRIFICE"
+												},
+												{
+													"trigger" : "TAP",
+													"type" : "REPEATING2",
+													"ability" : {
+														"trigger" : "TAP",
+														"type" : "DAMAGE"
+													}
+												}
+											]
+										},
+										{
+											"trigger" : "TAP",
+											"type" : "EMPTY"
+										}
+									]
 								}
 							]
 						}
