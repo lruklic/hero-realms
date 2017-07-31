@@ -851,7 +851,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "Prepare a champion"
+							"type" : "PREPARE"
 						}
 					]
 				},
@@ -972,7 +972,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "Prepare a champion"
+							"type" : "PREPARE"
 						}
 					]
 				},
