@@ -76,7 +76,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Coin",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "CLERIC",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -151,7 +151,7 @@
 					"guard" : "YES",
 					"description" : "Human",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "CLERIC",
 					"abilities" : [
 						{
 							"trigger" : "TAP",
@@ -166,7 +166,7 @@
 					"type" : "ITEM",
 					"description" : "Melee Weapon, Mace",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "CLERIC",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -186,7 +186,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Coin",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "WIZARD",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -203,7 +203,7 @@
 					"guard" : "NO",
 					"description" : "Feline",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "WIZARD",
 					"abilities" : [
 						{
 							"trigger" : "TAP",
@@ -232,7 +232,7 @@
 					"type" : "ACTION",
 					"description" : "Spell",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "WIZARD",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -251,7 +251,7 @@
 					"type" : "ITEM",
 					"description" : "Magic Weapon, Staff",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "WIZARD",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -285,7 +285,7 @@
 					"type" : "ITEM",
 					"description" : "Magic Supplies",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "WIZARD",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -311,7 +311,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Coin",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "FIGHTER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -326,7 +326,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Gem",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "FIGHTER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -347,7 +347,7 @@
 					"guard" : "YES",
 					"description" : "Human",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "FIGHTER",
 					"abilities" : [
 						{
 							"trigger" : "TAP",
@@ -362,7 +362,7 @@
 					"type" : "ITEM",
 					"description" : "Ranged Weapon, Axe",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "FIGHTER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -400,7 +400,7 @@
 					"type" : "ITEM",
 					"description" : "Melee Weapon, Sword",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "FIGHTER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -420,7 +420,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Coin",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "THIEF",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -435,7 +435,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Gem",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "THIEF",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -454,7 +454,7 @@
 					"type" : "ITEM",
 					"description" : "Ranged Weapon, Knife",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "THIEF",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -488,7 +488,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Coin",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "RANGER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -503,7 +503,7 @@
 					"type" : "ITEM",
 					"description" : "Currency, Gem",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "RANGER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -522,7 +522,7 @@
 					"type" : "ITEM",
 					"description" : "Instrument",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "RANGER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -547,7 +547,7 @@
 					"type" : "ITEM",
 					"description" : "Ranged Weapon, Bow",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "RANGER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
@@ -566,7 +566,7 @@
 					"type" : "ITEM",
 					"description" : "Arrow",
 					"faction" : "NONE",
-					"class" : "NONE",
+					"class" : "RANGER",
 					"abilities" : [
 						{
 							"trigger" : "DEFAULT",
