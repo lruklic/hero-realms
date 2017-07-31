@@ -582,4 +582,494 @@
 						}
 					]
 				},
+				// Imperial champions (7 in total)
+				{
+					"name" : "Master Weyan",
+					"image" : "",
+					"cost" : 4,
+					"type" : "CHAMPION",
+					"health" : 4,
+					"guard" : "YES",
+					"description" : "Human Monk",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "DEFAULT",
+							"type" : "+ 1 damage for each other CHAMPION you have in play"
+						}
+					]
+				},
+				{
+					"name" : "Man-at-Arms",
+					"image" : "",
+					"cost" : 3,
+					"type" : "CHAMPION",
+					"health" : 4,
+					"guard" : "YES",
+					"description" : "Human Warrior",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "DEFAULT",
+							"type" : "+ 1 damage for each other GUARD you have in play"
+						}
+					]
+				},
+				{
+					"name" : "Tithe Priest",
+					"image" : "",
+					"cost" : 2,
+					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : "NO",
+					"description" : "Human Priest",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "CHOICE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "GOLD"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "+1 HEAL for each CHAMPION you have in play"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Kraka, High Priest",
+					"image" : "",
+					"cost" : 6,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "NO",
+					"description" : "Human Priest",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "Gain 2 HEAL for each CHAMPION you have in play"
+						}
+					]
+				},
+				{
+					"name" : "Cristov, the just",
+					"image" : "",
+					"cost" : 5,
+					"type" : "CHAMPION",
+					"health" : 5,
+					"guard" : "YES",
+					"description" : "Human Paladin",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Darian, War Mage",
+					"image" : "",
+					"cost" : 4,
+					"type" : "CHAMPION",
+					"health" : 5,
+					"guard" : "NO",
+					"description" : "Human Paladin",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "CHOICE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING4",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Arkus, Imperial Dragon",
+					"image" : "",
+					"cost" : 8,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "YES",
+					"description" : "Dragon",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING5",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING6",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "HEAL"
+							}
+						}
+					]
+				},
+				// Imperial actions (7 in total)
+				{
+					"name" : "Taxation",
+					"image" : "",
+					"cost" : 1,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING6",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "HEAL"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Recruit",
+					"image" : "",
+					"cost" : 2,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "GOLD"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "+1 HEAL for each CHAMPION you have in play"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "GOLD"
+						}
+					]
+				},
+				{
+					"name" : "Close Ranks",
+					"image" : "",
+					"cost" : 3,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING5",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "+2 DAMAGE for each champion you have in play"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING6",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "HEAL"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Rally the Troops",
+					"image" : "",
+					"cost" : 4,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING5",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING5",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "Prepare a champion"
+						}
+					]
+				},
+				{
+					"name" : "Command",
+					"image" : "",
+					"cost" : 5,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "GOLD"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING3",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING4",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Word of Power",
+					"image" : "",
+					"cost" : 6,
+					"type" : "ACTION",
+					"description" : "Spell",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DRAW"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING5",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "HEAL"
+							}
+						},
+						{
+							"trigger" : "SACRIFICE",
+							"type" : "REPEATING5",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Domination",
+					"image" : "",
+					"cost" : 7,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "IMPERIAL",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "HEAL"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "Prepare a champion"
+						}
+					]
+				},
 ]}
