@@ -159,6 +159,150 @@
 						}
 					]
 				},
+				{
+					"name" : "Spiked Mace",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Melee Weapon, Mace",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}			
+						}
+					]
+				},
+				// Wizard class
+				{
+					"name" : "Wizard Gold",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Currency, Coin",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "GOLD"
+						}
+					]
+				},
+				{
+					"name" : "Cat Familiar",
+					"image" : "",
+					"cost" : -1,
+					"type" : "CHAMPION",
+					"health" : 2,
+					"guard" : "NO",
+					"description" : "Feline",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "TAP",
+							"type" : "CHOICE",
+							"abilities" : [
+								{
+									"trigger" : "TAP",
+									"type" : "DAMAGE"
+								},
+								{
+									"trigger" : "TAP",
+									"type" : "GOLD"
+								},
+								{
+									"trigger" : "TAP",
+									"type" : "HEAL"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Ignite",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ACTION",
+					"description" : "Spell",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}			
+						}
+					]
+				},
+				{
+					"name" : "Fire Staff",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Magic Weapon, Staff",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DAMAGE"			
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CONDITIONAL",
+									"condition" : "actions >= 2",
+									"fulfilled" : {
+										"trigger" : "DEFAULT",
+										"type" : "DRAW"
+									},
+									"unfulfilled" : {
+										"trigger" : "DEFAULT",
+										"type" : "EMPTY"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Spell Components",
+					"image" : "",
+					"cost" : -1,
+					"type" : "ITEM",
+					"description" : "Magic Supplies",
+					"faction" : "NONE",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "GOLD"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "Next action you acquire this turn costs 1 GOLD less."
+								}
+							]
+						}
+					]
+				},
 				// Guild Champions (6 in total)
 				{
 					"name" : "Parov, the Enforcer",
