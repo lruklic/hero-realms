@@ -167,5 +167,419 @@
 							]
 						}
 					]
-				}
+				},
+				// Guild Champions (6 in total)
+				{
+					"name" : "Parov, the Enforcer",
+					"image" : "",
+					"cost" : 5,
+					"type" : "CHAMPION",
+					"health" : 5,
+					"guard" : "YES",
+					"description" : "Human Rogue",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "DRAW"
+						}
+					]
+				},
+				{
+					"name" : "Rasmus, the Smuggler",
+					"image" : "",
+					"cost" : 4,
+					"type" : "CHAMPION",
+					"health" : 5,
+					"guard" : "NO",
+					"description" : "Human Rogue",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD" 
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "Put the next card you acquire this turn on top of your deck"
+						}
+					]
+				},
+				{
+					"name" : "Street Thug",
+					"image" : "",
+					"cost" : 3,
+					"type" : "CHAMPION",
+					"health" : 4,
+					"guard" : "NO",
+					"description" : "Human Rogue",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "CHOICE",
+							"abilities" : [
+								{ 	"trigger" : "DEFAULT",
+									"type" : "GOLD"
+									},
+									{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type": "DAMAGE"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Rake, Master Assassin",
+					"image" : "",
+					"cost" : 7,
+					"type" : "CHAMPION",
+					"health" : 7,
+					"guard" : "NO",
+					"description" : "Human Assassin",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING4",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "STUN"
+										},
+										{
+											"type" : "EMPTY"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name" : "Borg, Ogre Mercenary",
+					"image" : "",
+					"cost" : 6,
+					"type" : "CHAMPION",
+					"health" : 6,
+					"guard" : "YES",
+					"description" : "Ogre Warrior",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Myros, Guild Mage",
+					"image" : "",
+					"cost" : 5,
+					"type" : "CHAMPION",
+					"health" : 3,
+					"guard" : "YES",
+					"description" : "Human Mage",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				// Guild actions (8 in total)
+				{
+					"name" : "Bribe",
+					"image" : "",
+					"cost" : 3,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING3",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "Put the next action you acquire this turn on top of your deck"
+						}
+					]
+				},
+				{
+					"name" : "Intimidation",
+					"image" : "",
+					"cost" : 2,
+					"type" : "ACTION",
+					"description" : "Rogue",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING5",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "GOLD"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Profit",
+					"image" : "",
+					"cost" : 1,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING2",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "GOLD"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "REPEATING4",
+							"ability" : {
+								"trigger" : "FACTION",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Deception",
+					"image" : "",
+					"cost" : 5,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING2",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "GOLD"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "Put the next card you acquire this turn into your hand"
+						}
+					]
+				},
+				{
+					"name" : "Hit Job",
+					"image" : "",
+					"cost" : 4,
+					"type" : "ACTION",
+					"description" : "Assassin",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "REPEATING7",
+							"ability" : {
+								"trigger" : "DEFAULT",
+								"type" : "DAMAGE"
+							}
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "STUN"
+						}
+					]
+				},
+				{
+					"name" : "Death Threat",
+					"image" : "",
+					"cost" : 3,
+					"type" : "ACTION",
+					"description" : "Assassin",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DAMAGE"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								}
+							]
+						},
+						{
+							"trigger" : "FACTION",
+							"type" : "STUN"
+						}
+					]
+				},
+				{
+					"name" : "Fire Bomb",
+					"image" : "",
+					"cost" : 8,
+					"type" : "ACTION",
+					"description" : "",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING8",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "DRAW"
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "STUN"
+								}
+							]
+						},
+						{
+							"trigger" : "SACRIFICE",
+							"type" : "REPEATING5",
+							"ability" : {
+								"trigger" : "SACRIFICE",
+								"type" : "DAMAGE"
+							}
+						}
+					]
+				},
+				{
+					"name" : "Smash and Grab",
+					"image" : "",
+					"cost" : 3,
+					"type" : "ACTION",
+					"description" : "Rogue",
+					"faction" : "GUILD",
+					"class" : "NONE",
+					"abilities" : [
+						{
+							"trigger" : "DEFAULT",
+							"type" : "COMPOSITE",
+							"abilities" : [
+								{
+									"trigger" : "DEFAULT",
+									"type" : "REPEATING6",
+									"ability" : {
+										"trigger" : "DEFAULT",
+										"type" : "DAMAGE"
+									}
+								},
+								{
+									"trigger" : "DEFAULT",
+									"type" : "CHOICE",
+									"abilities" : [
+										{
+											"trigger" : "DEFAULT",
+											"type" : "You may put a card from your discard pile on top of your deck"
+										},
+										{
+											"trigger" : "DEFAULT",
+											"type" : "EMPTY"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
 ]}
