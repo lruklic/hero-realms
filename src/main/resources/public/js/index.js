@@ -93,7 +93,7 @@ function gui() {
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
-        acquire(id);
+        sendWSMessage("acquire " + id)
     });
 
     $(".hand-card")

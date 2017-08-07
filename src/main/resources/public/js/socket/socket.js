@@ -1,16 +1,19 @@
 var webSocket;
 
+var user = {};
+
 function initWS(username) {
 
     webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/gamesocket/" + username);
+    user.username = username;
 
     webSocket.onopen = function (msg) {
         console.log("Connected to server.")
     };
 
-    webSocket.onmessage = function (msg) { 
-        console.log(new Date().getTime());
-        console.log(msg)
+    webSocket.onmessage = function (msg) {
+        console.log("SERVER :" + msg.data);
+        mapAction(msg.data);
     };
 
     webSocket.onclose = function () { 
@@ -20,7 +23,7 @@ function initWS(username) {
 }
 
 function sendWSMessage(message) {
-    webSocket.send(message);
+    webSocket.send(user.username + ":" + message);
 }
 
 
