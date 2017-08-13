@@ -109,7 +109,7 @@ function playCard(id, type) {
         .addClass("column")*/
 }
 
-function acquire(id) {
+function acquire(id, newCardCode) {
     d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(180deg)");
 
     var offset = $("#market-container-" + id + " .flipper img").offset(); 
@@ -146,7 +146,7 @@ function acquire(id) {
         .style("opacity", 0)
 
     setTimeout(function() {
-        d3.select("#market-slot-img-" + id).attr("src", "images/AC-DARREW.jpg")
+        d3.select("#market-slot-img-" + id).attr("src", "images/" + newCardCode + ".jpg")
     }, 800)
 
     setTimeout(function() {

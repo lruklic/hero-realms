@@ -2,6 +2,7 @@
 				// Default class (7 coins, ruby, dagger and shortsword)
 				{
 					"name" : "Gold",
+					"code" : "GOLD00",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -17,6 +18,7 @@
 				},
 				{
 					"name" : "Ruby",
+					"code" : "RUBY00",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -36,6 +38,7 @@
 				},
 				{
 					"name" : "Dagger",
+					"code" : "DAGGER",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",

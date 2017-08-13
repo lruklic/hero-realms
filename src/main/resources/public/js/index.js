@@ -6,10 +6,13 @@ var board = {
         "damage" : 0,
         "gold" : 0,
         "deck" : 23,
+        "discard" : [
+
+        ],
         "permanent" : [
-            {"id" : "001", "code" : "CH-CAPKOS"},
+/*            {"id" : "001", "code" : "CH-CAPKOS"},
             {"id" : "002", "code" : "CH-CAPKOS"}, 
-            {"id" : "003", "code" : "CH-CAPKOS"}            
+            {"id" : "003", "code" : "CH-CAPKOS"}*/            
         ],
         "nonpermanent" : [
         ]
@@ -27,21 +30,27 @@ var board = {
         "damage" : 0,
         "gold" : 0,
         "deck" : 20,
+        "discard" : [
+
+        ],
         "permanent" : [
-            {"id" : "010", "code" : "CH-CAPKOS"}
+            /*{"id" : "010", "code" : "CH-CAPKOS"}*/
         ],
         "nonpermanent" : [
         ],
         "hand" : [
-            {"id" : "011", "code" : "CH-RAYEND"},
-            {"id" : "012", "code" : "CH-CULPRI"},
-            {"id" : "013", "code" : "CH-DEACUL"},
-            {"id" : "014", "code" : "AC-FIRGEM"}
+            {"id" : "011", "code" : "DAGGER"},
+            {"id" : "016", "code" : "DAGGER"},            
+            {"id" : "012", "code" : "GOLD00"},
+            {"id" : "013", "code" : "GOLD00"},
+            {"id" : "014", "code" : "GOLD00"},
+            {"id" : "015", "code" : "GOLD00"},            
             /*{"id" : "014", "code" : "CH-VARNEC"} */       
         ]
     }
 }
 
+// TODO change this with full json from card.json, which is loaded on start
 var cards = {
     "CH-CAPKOS" : {"type" : "champion"},
     "CH-RAYEND" : {"type" : "champion"},
@@ -49,7 +58,10 @@ var cards = {
     "CH-DEACUL" : {"type" : "champion"},
     "AC-THEROT" : {"type" : "action"},
     "AC-INFLUE" : {"type" : "action"},
-    "AC-FIRGEM" : {"type" : "action"}
+    "AC-FIRGEM" : {"type" : "action"},
+    "GOLD00" : {"type" : "action"},
+    "RUBY00" : {"type" : "action"},
+    "DAGGER" : {"type" : "action"}        
 }
 
 $(function() {
@@ -61,10 +73,6 @@ $(function() {
         initWS(username);
     });
 
-    $("#sendMessage").click(() => {
-        var message = $("#message").val();
-        sendWSMessage(message);
-    });
 });
 
 function gui() {
@@ -93,7 +101,13 @@ function gui() {
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
-        sendWSMessage("acquire " + id)
+        sendWSMessage("acquire " + id);
+    });
+
+    $('#player-hand-tile').on("click", ".hand-card", function() {
+        var idArray = $(this).attr("id").split("-");
+        var id = idArray[idArray.length - 1];
+        sendWSMessage("play " + id);
     });
 
     $(".hand-card")
@@ -158,12 +172,12 @@ function gui() {
         update("opponent", "combat", 5);
     });
 
-    d3.selectAll(".hand-card").on("click", function() {
+/*    d3.selectAll(".hand-card").on("click", function() {
         var handCard = d3.select(this);
         var id = handCard.attr("id").split("-")[1];
         var type = handCard.attr("data-type");
         playCard(id, type);
-    });
+    });*/
 
 }
 

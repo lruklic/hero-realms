@@ -14,6 +14,7 @@ function initWS(username) {
     webSocket.onmessage = function (msg) {
         console.log("SERVER :" + msg.data);
         mapAction(msg.data);
+        checkForChanges(JSON.parse(msg.data));
     };
 
     webSocket.onclose = function () { 

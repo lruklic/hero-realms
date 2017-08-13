@@ -45,7 +45,7 @@ function playerHandInit(selector) {
 function marketInit(selector) {
     var market = board.market;
 
-    for (var i = 1; i <= market.length; i++) {
+    for (var i = 0; i < market.length; i++) {
         $(selector).append(
             divNoId(
                 "col-xs-2 col-md-2",
@@ -59,7 +59,7 @@ function marketInit(selector) {
                             img(
                                 "market-slot-img-" + i,
                                 "shadow scalable rotated rotated90 market-slot market-slot-" + i,
-                                "images/" + board.market[i-1].code + ".jpg",
+                                "images/" + board.market[i].code + ".jpg",
                                 "Market slot " + i,
                                 150,
                                 98
