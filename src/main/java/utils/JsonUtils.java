@@ -15,6 +15,7 @@ import model.abilities.Ability;
 import model.abilities.implementation.AbilityFactory;
 import model.cards.Card;
 import model.cards.implementation.CardImplementation;
+import model.entities.Game;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.AbilityType;
@@ -124,5 +125,68 @@ public class JsonUtils {
 	private static Ability parseSimpleAbility(JsonObject object) {
 		return AbilityFactory.getSimpleAbility(AbilityType.valueOf(object.get("type").getAsString()),
 				AbilityTrigger.valueOf(object.get("trigger").getAsString()));
+	}
+	
+	/**
+	 * Creates board state JSON for FE and BE communication.
+	 * 
+	 * @return board state as JSON
+	 */
+	private static JsonObject createBoardStateJson(Game game) {
+		
+		JsonObject boardState = new JsonObject();		
+		
+		// Opponent object
+		JsonObject opponent = new JsonObject();
+		// TODO opponent.addProperty("gold", game.getOpponentPlayer().getGold());
+		// TODO opponent.addProperty("health", game.getOpponentPlayer().getHealth());
+		// TODO opponent.addProperty("combat", game.getOpponentPlayer().getDamage());
+		
+		// TODO isto permanent i non permanent 
+		
+		// Market object
+		JsonArray market = new JsonArray();
+		
+		for (Card marketCard : game.getMarket()) {
+			JsonObject marketObj = new JsonObject();
+			// TODO marketObj.addProperty("id", marketCard.getId());
+			// TODO marketObj.addProperty("code", marketCard.getCode());
+			
+			market.add(marketObj);
+		}
+		
+		// Player object
+		JsonObject player = new JsonObject();
+		player.addProperty("gold", game.getCurrentPlayer().getGold());
+		player.addProperty("health", game.getCurrentPlayer().getHealth());
+		player.addProperty("combat", game.getCurrentPlayer().getDamage()); // TODO dogovoriti se jel damage ili combat
+		
+		JsonArray playerPermanentArray = new JsonArray();
+		
+		//	for (Champion c : game.getCurrentPlayer().getBoard().getChampions()) {
+		//		JsonObject permanent = new JsonObject();
+		//		permanent.addProperty("id", c.getId());
+		//		permanent.addProperty("code", c.getCode());
+		//		permanent.addProperty("health", c.getHealth());
+		//		playerPermanentArray.add(permanent);
+		//	}
+		player.add("permanent", playerPermanentArray);
+		
+		JsonArray playerNonpermanentArray = new JsonArray();
+		
+		//	for (Action a : game.getCurrentPlayer().getBoard().getActions()) {
+		//		JsonObject nonpermanent = new JsonObject();
+		//		nonpermanent.addProperty("id", c.getId());
+		//		nonpermanent.addProperty("code", c.getCode());
+		//		playerNonpermanentArray.add(nonpermanent);
+		//	}
+		player.add("nonpermanent", playerNonpermanentArray);
+		
+		boardState.add("opponent", opponent);
+		boardState.add("market", market);
+		boardState.add("player", player);
+		
+		return boardState;
+		
 	}
 }
