@@ -11,16 +11,17 @@ import utils.Util;
  */
 
 public class MatchWebSocketBridge {
-	
+
 	public static String createMatch(String player1, String player2) {
 		System.out.println("Match started between " + player1 + " and " + player2);
-		
-		// Match.getInstance().startGame();
-		
+
+		Match.getInstance().createGame(player1, player2);
+
+		// TODO change this send message to reflect the real state
 		GameWebSocketHandler.sendMessage(player1, player1 + "'s turn!");
 		GameWebSocketHandler.sendMessage(player2, player1 + "'s turn!");
-		
+
 		return Util.generateUUID();
 	}
-	
+
 }

@@ -19,8 +19,6 @@ import model.enums.HeroClass;
 
 public class PlayerImplementation implements Player {
 
-	private String name;
-
 	private HeroClass heroClass;
 	/**
 	 * Health left. Initial value if defined by hero class.
@@ -41,21 +39,19 @@ public class PlayerImplementation implements Player {
 
 	private List<Card> actions;
 
+	private String userName;
+
 	private static final int NORMAL_NUMBER_OF_CARDS_IN_HAND = 5;
 
-	public PlayerImplementation() {
-		this(HeroClass.NONE);
-	}
-
-	public PlayerImplementation(HeroClass heroClass) {
+	public PlayerImplementation(HeroClass heroClass, String userName) {
 		this.heroClass = heroClass;
-		this.health = this.heroClass.getHealth();
-		this.deck = getDeckForClass(this.heroClass);
-		this.deck.shuffle();
+		this.health = heroClass.getHealth();
+		this.deck = heroClass.getDeck();
 		this.gold = 0;
 		this.damage = 0;
 		this.board = new ArrayList<>();
 		this.discardPile = new ArrayList<>();
+		this.userName = userName;
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 	}
 
@@ -112,10 +108,10 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void endTurn() {
-		for (Card card : actions) {
-			// TODO if not a champion, go to discard pile
-			discardPile.add(card);
-		}
+		discardPile.addAll(actions);
+		discardPile.addAll(hand);
+		actions.clear();
+		hand.clear();
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 		for (Champion champion : board) {
 			champion.setTapped(false);
@@ -138,16 +134,10 @@ public class PlayerImplementation implements Player {
 	}
 
 	private void drawAHand(int numberOfCards) {
-		this.hand = new ArrayList<>();
+		hand.clear();
 		for (int i = 0; i < numberOfCards; i++) {
 			draw();
 		}
-	}
-
-	// TODO decide where to put this
-	private static Deck getDeckForClass(HeroClass heroClass) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -178,5 +168,10 @@ public class PlayerImplementation implements Player {
 	@Override
 	public <T> Option<T> pickAnOption(List<Option<T>> options) {
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		return userName;
 	}
 }

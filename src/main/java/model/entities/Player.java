@@ -50,5 +50,7 @@ public interface Player {
 
 	public int getGold();
 
+	public String getName();
+
 	public <T> Option<T> pickAnOption(List<Option<T>> options);
 }

@@ -11,7 +11,8 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 /**
- * Handler for WebSocket that is used for communication between server (game instance) and browser clients (players).
+ * Handler for WebSocket that is used for communication between server (game
+ * instance) and browser clients (players).
  * 
  * @author LukaRuklic
  *
@@ -20,42 +21,44 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 public class GameWebSocketHandler {
 
 	static Map<String, Session> usernameSessionMap = new HashMap<>();
-	
+
 	@OnWebSocketConnect
 	public void onConnect(Session session) throws Exception {
 
 		String[] urlParts = session.getUpgradeRequest().getRequestURI().getPath().split("/");
 		String username = urlParts[urlParts.length - 1];
-		
+
 		if (!usernameSessionMap.containsKey(session)) {
 			usernameSessionMap.put(username, session);
 		}
-		
+
 		System.out.println("User " + username + " connected.");
-		
+
 		if (usernameSessionMap.values().size() == 2) {
-			MatchWebSocketBridge.createMatch((String) usernameSessionMap.keySet().toArray()[0],  (String) usernameSessionMap.keySet().toArray()[1]);
+			MatchWebSocketBridge.createMatch((String) usernameSessionMap.keySet().toArray()[0],
+					(String) usernameSessionMap.keySet().toArray()[1]);
 		}
-       
-    }
-	
-	@OnWebSocketClose
-    public void onClose(Session session, int statusCode, String reason) {
-        System.out.println("User " + session.toString() + " disconnected because of " + reason);
+
 	}
-	
+
+	@OnWebSocketClose
+	public void onClose(Session session, int statusCode, String reason) {
+		System.out.println("User " + session.toString() + " disconnected because of " + reason);
+	}
+
 	@OnWebSocketMessage
-    public void onMessage(Session session, String message) {
+	public void onMessage(Session session, String message) {
 		System.out.println("Message: " + message);
 		String sender = message.split(":")[0];
 		sendMessage(sender, message.split(":")[1]);
-        //Chat.broadcastMessage(sender = Chat.userUsernameMap.get(user), msg = message);
-    }
-	
-	public static void broadcastMessage() {
-		
+		// Chat.broadcastMessage(sender = Chat.userUsernameMap.get(user), msg =
+		// message);
 	}
-	
+
+	public static void broadcastMessage() {
+
+	}
+
 	public static void sendMessage(String username, String message) {
 		Session userSession = usernameSessionMap.get(username);
 		if (userSession == null) {
@@ -63,19 +66,19 @@ public class GameWebSocketHandler {
 			return;
 		}
 		userSession.getRemote().sendString(message, new WriteCallback() {
-			
+
 			@Override
 			public void writeSuccess() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void writeFailed(Throwable x) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}
-	
+
 }

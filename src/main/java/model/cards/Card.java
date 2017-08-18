@@ -9,8 +9,8 @@ import model.enums.Faction;
 
 /**
  * 
- * Interface which defines the most basic concept of a card. Contains properties possessed by most cards,
- * like cost, faction and the ability to be played
+ * Interface which defines the most basic concept of a card. Contains properties
+ * possessed by most cards, like cost, faction and the ability to be played
  * 
  * @author Ivan
  *
@@ -18,14 +18,16 @@ import model.enums.Faction;
 public interface Card {
 
 	public String getName();
-	
+
 	public int getCost();
-	
+
 	public Faction getFaction();
-	
+
+	public int getId();
+
 	public void goIntoPlay(Player player);
-	
+
 	public void activate(Player player, AbilityTrigger trigger);
-	
+
 	public List<Ability> getAbilities();
 }

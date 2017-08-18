@@ -15,12 +15,12 @@ import model.cards.Deck;
 public interface Game {
 
 	public Deck getGameDeck();
-	
+
 	public void updateMarket();
-	
-	public List<Card> getMarket(); 
-	
+
+	public List<Card> getMarket();
+
 	public Player getCurrentPlayer();
-	
-	
+
+	public List<Player> getPlayers();
 }

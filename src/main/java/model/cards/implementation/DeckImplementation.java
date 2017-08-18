@@ -18,14 +18,15 @@ import model.cards.Deck;
 public class DeckImplementation implements Deck {
 
 	private Stack<Card> cards;
-	
+
 	public DeckImplementation(List<Card> cards) {
 		this.cards = new Stack<>();
-		for(Card card : cards) {
+		for (Card card : cards) {
 			this.cards.push(card);
 		}
+		shuffle();
 	}
-	
+
 	@Override
 	public Card drawCard() {
 		return cards.pop();
@@ -46,15 +47,15 @@ public class DeckImplementation implements Deck {
 	public int cardsRemaining() {
 		return cards.size();
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
 		return cards.empty();
 	}
-	
+
 	@Override
 	public void fillWithCards(List<Card> cards) {
-		for(Card card : cards) {
+		for (Card card : cards) {
 			this.cards.push(card);
 		}
 		shuffle();

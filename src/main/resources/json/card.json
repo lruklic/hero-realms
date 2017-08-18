@@ -1047,7 +1047,7 @@
 					"health" : 4,
 					"guard" : "YES",
 					"description" : "Human Monk",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1076,7 +1076,7 @@
 					"health" : 4,
 					"guard" : "YES",
 					"description" : "Human Warrior",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1105,7 +1105,7 @@
 					"health" : 3,
 					"guard" : "NO",
 					"description" : "Human Priest",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1136,7 +1136,7 @@
 					"health" : 6,
 					"guard" : "NO",
 					"description" : "Human Priest",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1179,7 +1179,7 @@
 					"health" : 5,
 					"guard" : "YES",
 					"description" : "Human Paladin",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1218,7 +1218,7 @@
 					"health" : 5,
 					"guard" : "NO",
 					"description" : "Human Paladin",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1253,7 +1253,7 @@
 					"health" : 6,
 					"guard" : "YES",
 					"description" : "Dragon",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1291,7 +1291,7 @@
 					"cost" : 1,
 					"type" : "ACTION",
 					"description" : "",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1318,7 +1318,7 @@
 					"cost" : 2,
 					"type" : "ACTION",
 					"description" : "",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1363,7 +1363,7 @@
 					"cost" : 3,
 					"type" : "ACTION",
 					"description" : "",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1408,7 +1408,7 @@
 					"cost" : 4,
 					"type" : "ACTION",
 					"description" : "",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1445,7 +1445,7 @@
 					"cost" : 5,
 					"type" : "ACTION",
 					"description" : "",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1490,7 +1490,7 @@
 					"cost" : 6,
 					"type" : "ACTION",
 					"description" : "Spell",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1525,7 +1525,7 @@
 					"cost" : 7,
 					"type" : "ACTION",
 					"description" : "",
-					"faction" : "IMPERIAL",
+					"faction" : "EMPIRE",
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -1867,7 +1867,7 @@
 											"type" : "EMPTY"
 										}
 									]
-								},
+								}
 							]
 						},
 						{
@@ -1914,7 +1914,7 @@
 											"type" : "EMPTY"
 										}
 									]
-								},
+								}
 							]
 						},
 						{
@@ -1988,7 +1988,7 @@
 											"type" : "EMPTY"
 										}
 									]
-								},
+								}
 							]
 						},
 						{
@@ -2031,7 +2031,7 @@
 											"type" : "EMPTY"
 										}
 									]
-								},
+								}
 							]
 						},
 						{
@@ -2579,5 +2579,5 @@
 							}
 						}
 					]
-				},
+				}
 ]}
