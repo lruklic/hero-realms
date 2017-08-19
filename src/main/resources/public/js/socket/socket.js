@@ -13,8 +13,13 @@ function initWS(username) {
 
     webSocket.onmessage = function (msg) {
         console.log("SERVER :" + msg.data);
-        mapAction(msg.data);
-        checkForChanges(JSON.parse(msg.data));
+        if (jQuery.isEmptyObject(board)) {
+            board = JSON.parse(msg.data);
+            initBoard();
+        } else {
+            mapAction(msg.data);
+            checkForChanges(JSON.parse(msg.data));
+        }
     };
 
     webSocket.onclose = function () { 
@@ -24,7 +29,7 @@ function initWS(username) {
 }
 
 function sendWSMessage(message) {
-    webSocket.send(user.username + ":" + message);
+    webSocket.send(user.username + " " + message);
 }
 
 

@@ -1,9 +1,13 @@
 $(function () {
+
+});
+
+function initBoard() {
     marketInit("#market-tile");
     opponentInit("#opponent-tile");
     playerBoardInit("#player-board-tile");
     playerHandInit("#player-hand-tile");
-});
+}
 
 function opponentInit(selector) {
     var opponentPermanent = board.opponent.permanent;

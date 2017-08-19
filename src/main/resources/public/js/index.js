@@ -49,6 +49,7 @@ var board = {
         ]
     }
 }
+var board = {};
 
 // TODO change this with full json from card.json, which is loaded on start
 var cards = {
@@ -101,13 +102,13 @@ function gui() {
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
-        sendWSMessage("acquire " + id);
+        sendWSMessage("BUY  " + id);
     });
 
     $('#player-hand-tile').on("click", ".hand-card", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
-        sendWSMessage("play " + id);
+        sendWSMessage("PLAY " + id);
     });
 
     $(".hand-card")
