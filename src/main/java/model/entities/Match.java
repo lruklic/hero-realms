@@ -37,6 +37,10 @@ public class Match {
 
 	public void createGame(String firstUsername, String secondUsername) {
 		game = new NormalGame(firstUsername, secondUsername);
+		for (Player player : game.getPlayers().values()) {
+			MatchWebSocketBridge.sendMessage(player.getName(),
+					JsonUtils.createBoardStateJson(game, player.getName()).toString());
+		}
 	}
 
 	public void handleAction(String message) {

@@ -53,9 +53,11 @@ public class PlayerImplementation implements Player {
 		this.gold = 0;
 		this.damage = 0;
 		this.board = new ArrayList<>();
+		this.actions = new ArrayList<>();
 		this.discardPile = new ArrayList<>();
 		this.userName = userName;
 		this.nextPlayer = nextPlayer;
+		this.hand = new ArrayList<>();
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 	}
 

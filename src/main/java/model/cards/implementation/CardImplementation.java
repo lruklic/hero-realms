@@ -43,6 +43,7 @@ public abstract class CardImplementation implements Card {
 		this.description = description;
 		this.heroClass = heroClass;
 		this.id = getUniqueCardId();
+		CARD_MAP.put(this.id, this);
 	}
 
 	@Override
