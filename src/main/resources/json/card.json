@@ -7,7 +7,7 @@
 					"cost" : -1,
 					"type" : "ITEM",
 					"description" : "Currency, Coin",
-					"faction" : "NONE",
+					"faction" : "NONE",  
 					"class" : "NONE",
 					"abilities" : [
 						{
@@ -54,6 +54,7 @@
 				},
 				{
 					"name" : "Shortsword",
+					"code" : "SHORTS",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -74,6 +75,7 @@
 				// Cleric class (6 coins, prayer beads, 2 followers, spiked mace, bless, resurrect)
 				{
 					"name" : "Cleric Gold",
+					"code" : "CLEGOL",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -89,6 +91,7 @@
 				},
 				{
 					"name" : "Prayer beads",
+					"code" : "PRABEA",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -147,6 +150,7 @@
 				},
 				{
 					"name" : "Follower",
+					"code" : "FOLLOW",
 					"image" : "",
 					"cost" : -1,
 					"type" : "CHAMPION",
@@ -164,6 +168,7 @@
 				},
 				{
 					"name" : "Spiked Mace",
+					"code" : "SPIMAC",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -184,6 +189,7 @@
 				// Wizard class
 				{
 					"name" : "Wizard Gold",
+					"code" : "WIZGOL",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -199,6 +205,7 @@
 				},
 				{
 					"name" : "Cat Familiar",
+					"code" : "CATFAM",
 					"image" : "",
 					"cost" : -1,
 					"type" : "CHAMPION",
@@ -230,6 +237,7 @@
 				},
 				{
 					"name" : "Ignite",
+					"code" : "IGNITE",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ACTION",
@@ -249,6 +257,7 @@
 				},
 				{
 					"name" : "Fire Staff",
+					"code" : "FIRSTA",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -283,6 +292,7 @@
 				},
 				{
 					"name" : "Spell Components",
+					"code" : "SPECOM",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -309,6 +319,7 @@
 				// Fighter class
 				{
 					"name" : "Fighter Gold",
+					"code" : "FIGGOL",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -324,6 +335,7 @@
 				},
 				{
 					"name" : "Fighter Ruby",
+					"code" : "FIGRUB",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -343,6 +355,7 @@
 				},
 				{
 					"name" : "Shield Bearer",
+					"code" : "SHIBEA",
 					"image" : "",
 					"cost" : -1,
 					"type" : "CHAMPION",
@@ -360,6 +373,7 @@
 				},
 				{
 					"name" : "Throwing Axe",
+					"code" : "THRAXE",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -398,6 +412,7 @@
 				},
 				{
 					"name" : "Longsword",
+					"code" : "LONGSW",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -418,6 +433,7 @@
 				// Thief class
 				{
 					"name" : "Thief Gold",
+					"code" : "THIGOL",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -433,6 +449,7 @@
 				},
 				{
 					"name" : "Thief Ruby",
+					"code" : "THIRUB",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -452,6 +469,7 @@
 				},
 				{
 					"name" : "Throwing Knife",
+					"code" : "THRKNI",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -486,6 +504,7 @@
 				// Ranger class
 				{
 					"name" : "Ranger Gold",
+					"code" : "RANGOL",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -501,6 +520,7 @@
 				},
 				{
 					"name" : "Ranger Ruby",
+					"code" : "RANRUB",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -520,6 +540,7 @@
 				},
 				{
 					"name" : "Horn of Calling",
+					"code" : "HORCAL",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -545,6 +566,7 @@
 				},
 				{
 					"name" : "Hunting Bow",
+					"code" : "HUNBOW",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -564,6 +586,7 @@
 				},
 				{
 					"name" : "Black Arrow",
+					"code" : "BLAARR",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -599,6 +622,7 @@
 				// Fire Gem
 				{
 					"name" : "Fire Gem",
+					"code" : "FIREGEM",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
@@ -627,6 +651,7 @@
 				// Guild Champions (6 in total)
 				{
 					"name" : "Parov, the Enforcer",
+					"code" : "PARENF",
 					"image" : "",
 					"cost" : 5,
 					"type" : "CHAMPION",
@@ -652,6 +677,7 @@
 				},
 				{
 					"name" : "Rasmus, the Smuggler",
+					"code" : "RASSMU",
 					"image" : "",
 					"cost" : 4,
 					"type" : "CHAMPION",
@@ -677,6 +703,7 @@
 				},
 				{
 					"name" : "Street Thug",
+					"code" : "STRTHU",
 					"image" : "",
 					"cost" : 3,
 					"type" : "CHAMPION",
@@ -707,6 +734,7 @@
 				},
 				{
 					"name" : "Rake, Master Assassin",
+					"code" : "RAKMAS",
 					"image" : "",
 					"cost" : 7,
 					"type" : "CHAMPION",
@@ -747,6 +775,7 @@
 				},
 				{
 					"name" : "Borg, Ogre Mercenary",
+					"code" : "BOROGR",
 					"image" : "",
 					"cost" : 6,
 					"type" : "CHAMPION",
@@ -768,6 +797,7 @@
 				},
 				{
 					"name" : "Myros, Guild Mage",
+					"code" : "MYRGUI",
 					"image" : "",
 					"cost" : 5,
 					"type" : "CHAMPION",
@@ -798,6 +828,7 @@
 				// Guild actions (8 in total)
 				{
 					"name" : "Bribe",
+					"code" : "BRIBE0",
 					"image" : "",
 					"cost" : 3,
 					"type" : "ACTION",
@@ -821,6 +852,7 @@
 				},
 				{
 					"name" : "Intimidation",
+					"code" : "INTIMI",
 					"image" : "",
 					"cost" : 2,
 					"type" : "ACTION",
@@ -848,6 +880,7 @@
 				},
 				{
 					"name" : "Profit",
+					"code" : "PROFIT",
 					"image" : "",
 					"cost" : 1,
 					"type" : "ACTION",
@@ -875,6 +908,7 @@
 				},
 				{
 					"name" : "Deception",
+					"code" : "DECEPT",
 					"image" : "",
 					"cost" : 5,
 					"type" : "ACTION",
@@ -908,6 +942,7 @@
 				},
 				{
 					"name" : "Hit Job",
+					"code" : "HITJOB",
 					"image" : "",
 					"cost" : 4,
 					"type" : "ACTION",
@@ -931,6 +966,7 @@
 				},
 				{
 					"name" : "Death Threat",
+					"code" : "DEATHR",
 					"image" : "",
 					"cost" : 3,
 					"type" : "ACTION",
@@ -960,6 +996,7 @@
 				},
 				{
 					"name" : "Fire Bomb",
+					"code" : "FIRBOM",
 					"image" : "",
 					"cost" : 8,
 					"type" : "ACTION",
@@ -1001,6 +1038,7 @@
 				},
 				{
 					"name" : "Smash and Grab",
+					"code" : "SMAGRA",
 					"image" : "",
 					"cost" : 3,
 					"type" : "ACTION",
@@ -1041,6 +1079,7 @@
 				// Imperial champions (7 in total)
 				{
 					"name" : "Master Weyan",
+					"code" : "MASWEY",
 					"image" : "",
 					"cost" : 4,
 					"type" : "CHAMPION",
@@ -1070,6 +1109,7 @@
 				},
 				{
 					"name" : "Man-at-Arms",
+					"code" : "MANARM",
 					"image" : "",
 					"cost" : 3,
 					"type" : "CHAMPION",
@@ -1099,6 +1139,7 @@
 				},
 				{
 					"name" : "Tithe Priest",
+					"code" : "TITPRI",
 					"image" : "",
 					"cost" : 2,
 					"type" : "CHAMPION",
@@ -1130,6 +1171,7 @@
 				},
 				{
 					"name" : "Kraka, High Priest",
+					"code" : "KRAHIG",
 					"image" : "",
 					"cost" : 6,
 					"type" : "CHAMPION",
@@ -1173,6 +1215,7 @@
 				},
 				{
 					"name" : "Cristov, the just",
+					"code" : "CRISTOV",
 					"image" : "",
 					"cost" : 5,
 					"type" : "CHAMPION",
@@ -1212,6 +1255,7 @@
 				},
 				{
 					"name" : "Darian, War Mage",
+					"code" : "DARWAR",
 					"image" : "",
 					"cost" : 4,
 					"type" : "CHAMPION",
@@ -1247,6 +1291,7 @@
 				},
 				{
 					"name" : "Arkus, Imperial Dragon",
+					"code" : "ARKIMP",
 					"image" : "",
 					"cost" : 8,
 					"type" : "CHAMPION",
@@ -1287,6 +1332,7 @@
 				// Imperial actions (7 in total)
 				{
 					"name" : "Taxation",
+					"code" : "TAXATI",
 					"image" : "",
 					"cost" : 1,
 					"type" : "ACTION",
@@ -1314,6 +1360,7 @@
 				},
 				{
 					"name" : "Recruit",
+					"code" : "RECRUI",
 					"image" : "",
 					"cost" : 2,
 					"type" : "ACTION",
@@ -1359,6 +1406,7 @@
 				},
 				{
 					"name" : "Close Ranks",
+					"code" : "CLORAN",
 					"image" : "",
 					"cost" : 3,
 					"type" : "ACTION",
@@ -1404,6 +1452,7 @@
 				},
 				{
 					"name" : "Rally the Troops",
+					"code" : "RALTRO",
 					"image" : "",
 					"cost" : 4,
 					"type" : "ACTION",
@@ -1441,6 +1490,7 @@
 				},
 				{
 					"name" : "Command",
+					"code" : "COMMAN",
 					"image" : "",
 					"cost" : 5,
 					"type" : "ACTION",
@@ -1486,6 +1536,7 @@
 				},
 				{
 					"name" : "Word of Power",
+					"code" : "WORPOW",
 					"image" : "",
 					"cost" : 6,
 					"type" : "ACTION",
@@ -1521,6 +1572,7 @@
 				},
 				{
 					"name" : "Domination",
+					"code" : "DOMINA",
 					"image" : "",
 					"cost" : 7,
 					"type" : "ACTION",
@@ -1562,7 +1614,8 @@
 				},
 				// Necros champions (7 in total)
 				{
-					"name" : "Rayla Endweaver",
+					"name" : "Rayla, the Endweaver",
+					"code" : "RAYEND",
 					"image" : "",
 					"cost" : 4,
 					"type" : "CHAMPION",
@@ -1588,6 +1641,7 @@
 				},
 				{
 					"name" : "Cult Priest",
+					"code" : "CULPRI",
 					"image" : "",
 					"cost" : 3,
 					"type" : "CHAMPION",
@@ -1623,6 +1677,7 @@
 				},
 				{
 					"name" : "Death Cultist",
+					"code" : "DEACUL",
 					"image" : "",
 					"cost" : 2,
 					"type" : "CHAMPION",
@@ -1644,6 +1699,7 @@
 				},
 				{
 					"name" : "Varrick, the Necromancer",
+					"code" : "VARNEC",
 					"image" : "",
 					"cost" : 5,
 					"type" : "CHAMPION",
@@ -1665,6 +1721,7 @@
 				},
 				{
 					"name" : "Tyrannor, the Devourer",
+					"code" : "TYRDEV",
 					"image" : "",
 					"cost" : 8,
 					"type" : "CHAMPION",
@@ -1724,6 +1781,7 @@
 				},
 				{
 					"name" : "Krythos, Master Vampire",
+					"code" : "KRYMAS",
 					"image" : "",
 					"cost" : 7,
 					"type" : "CHAMPION",
@@ -1779,6 +1837,7 @@
 				},
 				{
 					"name" : "Lys, the Unseen",
+					"code" : "LYSUNS",
 					"image" : "",
 					"cost" : 6,
 					"type" : "CHAMPION",
@@ -1835,6 +1894,7 @@
 				// Necros actions (6 in total)
 				{
 					"name" : "The Rot",
+					"code" : "THEROT",
 					"image" : "",
 					"cost" : 3,
 					"type" : "ACTION",
@@ -1882,6 +1942,7 @@
 				},
 				{
 					"name" : "Death Touch",
+					"code" : "DEATOU",
 					"image" : "",
 					"cost" : 1,
 					"type" : "ACTION",
@@ -1929,6 +1990,7 @@
 				},
 				{
 					"name" : "Influence",
+					"code" : "INFLUE",
 					"image" : "",
 					"cost" : 2,
 					"type" : "ACTION",
@@ -1956,6 +2018,7 @@
 				},
 				{
 					"name" : "Life Drain",
+					"code" : "LIFDRA",
 					"image" : "",
 					"cost" : 6,
 					"type" : "ACTION",
@@ -1999,6 +2062,7 @@
 				},
 				{
 					"name" : "Dark Reward",
+					"code" : "DARREW",
 					"image" : "",
 					"cost" : 5,
 					"type" : "ACTION",
@@ -2046,6 +2110,7 @@
 				},
 				{
 					"name" : "Dark Energy",
+					"code" : "DARENE",
 					"image" : "",
 					"cost" : 4,
 					"type" : "ACTION",
@@ -2069,7 +2134,8 @@
 				},
 				// Wild champions (7 in total)
 				{
-					"name" : "Orc grunt",
+					"name" : "Orc Grunt",
+					"code" : "ORCGRU",
 					"image" : "",
 					"cost" : 3,
 					"type" : "CHAMPION",
@@ -2095,6 +2161,7 @@
 				},
 				{
 					"name" : "Wolf Shaman",
+					"code" : "WOLSHA",
 					"image" : "",
 					"cost" : 2,
 					"type" : "CHAMPION",
@@ -2130,6 +2197,7 @@
 				},
 				{
 					"name" : "Dire Wolf",
+					"code" : "DIRWOL",
 					"image" : "",
 					"cost" : 5,
 					"type" : "CHAMPION",
@@ -2159,6 +2227,7 @@
 				},
 				{
 					"name" : "Broelyn, Loreweaver",
+					"code" : "BROLOR",
 					"image" : "",
 					"cost" : 4,
 					"type" : "CHAMPION",
@@ -2184,6 +2253,7 @@
 				},
 				{
 					"name" : "Torgen Rocksplitter",
+					"code" : "TORROC",
 					"image" : "",
 					"cost" : 7,
 					"type" : "CHAMPION",
@@ -2215,6 +2285,7 @@
 				},
 				{
 					"name" : "Cron, the Berserker",
+					"code" : "CROBER",
 					"image" : "",
 					"cost" : 6,
 					"type" : "CHAMPION",
@@ -2240,6 +2311,7 @@
 				},
 				{
 					"name" : "Grak, Storm Giant",
+					"code" : "GRASTO",
 					"image" : "",
 					"cost" : 8,
 					"type" : "CHAMPION",
@@ -2316,6 +2388,7 @@
 				// Wild actions (6 in total)
 				{
 					"name" : "Rampage",
+					"code" : "RAMPAG",
 					"image" : "",
 					"cost" : 6,
 					"type" : "ACTION",
@@ -2387,6 +2460,7 @@
 				},
 				{
 					"name" : "Elven Gift",
+					"code" : "ELVGIF",
 					"image" : "",
 					"cost" : 2,
 					"type" : "ACTION",
@@ -2444,6 +2518,7 @@
 				},
 				{
 					"name" : "Elven Curse",
+					"code" : "ELVCUR",
 					"image" : "",
 					"cost" : 3,
 					"type" : "ACTION",
@@ -2481,6 +2556,7 @@
 				},
 				{
 					"name" : "Spark",
+					"code" : "SPARK0",
 					"image" : "",
 					"cost" : 1,
 					"type" : "ACTION",
@@ -2518,6 +2594,7 @@
 				},
 				{
 					"name" : "Wolf Form",
+					"code" : "WOLFOR",
 					"image" : "",
 					"cost" : 5,
 					"type" : "ACTION",
@@ -2551,6 +2628,7 @@
 				},
 				{
 					"name" : "Nature's Bounty",
+					"code" : "NATBOU",
 					"image" : "",
 					"cost" : 4,
 					"type" : "ACTION",
