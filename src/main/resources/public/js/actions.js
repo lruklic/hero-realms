@@ -19,6 +19,10 @@ function applyDamage(targetId, damageAmount) {
 
 }
 
+function updateDeckCardsLeft(target, numberOfCards) {
+    $("#" + target + "-deck-text strong").text("Deck: " + numberOfCards + " left");
+}
+
 function tapAndActivate(target, id) {
     var cardObject = d3.select("#" + target + "-card-" + id + " img")
     

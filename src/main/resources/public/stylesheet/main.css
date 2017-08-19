@@ -197,7 +197,7 @@ svg image {
     z-index: 999;
 }
 
-#deck-text {
+#opponent-deck-text {
     position: absolute;
     display: table;
 }

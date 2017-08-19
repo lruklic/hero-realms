@@ -83,7 +83,7 @@ function gui() {
             
             var offset = $(this).offset();
 
-            $("#deck-text")
+            $("#opponent-deck-text")
                 .css({
                     "top" : offset.top,
                     "left" : offset.left
@@ -93,9 +93,9 @@ function gui() {
                 .removeClass("hidden");
         })
 
-    $("#deck-text").mouseleave(function() {
+    $("#opponent-deck-text").mouseleave(function() {
         $("#opponent-deck-image").css("opacity", 1);
-        $("#deck-text").addClass("hidden");
+        $("#opponent-deck-text").addClass("hidden");
     });
 
     $("#market-tile").on("click", ".market-slot", function() {
