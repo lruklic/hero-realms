@@ -1,12 +1,15 @@
 package model.cards.implementation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.abilities.Ability;
 import model.cards.Card;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.Faction;
+import model.enums.HeroClass;
 
 public abstract class CardImplementation implements Card {
 
@@ -22,11 +25,23 @@ public abstract class CardImplementation implements Card {
 
 	private int id;
 
-	public CardImplementation(List<Ability> abilities, Faction faction, int cost, String name) {
+	private String code;
+
+	private String description;
+
+	private HeroClass heroClass;
+
+	private static final Map<Integer, Card> CARD_MAP = new HashMap<>();
+
+	public CardImplementation(List<Ability> abilities, Faction faction, int cost, String name, String code,
+			String description, HeroClass heroClass) {
 		this.abilities = abilities;
 		this.faction = faction;
 		this.cost = cost;
 		this.name = name;
+		this.code = code;
+		this.description = description;
+		this.heroClass = heroClass;
 		this.id = getUniqueCardId();
 	}
 
@@ -64,7 +79,26 @@ public abstract class CardImplementation implements Card {
 		return id;
 	}
 
+	@Override
+	public String getCode() {
+		return code;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public HeroClass getHeroClass() {
+		return heroClass;
+	}
+
 	private static int getUniqueCardId() {
 		return currentId++;
+	}
+
+	public static Card getCardById(int id) {
+		return CARD_MAP.get(id);
 	}
 }

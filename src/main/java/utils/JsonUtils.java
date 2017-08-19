@@ -17,16 +17,19 @@ import com.google.gson.JsonParser;
 import model.abilities.Ability;
 import model.abilities.implementation.AbilityFactory;
 import model.cards.Card;
-import model.cards.implementation.CardImplementation;
+import model.cards.implementation.Action;
+import model.cards.implementation.Champion;
+import model.cards.implementation.Item;
 import model.entities.Game;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.AbilityType;
 import model.enums.Faction;
+import model.enums.HeroClass;
 
 public class JsonUtils {
 
-	private static final Map<String, Card> cardMap = readAllCards();
+	private static final Map<String, Card> CARD_MAP = readAllCards();
 
 	private JsonUtils() {
 
@@ -58,15 +61,21 @@ public class JsonUtils {
 			int cost = Integer.parseInt(object.get("cost").getAsString());
 			JsonArray jAbilities = object.getAsJsonArray("abilities");
 			List<Ability> abilities = parseAbilities(jAbilities);
-
-			cards.put(name, new CardImplementation(abilities, faction, cost, name) {
-
-				@Override
-				public void goIntoPlay(Player player) {
-					// TODO Auto-generated method stub
-
-				}
-			});
+			// TODO change code parsing when it's available for all cards
+			String code = object.get("code") == null ? null : object.get("code").getAsString();
+			String description = object.get("description").getAsString();
+			HeroClass heroClass = HeroClass.valueOf(object.get("class").getAsString());
+			String type = object.get("type").getAsString();
+			if (type.equals("ACTION")) {
+				cards.put(name, new Action(abilities, faction, cost, name, code, description, heroClass));
+			} else if (type.equals("ITEM")) {
+				cards.put(name, new Item(abilities, faction, cost, name, code, description, heroClass));
+			} else if (type.equals("CHAMPION")) {
+				int health = Integer.parseInt(object.get("health").getAsString());
+				boolean isGuard = object.get("guard").getAsString().equals("YES");
+				cards.put(name,
+						new Champion(abilities, faction, cost, name, code, description, heroClass, isGuard, health));
+			}
 		}
 		return cards;
 	}
@@ -144,11 +153,11 @@ public class JsonUtils {
 	}
 
 	public static List<Card> createGameDeck() {
-		return cardMap.values().stream().filter(card -> card.getCost() >= 1).collect(Collectors.toList());
+		return CARD_MAP.values().stream().filter(card -> card.getCost() >= 1).collect(Collectors.toList());
 	}
 
 	public static Card getCardByName(String name) {
-		return cardMap.get(name);
+		return CARD_MAP.get(name);
 	}
 
 	/**
@@ -156,64 +165,75 @@ public class JsonUtils {
 	 * 
 	 * @return board state as JSON
 	 */
-	private static JsonObject createBoardStateJson(Game game) {
+	public static JsonObject createBoardStateJson(Game game, String userName) {
 
 		JsonObject boardState = new JsonObject();
 
 		// Opponent object
 		JsonObject opponent = new JsonObject();
-		// TODO opponent.addProperty("gold",
-		// game.getOpponentPlayer().getGold());
-		// TODO opponent.addProperty("health",
-		// game.getOpponentPlayer().getHealth());
-		// TODO opponent.addProperty("combat",
-		// game.getOpponentPlayer().getDamage());
+		Player opponentPlayer = game.getPlayers().values().stream().filter(p -> !p.getName().equals(userName))
+				.findFirst().get();
+		opponent.addProperty("gold", opponentPlayer.getGold());
+		opponent.addProperty("health", opponentPlayer.getHealth());
+		opponent.addProperty("combat", opponentPlayer.getDamage());
 
-		// TODO isto permanent i non permanent
+		JsonArray opponentPermanentArray = new JsonArray();
+
+		for (Champion champion : opponentPlayer.getBoard()) {
+			JsonObject permanent = new JsonObject();
+			permanent.addProperty("id", champion.getId());
+			permanent.addProperty("code", champion.getCode());
+			permanent.addProperty("health", champion.getHealth());
+			opponentPermanentArray.add(permanent);
+		}
+		opponent.add("permanent", opponentPermanentArray);
+
+		JsonArray opponentNonpermanentArray = new JsonArray();
+
+		for (Card card : opponentPlayer.getActions()) {
+			JsonObject nonpermanent = new JsonObject();
+			nonpermanent.addProperty("id", card.getId());
+			nonpermanent.addProperty("code", card.getCode());
+			opponentNonpermanentArray.add(nonpermanent);
+		}
+		opponent.add("nonpermanent", opponentNonpermanentArray);
 
 		// Market object
 		JsonArray market = new JsonArray();
 
 		for (Card marketCard : game.getMarket()) {
 			JsonObject marketObj = new JsonObject();
-			// TODO marketObj.addProperty("id", marketCard.getId());
-			// TODO marketObj.addProperty("code", marketCard.getCode());
-
+			marketObj.addProperty("id", marketCard.getId());
+			marketObj.addProperty("code", marketCard.getCode());
 			market.add(marketObj);
 		}
 
 		// Player object
 		JsonObject player = new JsonObject();
-		player.addProperty("gold", game.getCurrentPlayer().getGold());
-		player.addProperty("health", game.getCurrentPlayer().getHealth());
-		player.addProperty("combat", game.getCurrentPlayer().getDamage()); // TODO
-																			// dogovoriti
-																			// se
-																			// jel
-																			// damage
-																			// ili
-																			// combat
+		Player mainPlayer = game.getPlayers().get(userName);
+		player.addProperty("gold", mainPlayer.getGold());
+		player.addProperty("health", mainPlayer.getHealth());
+		player.addProperty("combat", mainPlayer.getDamage());
 
 		JsonArray playerPermanentArray = new JsonArray();
 
-		// for (Champion c : game.getCurrentPlayer().getBoard().getChampions())
-		// {
-		// JsonObject permanent = new JsonObject();
-		// permanent.addProperty("id", c.getId());
-		// permanent.addProperty("code", c.getCode());
-		// permanent.addProperty("health", c.getHealth());
-		// playerPermanentArray.add(permanent);
-		// }
+		for (Champion champion : mainPlayer.getBoard()) {
+			JsonObject permanent = new JsonObject();
+			permanent.addProperty("id", champion.getId());
+			permanent.addProperty("code", champion.getCode());
+			permanent.addProperty("health", champion.getHealth());
+			playerPermanentArray.add(permanent);
+		}
 		player.add("permanent", playerPermanentArray);
 
 		JsonArray playerNonpermanentArray = new JsonArray();
 
-		// for (Action a : game.getCurrentPlayer().getBoard().getActions()) {
-		// JsonObject nonpermanent = new JsonObject();
-		// nonpermanent.addProperty("id", c.getId());
-		// nonpermanent.addProperty("code", c.getCode());
-		// playerNonpermanentArray.add(nonpermanent);
-		// }
+		for (Card card : mainPlayer.getActions()) {
+			JsonObject nonpermanent = new JsonObject();
+			nonpermanent.addProperty("id", card.getId());
+			nonpermanent.addProperty("code", card.getCode());
+			playerNonpermanentArray.add(nonpermanent);
+		}
 		player.add("nonpermanent", playerNonpermanentArray);
 
 		boardState.add("opponent", opponent);
@@ -221,6 +241,5 @@ public class JsonUtils {
 		boardState.add("player", player);
 
 		return boardState;
-
 	}
 }

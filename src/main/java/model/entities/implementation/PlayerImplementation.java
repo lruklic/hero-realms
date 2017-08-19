@@ -8,6 +8,7 @@ import model.cards.Deck;
 import model.cards.implementation.Champion;
 import model.entities.Option;
 import model.entities.Player;
+import model.enums.AbilityTrigger;
 import model.enums.HeroClass;
 
 /**
@@ -41,9 +42,11 @@ public class PlayerImplementation implements Player {
 
 	private String userName;
 
+	private String nextPlayer;
+
 	private static final int NORMAL_NUMBER_OF_CARDS_IN_HAND = 5;
 
-	public PlayerImplementation(HeroClass heroClass, String userName) {
+	public PlayerImplementation(HeroClass heroClass, String userName, String nextPlayer) {
 		this.heroClass = heroClass;
 		this.health = heroClass.getHealth();
 		this.deck = heroClass.getDeck();
@@ -52,6 +55,7 @@ public class PlayerImplementation implements Player {
 		this.board = new ArrayList<>();
 		this.discardPile = new ArrayList<>();
 		this.userName = userName;
+		this.nextPlayer = nextPlayer;
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 	}
 
@@ -86,6 +90,12 @@ public class PlayerImplementation implements Player {
 	}
 
 	@Override
+	public void trash(Card card) {
+		hand.remove(card);
+		discardPile.remove(card);
+	}
+
+	@Override
 	public List<Card> getHand() {
 		return hand;
 	}
@@ -116,6 +126,11 @@ public class PlayerImplementation implements Player {
 		for (Champion champion : board) {
 			champion.setTapped(false);
 		}
+	}
+
+	@Override
+	public void activate(Card card, AbilityTrigger trigger) {
+		card.activate(this, trigger);
 	}
 
 	@Override
@@ -173,5 +188,15 @@ public class PlayerImplementation implements Player {
 	@Override
 	public String getName() {
 		return userName;
+	}
+
+	@Override
+	public String getNextPlayer() {
+		return nextPlayer;
+	}
+
+	@Override
+	public HeroClass getHeroClass() {
+		return heroClass;
 	}
 }

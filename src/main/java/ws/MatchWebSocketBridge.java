@@ -17,11 +17,14 @@ public class MatchWebSocketBridge {
 
 		Match.getInstance().createGame(player1, player2);
 
-		// TODO change this send message to reflect the real state
-		GameWebSocketHandler.sendMessage(player1, player1 + "'s turn!");
-		GameWebSocketHandler.sendMessage(player2, player1 + "'s turn!");
-
 		return Util.generateUUID();
 	}
 
+	public static void sendMessage(String player, String message) {
+		GameWebSocketHandler.sendMessage(player, message);
+	}
+
+	public static void receiveMessage(String message) {
+		Match.getInstance().handleAction(message);
+	}
 }

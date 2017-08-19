@@ -6,6 +6,7 @@ import model.abilities.Ability;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.Faction;
+import model.enums.HeroClass;
 
 /**
  * 
@@ -24,6 +25,12 @@ public interface Card {
 	public Faction getFaction();
 
 	public int getId();
+
+	public String getCode();
+
+	public String getDescription();
+
+	public HeroClass getHeroClass();
 
 	public void goIntoPlay(Player player);
 

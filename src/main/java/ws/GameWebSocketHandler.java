@@ -49,10 +49,7 @@ public class GameWebSocketHandler {
 	@OnWebSocketMessage
 	public void onMessage(Session session, String message) {
 		System.out.println("Message: " + message);
-		String sender = message.split(":")[0];
-		sendMessage(sender, message.split(":")[1]);
-		// Chat.broadcastMessage(sender = Chat.userUsernameMap.get(user), msg =
-		// message);
+		MatchWebSocketBridge.receiveMessage(message);
 	}
 
 	public static void broadcastMessage() {

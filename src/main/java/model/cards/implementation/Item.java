@@ -6,11 +6,13 @@ import model.abilities.Ability;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.Faction;
+import model.enums.HeroClass;
 
 public class Item extends CardImplementation {
 
-	public Item(List<Ability> abilities, Faction faction, int cost, String name) {
-		super(abilities, faction, cost, name);
+	public Item(List<Ability> abilities, Faction faction, int cost, String name, String code, String description,
+			HeroClass heroClass) {
+		super(abilities, faction, cost, name, code, description, heroClass);
 	}
 
 	@Override

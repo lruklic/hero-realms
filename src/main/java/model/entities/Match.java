@@ -1,7 +1,8 @@
 package model.entities;
 
 import model.entities.implementation.NormalGame;
-import ws.GameWebSocketHandler;
+import utils.JsonUtils;
+import ws.MatchWebSocketBridge;
 
 /**
  * 
@@ -38,11 +39,15 @@ public class Match {
 		game = new NormalGame(firstUsername, secondUsername);
 	}
 
-	public void sendMessage(String message, Player player) {
-		GameWebSocketHandler.sendMessage(message, player.getName());
-	}
-
-	public void getMessage(String message, String player) {
-
+	public void handleAction(String message) {
+		String[] information = message.split(" ");
+		String userName = information[0];
+		String action = information[1];
+		int cardId = Integer.parseInt(information[2]);
+		game.performAction(userName, action, cardId);
+		for (Player player : game.getPlayers().values()) {
+			MatchWebSocketBridge.sendMessage(player.getName(),
+					JsonUtils.createBoardStateJson(game, player.getName()).toString());
+		}
 	}
 }

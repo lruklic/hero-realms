@@ -1,14 +1,17 @@
 package model.entities.implementation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.cards.Card;
 import model.cards.Deck;
-import model.cards.implementation.DeckImplementation;
+import model.cards.implementation.CardImplementation;
+import model.cards.implementation.DeckFactory;
 import model.entities.Game;
 import model.entities.Player;
+import model.enums.AbilityTrigger;
 import model.enums.HeroClass;
 import utils.JsonUtils;
 
@@ -29,17 +32,19 @@ public class NormalGame implements Game {
 
 	private Player currentPlayer;
 
-	private List<Player> players;
+	private Map<String, Player> players;
 
 	public NormalGame(String firstUsername, String secondUsername) {
 		if (firstUsername.equals(secondUsername)) {
 			throw new IllegalArgumentException("Player names cannot be the same!");
 		}
-		Player firstPlayer = new PlayerImplementation(HeroClass.NONE, firstUsername);
-		Player secondPlayer = new PlayerImplementation(HeroClass.NONE, secondUsername);
+		Player firstPlayer = new PlayerImplementation(HeroClass.NONE, firstUsername, secondUsername);
+		Player secondPlayer = new PlayerImplementation(HeroClass.NONE, secondUsername, firstUsername);
 		currentPlayer = firstPlayer;
-		players = Arrays.asList(firstPlayer, secondPlayer);
-		deck = new DeckImplementation(JsonUtils.createGameDeck());
+		players = new HashMap<>();
+		players.put(firstUsername, firstPlayer);
+		players.put(secondUsername, secondPlayer);
+		deck = DeckFactory.createDeckWithCards(JsonUtils.createGameDeck());
 		market = new ArrayList<>();
 		for (int i = 0; i < MARKET_SIZE; i++) {
 			updateMarket();
@@ -67,8 +72,47 @@ public class NormalGame implements Game {
 	}
 
 	@Override
-	public List<Player> getPlayers() {
+	public Map<String, Player> getPlayers() {
 		return players;
 	}
 
+	@Override
+	public void start() {
+		currentPlayer.startTurn();
+	}
+
+	@Override
+	public void performAction(String userName, String action, int cardId) {
+		Player player = players.get(userName);
+		Card card = CardImplementation.getCardById(cardId);
+		// TODO check for validity
+		switch (action) {
+		case "PLAY":
+			player.play(card);
+			break;
+		case "BUY":
+			player.buy(card);
+			market.remove(card);
+			updateMarket();
+			break;
+		case "TAP":
+		case "FACTION":
+		case "SACRIFICE":
+			player.activate(card, AbilityTrigger.valueOf(action));
+			break;
+		case "DISCARD":
+			player.discard(card);
+			break;
+		case "TRASH":
+			player.trash(card);
+			break;
+		case "END":
+			player.endTurn();
+			currentPlayer = players.get(player.getNextPlayer());
+			currentPlayer.startTurn();
+			break;
+		default:
+			throw new IllegalArgumentException("Illegal action specified!");
+		}
+	}
 }
