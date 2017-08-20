@@ -40,7 +40,7 @@ function tapAndActivate(target, id) {
 
 function playCard(id, type) {
     var boardSelector;
-    if (type == "champion") {
+    if (type.toUpperCase() == "CHAMPION") {
         boardSelector = ".player-permanent-board";
     } else {
         boardSelector = ".player-nonpermanent-board";

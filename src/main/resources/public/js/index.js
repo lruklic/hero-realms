@@ -50,24 +50,24 @@ var board = {
     }
 }
 var board = {};
-
-// TODO change this with full json from card.json, which is loaded on start
-var cards = {
-    "CH-CAPKOS" : {"type" : "champion"},
-    "CH-RAYEND" : {"type" : "champion"},
-    "CH-CULPRI" : {"type" : "champion"},
-    "CH-DEACUL" : {"type" : "champion"},
-    "AC-THEROT" : {"type" : "action"},
-    "AC-INFLUE" : {"type" : "action"},
-    "AC-FIRGEM" : {"type" : "action"},
-    "GOLD00" : {"type" : "action"},
-    "RUBY00" : {"type" : "action"},
-    "DAGGER" : {"type" : "action"}        
-}
+var cards = {};
 
 $(function() {
 
-    gui();
+    $.ajax({
+        url : "/cardsJson",
+        type : "GET",
+        //contentType: 'application/json',
+        success : function(data) {
+            var cardsData = JSON.parse(data).cards;
+            for (var i = 0; i < cardsData.length; i++) {
+                cards[cardsData[i].code] = cardsData[i];
+            }
+            console.log(cards);
+
+            gui();
+        }
+    });
 
     $("#wsconnect").click(() => {
         var username = $("#username").val();
@@ -111,11 +111,11 @@ function gui() {
         sendWSMessage("PLAY " + id);
     });
 
-    $(".hand-card")
-        .mouseenter(function() {
+    $("#player-hand-tile")
+        .on("mouseenter", ".hand-card", function() {       
             $(this).css("transform", "translate(0px, -20px)")
         })
-        .mouseleave(function() {
+        .on("mouseleave", ".hand-card", function() {
             $(this).css("transform", "translate(0px, 0px)")
         })
 
