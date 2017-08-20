@@ -17,7 +17,6 @@ function initWS(username) {
             board = JSON.parse(msg.data);
             initBoard();
         } else {
-            board = JSON.parse(msg.data);
             checkForChanges(JSON.parse(msg.data));
         }
     };
