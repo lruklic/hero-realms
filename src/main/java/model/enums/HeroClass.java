@@ -62,10 +62,10 @@ public enum HeroClass {
 		public Deck getDeck() {
 			List<Card> cards = new ArrayList<>();
 			int amountOfGoldInNormalDeck = 7;
-			cards.addAll(Collections.nCopies(amountOfGoldInNormalDeck, JsonUtils.getCardByName("Gold")));
-			cards.add(JsonUtils.getCardByName("Ruby"));
-			cards.add(JsonUtils.getCardByName("Dagger"));
-			cards.add(JsonUtils.getCardByName("Shortsword"));
+			cards.addAll(Collections.nCopies(amountOfGoldInNormalDeck, JsonUtils.getCardByCode("GOLD00")));
+			cards.add(JsonUtils.getCardByCode("RUBY00"));
+			cards.add(JsonUtils.getCardByCode("DAGGER"));
+			cards.add(JsonUtils.getCardByCode("SHORTS"));
 			return DeckFactory.createDeckWithCards(cards);
 		}
 	};

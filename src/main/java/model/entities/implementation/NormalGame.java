@@ -50,7 +50,6 @@ public class NormalGame implements Game {
 		for (int i = 0; i < MARKET_SIZE; i++) {
 			updateMarket();
 		}
-		updateMarket();
 	}
 
 	@Override
@@ -62,7 +61,7 @@ public class NormalGame implements Game {
 	public void updateMarket() {
 		if (market.size() == MARKET_SIZE - 1 && market.stream().filter(card -> card.getCode().equals("FIREGEM"))
 				.collect(Collectors.toList()).isEmpty()) {
-			market.add(JsonUtils.getCardByName("Fire Gem"));
+			market.add(JsonUtils.getCardByCode("FIRGEM"));
 		} else {
 			market.add(deck.drawCard());
 		}
