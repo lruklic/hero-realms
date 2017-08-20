@@ -14,7 +14,7 @@ function checkForChanges(newBoardState) {
         var handCardFound = playerHandNew.find(function(card) { return card.id === handCardId});
         if (!handCardFound) { 
             // TODO provjeri nalazi li se na boardu
-            playCard(hardCardId, cards[playerHandOld[i].code].type);
+            playCard(handCardId, cards[playerHandOld[i].code].type);
         }
     }
 
@@ -31,7 +31,7 @@ function checkForChanges(newBoardState) {
     // TODO same for permanent as for non permanent
 
     if (boardPlayerOld.health !== boardPlayerNew.health) update("player", "health", boardPlayerNew.health);
-    if (boardPlayerOld.damage !== boardPlayerNew.damage) update("player", "damage", boardPlayerNew.damage);
+    if (boardPlayerOld.combat !== boardPlayerNew.combat) update("player", "combat", boardPlayerNew.combat);
     if (boardPlayerOld.gold !== boardPlayerNew.gold) update("player", "gold", boardPlayerNew.gold);    
     if (boardPlayerOld.deck !== boardPlayerNew.deck) updateDeckCardsLeft("player", boardPlayerNew.deck);
 
@@ -39,7 +39,7 @@ function checkForChanges(newBoardState) {
     for (var i = 0; i < board.market.length; i++) {
         var newMarket = newBoardState.market;
         if (board.market[i].id != newMarket[i].id) {
-            acquire(i, newMarket[i].code);
+            acquire(i, board.market[i], newMarket[i]);
         }
     }
 
@@ -48,7 +48,7 @@ function checkForChanges(newBoardState) {
     var boardOpponentNew = newBoardState.opponent;
 
     if (boardOpponentOld.health !== boardOpponentNew.health) update("opponent", "health", boardOpponentNew.health);
-    if (boardOpponentOld.damage !== boardOpponentNew.damage) update("opponent", "damage", boardOpponentNew.damage);
+    if (boardOpponentOld.combat !== boardOpponentNew.combat) update("opponent", "combat", boardOpponentNew.combat);
     if (boardOpponentOld.gold !== boardOpponentNew.gold) update("opponent", "gold", boardOpponentNew.gold);
     if (boardOpponentOld.deck !== boardOpponentNew.deck) updateDeckCardsLeft("opponent", boardOpponentNew.deck);    
 

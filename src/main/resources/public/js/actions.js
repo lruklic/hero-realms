@@ -13,12 +13,6 @@ function update(target, category, value) {
     });
 }
 
-function applyDamage(targetId, damageAmount) {
-    update("player", "combat", damageAmount);
-    
-
-}
-
 function updateDeckCardsLeft(target, numberOfCards) {
     $("#" + target + "-deck-text strong").text("Deck: " + numberOfCards + " left");
 }
@@ -113,7 +107,7 @@ function playCard(id, type) {
         .addClass("column")*/
 }
 
-function acquire(id, newCardCode) {
+function acquire(id, oldCard, newCard) {
     d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(180deg)");
 
     var offset = $("#market-container-" + id + " .flipper img").offset(); 
@@ -150,7 +144,9 @@ function acquire(id, newCardCode) {
         .style("opacity", 0)
 
     setTimeout(function() {
-        d3.select("#market-slot-img-" + id).attr("src", "images/" + newCardCode + ".jpg")
+        d3.select("#market-slot-img-" + oldCard.id)
+            .attr("id", "market-slot-img-" + newCard.id)
+            .attr("src", "images/" + newCard.code + ".jpg")
     }, 800)
 
     setTimeout(function() {

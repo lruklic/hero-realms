@@ -3,7 +3,7 @@ var cardAbilityHover = {"id" : null, "active" : false};
 var board = {
     "opponent" : {
         "health" : 55,
-        "damage" : 0,
+        "combat" : 0,
         "gold" : 0,
         "deck" : 23,
         "discard" : [
@@ -27,7 +27,7 @@ var board = {
     ],
     "player" : {
         "health" : 55,
-        "damage" : 0,
+        "combat" : 0,
         "gold" : 0,
         "deck" : 20,
         "discard" : [
