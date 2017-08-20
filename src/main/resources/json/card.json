@@ -1,5 +1,4 @@
 { "cards" : [
-				// Default class (7 coins, ruby, dagger and shortsword)
 				{
 					"name" : "Gold",
 					"code" : "GOLD00",
@@ -72,7 +71,6 @@
 						}
 					]
 				},
-				// Cleric class (6 coins, prayer beads, 2 followers, spiked mace, bless, resurrect)
 				{
 					"name" : "Cleric Gold",
 					"code" : "CLEGOL",
@@ -186,7 +184,6 @@
 						}
 					]
 				},
-				// Wizard class
 				{
 					"name" : "Wizard Gold",
 					"code" : "WIZGOL",
@@ -316,7 +313,6 @@
 						}
 					]
 				},
-				// Fighter class
 				{
 					"name" : "Fighter Gold",
 					"code" : "FIGGOL",
@@ -430,7 +426,6 @@
 						}
 					]
 				},
-				// Thief class
 				{
 					"name" : "Thief Gold",
 					"code" : "THIGOL",
@@ -501,7 +496,6 @@
 						}
 					]
 				},
-				// Ranger class
 				{
 					"name" : "Ranger Gold",
 					"code" : "RANGOL",
@@ -619,12 +613,11 @@
 						}
 					]
 				},
-				// Fire Gem
 				{
 					"name" : "Fire Gem",
-					"code" : "FIREGEM",
+					"code" : "FIRGEM",
 					"image" : "",
-					"cost" : -1,
+					"cost" : 2,
 					"type" : "ITEM",
 					"description" : "Currency, Gem",
 					"faction" : "NONE",
@@ -648,7 +641,6 @@
 						}
 					]
 				},
-				// Guild Champions (6 in total)
 				{
 					"name" : "Parov, the Enforcer",
 					"code" : "PARENF",
@@ -825,7 +817,6 @@
 						}
 					]
 				},
-				// Guild actions (8 in total)
 				{
 					"name" : "Bribe",
 					"code" : "BRIBE0",
@@ -1076,7 +1067,6 @@
 						}
 					]
 				},
-				// Imperial champions (7 in total)
 				{
 					"name" : "Master Weyan",
 					"code" : "MASWEY",
@@ -1215,7 +1205,7 @@
 				},
 				{
 					"name" : "Cristov, the just",
-					"code" : "CRISTOV",
+					"code" : "CRISTO",
 					"image" : "",
 					"cost" : 5,
 					"type" : "CHAMPION",
@@ -1329,7 +1319,6 @@
 						}
 					]
 				},
-				// Imperial actions (7 in total)
 				{
 					"name" : "Taxation",
 					"code" : "TAXATI",
@@ -1612,7 +1601,6 @@
 						}
 					]
 				},
-				// Necros champions (7 in total)
 				{
 					"name" : "Rayla, the Endweaver",
 					"code" : "RAYEND",
@@ -1891,7 +1879,6 @@
 						}
 					]
 				},
-				// Necros actions (6 in total)
 				{
 					"name" : "The Rot",
 					"code" : "THEROT",
@@ -2132,7 +2119,6 @@
 						}
 					]
 				},
-				// Wild champions (7 in total)
 				{
 					"name" : "Orc Grunt",
 					"code" : "ORCGRU",
@@ -2385,7 +2371,6 @@
 						}
 					]
 				},
-				// Wild actions (6 in total)
 				{
 					"name" : "Rampage",
 					"code" : "RAMPAG",
