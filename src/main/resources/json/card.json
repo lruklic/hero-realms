@@ -624,7 +624,7 @@
 					"name" : "Fire Gem",
 					"code" : "FIRGEM",
 					"image" : "",
-					"cost" : -1,
+					"cost" : 2,
 					"type" : "ITEM",
 					"description" : "Currency, Gem",
 					"faction" : "NONE",

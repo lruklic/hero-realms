@@ -152,7 +152,8 @@ public class JsonUtils {
 	}
 
 	public static List<Card> createGameDeck() {
-		return CARD_MAP.values().stream().filter(card -> card.getCost() >= 1).collect(Collectors.toList());
+		return CARD_MAP.values().stream().filter(card -> card.getCost() >= 1 && !card.getCode().equals("FIRGEM"))
+				.collect(Collectors.toList());
 	}
 
 	public static Card getCardByCode(String code) {
@@ -271,9 +272,14 @@ public class JsonUtils {
 		}
 		player.add("hand", playerHandArray);
 
+		// Current player
+		JsonObject currentPlayer = new JsonObject();
+		currentPlayer.addProperty("userName", game.getCurrentPlayer().getName());
+
 		boardState.add("opponent", opponent);
 		boardState.add("market", market);
 		boardState.add("player", player);
+		boardState.add("currentPlayer", currentPlayer);
 
 		return boardState;
 	}
