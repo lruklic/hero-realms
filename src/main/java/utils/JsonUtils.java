@@ -61,19 +61,18 @@ public class JsonUtils {
 			int cost = Integer.parseInt(object.get("cost").getAsString());
 			JsonArray jAbilities = object.getAsJsonArray("abilities");
 			List<Ability> abilities = parseAbilities(jAbilities);
-			// TODO change code parsing when it's available for all cards
-			String code = object.get("code") == null ? null : object.get("code").getAsString();
+			String code = object.get("code").getAsString();
 			String description = object.get("description").getAsString();
 			HeroClass heroClass = HeroClass.valueOf(object.get("class").getAsString());
 			String type = object.get("type").getAsString();
 			if (type.equals("ACTION")) {
-				cards.put(name, new Action(abilities, faction, cost, name, code, description, heroClass));
+				cards.put(code, new Action(abilities, faction, cost, name, code, description, heroClass));
 			} else if (type.equals("ITEM")) {
-				cards.put(name, new Item(abilities, faction, cost, name, code, description, heroClass));
+				cards.put(code, new Item(abilities, faction, cost, name, code, description, heroClass));
 			} else if (type.equals("CHAMPION")) {
 				int health = Integer.parseInt(object.get("health").getAsString());
 				boolean isGuard = object.get("guard").getAsString().equals("YES");
-				cards.put(name,
+				cards.put(code,
 						new Champion(abilities, faction, cost, name, code, description, heroClass, isGuard, health));
 			}
 		}
@@ -156,13 +155,13 @@ public class JsonUtils {
 		return CARD_MAP.values().stream().filter(card -> card.getCost() >= 1).collect(Collectors.toList());
 	}
 
-	public static Card getCardByName(String name) {
-		Card card = CARD_MAP.get(name);
+	public static Card getCardByCode(String code) {
+		Card card = CARD_MAP.get(code);
 
+		String name = card.getName();
 		Faction faction = card.getFaction();
 		int cost = card.getCost();
 		List<Ability> abilities = card.getAbilities();
-		String code = card.getCode();
 		String description = card.getDescription();
 		HeroClass heroClass = card.getHeroClass();
 		if (card instanceof Action) {

@@ -622,7 +622,7 @@
 				// Fire Gem
 				{
 					"name" : "Fire Gem",
-					"code" : "FIREGEM",
+					"code" : "FIRGEM",
 					"image" : "",
 					"cost" : -1,
 					"type" : "ITEM",
