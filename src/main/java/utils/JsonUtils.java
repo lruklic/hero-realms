@@ -223,15 +223,7 @@ public class JsonUtils {
 		}
 		opponent.add("nonpermanent", opponentNonpermanentArray);
 
-		JsonArray opponentHandArray = new JsonArray();
-
-		for (Card card : opponentPlayer.getHand()) {
-			JsonObject handCard = new JsonObject();
-			handCard.addProperty("id", card.getId());
-			handCard.addProperty("code", card.getCode());
-			opponentHandArray.add(handCard);
-		}
-		opponent.add("hand", opponentHandArray);
+		opponent.addProperty("handSize", opponentPlayer.getHand().size());
 
 		// Market object
 		JsonArray market = new JsonArray();
