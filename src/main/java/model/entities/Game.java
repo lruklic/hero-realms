@@ -17,7 +17,7 @@ public interface Game {
 
 	public Deck getGameDeck();
 
-	public void updateMarket();
+	public void removeCardFromMarket(Card card);
 
 	public List<Card> getMarket();
 

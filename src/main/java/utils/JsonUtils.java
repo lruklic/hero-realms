@@ -1,6 +1,5 @@
 package utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -49,7 +47,7 @@ public class JsonUtils {
 			return "";
 		}
 	}
-	
+
 	private static Map<String, Card> readAllCards() {
 
 		String jsonLine;

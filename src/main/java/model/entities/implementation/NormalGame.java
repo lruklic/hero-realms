@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import model.cards.Card;
 import model.cards.Deck;
@@ -47,9 +46,10 @@ public class NormalGame implements Game {
 		players.put(secondUsername, secondPlayer);
 		deck = DeckFactory.createDeckWithCards(JsonUtils.createGameDeck());
 		market = new ArrayList<>();
-		for (int i = 0; i < MARKET_SIZE; i++) {
-			updateMarket();
+		for (int i = 0; i < MARKET_SIZE - 1; i++) {
+			market.add(deck.drawCard());
 		}
+		market.add(JsonUtils.getCardByCode("FIRGEM"));
 	}
 
 	@Override
@@ -58,12 +58,12 @@ public class NormalGame implements Game {
 	}
 
 	@Override
-	public void updateMarket() {
-		if (market.size() == MARKET_SIZE - 1 && market.stream().filter(card -> card.getCode().equals("FIREGEM"))
-				.collect(Collectors.toList()).isEmpty()) {
-			market.add(JsonUtils.getCardByCode("FIRGEM"));
+	public void removeCardFromMarket(Card card) {
+		int index = market.indexOf(card);
+		if (card.getCode().equals("FIRGEM")) {
+			market.set(index, JsonUtils.getCardByCode("FIRGEM"));
 		} else {
-			market.add(deck.drawCard());
+			market.set(index, deck.drawCard());
 		}
 	}
 
@@ -98,8 +98,7 @@ public class NormalGame implements Game {
 			break;
 		case "BUY":
 			player.buy(card);
-			market.remove(card);
-			updateMarket();
+			removeCardFromMarket(card);
 			break;
 		case "TAP":
 		case "FACTION":
