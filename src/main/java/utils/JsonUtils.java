@@ -157,7 +157,23 @@ public class JsonUtils {
 	}
 
 	public static Card getCardByName(String name) {
-		return CARD_MAP.get(name);
+		Card card = CARD_MAP.get(name);
+
+		Faction faction = card.getFaction();
+		int cost = card.getCost();
+		List<Ability> abilities = card.getAbilities();
+		String code = card.getCode();
+		String description = card.getDescription();
+		HeroClass heroClass = card.getHeroClass();
+		if (card instanceof Action) {
+			return new Action(abilities, faction, cost, name, code, description, heroClass);
+		} else if (card instanceof Item) {
+			return new Item(abilities, faction, cost, name, code, description, heroClass);
+		} else {
+			int health = ((Champion) card).getHealth();
+			boolean isGuard = ((Champion) card).isGuard();
+			return new Champion(abilities, faction, cost, name, code, description, heroClass, isGuard, health);
+		}
 	}
 
 	/**
@@ -198,6 +214,16 @@ public class JsonUtils {
 		}
 		opponent.add("nonpermanent", opponentNonpermanentArray);
 
+		JsonArray opponentHandArray = new JsonArray();
+
+		for (Card card : opponentPlayer.getHand()) {
+			JsonObject handCard = new JsonObject();
+			handCard.addProperty("id", card.getId());
+			handCard.addProperty("code", card.getCode());
+			opponentHandArray.add(handCard);
+		}
+		opponent.add("hand", opponentHandArray);
+
 		// Market object
 		JsonArray market = new JsonArray();
 
@@ -235,6 +261,16 @@ public class JsonUtils {
 			playerNonpermanentArray.add(nonpermanent);
 		}
 		player.add("nonpermanent", playerNonpermanentArray);
+
+		JsonArray playerHandArray = new JsonArray();
+
+		for (Card card : mainPlayer.getHand()) {
+			JsonObject handCard = new JsonObject();
+			handCard.addProperty("id", card.getId());
+			handCard.addProperty("code", card.getCode());
+			playerHandArray.add(handCard);
+		}
+		player.add("hand", playerHandArray);
 
 		boardState.add("opponent", opponent);
 		boardState.add("market", market);

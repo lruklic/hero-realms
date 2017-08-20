@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import model.cards.Card;
 import model.cards.Deck;
@@ -24,7 +25,7 @@ import utils.JsonUtils;
  */
 public class NormalGame implements Game {
 
-	private static final int MARKET_SIZE = 5;
+	private static final int MARKET_SIZE = 6;
 
 	private Deck deck;
 
@@ -49,6 +50,7 @@ public class NormalGame implements Game {
 		for (int i = 0; i < MARKET_SIZE; i++) {
 			updateMarket();
 		}
+		updateMarket();
 	}
 
 	@Override
@@ -58,7 +60,12 @@ public class NormalGame implements Game {
 
 	@Override
 	public void updateMarket() {
-		market.add(deck.drawCard());
+		if (market.size() == MARKET_SIZE - 1 && market.stream().filter(card -> card.getCode().equals("FIREGEM"))
+				.collect(Collectors.toList()).isEmpty()) {
+			market.add(JsonUtils.getCardByName("Fire Gem"));
+		} else {
+			market.add(deck.drawCard());
+		}
 	}
 
 	@Override

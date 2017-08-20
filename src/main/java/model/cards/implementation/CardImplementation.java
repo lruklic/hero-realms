@@ -46,6 +46,18 @@ public abstract class CardImplementation implements Card {
 		CARD_MAP.put(this.id, this);
 	}
 
+	public CardImplementation(Card card) {
+		this.abilities = card.getAbilities();
+		this.faction = card.getFaction();
+		this.cost = card.getCost();
+		this.name = card.getName();
+		this.code = card.getCode();
+		this.description = card.getDescription();
+		this.heroClass = card.getHeroClass();
+		this.id = getUniqueCardId();
+		CARD_MAP.put(this.id, this);
+	}
+
 	@Override
 	public int getCost() {
 		return cost;
