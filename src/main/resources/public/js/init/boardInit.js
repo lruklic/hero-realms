@@ -61,7 +61,7 @@ function marketInit(selector) {
                         divNoId(
                             "front",
                             img(
-                                "market-slot-img-" + i,
+                                "market-slot-img-" + board.market[i].id,
                                 "shadow scalable rotated rotated90 market-slot market-slot-" + i,
                                 "images/" + board.market[i].code + ".jpg",
                                 "Market slot " + i,
@@ -73,7 +73,7 @@ function marketInit(selector) {
                             "back",
                             img(
                                 "market-slot-img-" + i,
-                                "shadow rotated rotated90 market-slot market-slot-" + i,
+                                "shadow rotated rotated90 market-slot-" + i,
                                 "images/back-rotate-none.jpg",
                                 "Market slot " + i,
                                 150,

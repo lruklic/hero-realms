@@ -102,7 +102,7 @@ function gui() {
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
-        sendWSMessage("BUY  " + id);
+        sendWSMessage("BUY " + id);
     });
 
     $('#player-hand-tile').on("click", ".hand-card", function() {

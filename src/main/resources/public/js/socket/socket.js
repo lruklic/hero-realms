@@ -17,7 +17,7 @@ function initWS(username) {
             board = JSON.parse(msg.data);
             initBoard();
         } else {
-            mapAction(msg.data);
+            board = JSON.parse(msg.data);
             checkForChanges(JSON.parse(msg.data));
         }
     };

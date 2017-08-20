@@ -1,21 +1,3 @@
-function mapAction(command) {
-
-    var action = command.split(" ")[0];
-
-    switch(action) {
-        case "acquire":
-            var acquiredCardId = command.split(" ")[1];
-            acquire(acquiredCardId);
-            break;
-        case "play":
-            var playedCardId = command.split(" ")[1];
-            var playerCardType = cards[acquiredCardId];
-            playCard(playedCardId, playerCardType);
-            break;
-        default:
-            break;
-    }
-}
 /**
  * Method that checks for changes between old board state and new board state and propagate in on FE.
  */
@@ -23,12 +5,12 @@ function checkForChanges(newBoardState) {
 
     // PLAYER BOARD SIDE
     var boardPlayerOld = board.player;
-    var boardPlayerNew = newBoardState.board.player;
+    var boardPlayerNew = newBoardState.player;
 
     var playerHandOld = boardPlayerOld.hand;
     var playerHandNew = boardPlayerNew.hand; 
     for (var i = 0; i < playerHandOld.length; i++) {
-        var hardCardId = playerHandOld[i].id;
+        var handCardId = playerHandOld[i].id;
         var handCardFound = playerHandNew.find(function(card) { return card.id === handCardId});
         if (!handCardFound) { 
             // TODO provjeri nalazi li se na boardu
@@ -56,14 +38,14 @@ function checkForChanges(newBoardState) {
     // MARKET BOARD SIDE 
     for (var i = 0; i < board.market.length; i++) {
         var newMarket = newBoardState.market;
-        if (board.market[i].code != newMarket[i].code) {
+        if (board.market[i].id != newMarket[i].id) {
             acquire(i, newMarket[i].code);
         }
     }
 
     // OPPONENT BOARD SIDE
     var boardOpponentOld = board.opponent;
-    var boardOpponentNew = newBoardState.board.opponent;
+    var boardOpponentNew = newBoardState.opponent;
 
     if (boardOpponentOld.health !== boardOpponentNew.health) update("opponent", "health", boardOpponentNew.health);
     if (boardOpponentOld.damage !== boardOpponentNew.damage) update("opponent", "damage", boardOpponentNew.damage);
@@ -73,4 +55,6 @@ function checkForChanges(newBoardState) {
     for (i = 0; i < board.opponent.permanent.length; i++) {
         var newOpponentPermanent = newBoardState.permanent;
     } 
+
+    board = newBoardState;
 }
