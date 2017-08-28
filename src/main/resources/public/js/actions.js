@@ -5,6 +5,7 @@
  * @category gold, combat, health
  * @value final value in token after update
  */
+
 function update(target, category, value) {
     d3.select("svg." + target  + "-" + category + "-token text").transition().duration(1000).tween("text", function() {
         var that = d3.select(this);
@@ -42,7 +43,8 @@ function playCard(id, type) {
     // check if permanent or nonpermanent
 
     var animation = d3.select("#animation");
-    var playedCard = d3.select("#hand-" + id);
+    var playedCard = d3.select('.hand-card[data-id="' + id + '"]') //d3.select("#hand-" + id);
+    
     var playedCardImg = playedCard.select("image").attr("xlink:href");
 
     d3.select("#animation image")
@@ -102,9 +104,6 @@ function playCard(id, type) {
     playedCard
         .style("opacity", 0)
 
-/*    $("#player-card-4")
-        .append('<img class="shadow player-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">')
-        .addClass("column")*/
 }
 
 function acquire(id, oldCard, newCard) {
@@ -146,7 +145,7 @@ function acquire(id, oldCard, newCard) {
     setTimeout(function() {
         d3.select("#market-slot-img-" + oldCard.id)
             .attr("id", "market-slot-img-" + newCard.id)
-            .attr("src", "images/" + newCard.code + ".jpg")
+            .attr("src", IMAGES_FOLDER + '/' + newCard.code + IMAGES_FORMAT)
     }, 800)
 
     setTimeout(function() {

@@ -12,13 +12,7 @@ function initWS(username) {
     };
 
     webSocket.onmessage = function (msg) {
-        console.log("SERVER :" + msg.data);
-        if (jQuery.isEmptyObject(board)) {
-            board = JSON.parse(msg.data);
-            initBoard();
-        } else {
-            checkForChanges(JSON.parse(msg.data));
-        }
+        mapMessage(msg);
     };
 
     webSocket.onclose = function () { 

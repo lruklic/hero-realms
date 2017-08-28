@@ -37,13 +37,11 @@
         <div id="opponent-tile" class="row row-tile">
             <div class="col-xs-2 col-md-2">
                 <div class="row center">
-                    <img id="opponent-deck-image" class="shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
-                    <!--<span class="opponent-deck-text"><span>Deck: 12</span></span>
-                --></div>
+                    <img id="opponent-deck-image" data-selector="opponent-deckSize" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
+                </div>
                 <div class="row center margin2">
-                    <img id="opponent-discard-pile-image" class="shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                    
-                    <!--<span class="opponent-deck-text margin2 top50"><span>Discard pile: 3</span></span>
-                --></div>
+                    <img id="opponent-discard-pile-image" data-selector="opponent-discardPileSize" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                                  
+                </div>
             </div>            
             <div class="col-xs-9 col-md-9 center">
                 <div class="opponent-nonpermanent-board row center">
@@ -78,12 +76,10 @@
         <div id="player-board-tile" class="row row-tile">
             <div class="col-xs-2 col-md-2">
                 <div class="row center">
-                    <img id="player-deck-image" class="shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
-                    <span class="player-deck-text"><span>Deck: 12</span></span>
+                    <img id="player-deck-image" data-selector="player-deckSize" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
                 </div>
                 <div class="row center margin2">
-                    <img id="player-discard-pile-image" class="shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                    
-                    <span class="player-deck-text margin2 top50"><span>Discard pile: 3</span></span>
+                    <img id="player-discard-pile-image" data-selector="player-discardPileSize" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                    
                 </div>
             </div>            
             <div class="col-xs-9 col-md-9 center">
@@ -114,7 +110,7 @@
     <svg id="animation" height="98px" width="150px" class="absolute transparent0">
         <image xlink:href="images/back-rotate-right.jpg" height="100%" width="100%"/>
     </svg>
-    <div id="opponent-deck-text" class="hidden">
+    <div id="deck-text" class="hidden">
         <div class="centered">
             <strong>Deck: 23 left</strong>
         </div>

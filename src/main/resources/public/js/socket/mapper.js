@@ -1,5 +1,24 @@
+// MAPPER.js interprets messages that arrive from BE via WebSocket.
+
+/**
+ * Method that maps message from BE to appropriate set of actions.
+ * 
+ * @param msg message that arrived from BE
+ */
+function mapMessage(msg) {
+    if (jQuery.isEmptyObject(board)) {
+        board = JSON.parse(msg.data);
+        initBoard();
+    } else {
+        checkForChanges(JSON.parse(msg.data));
+    }
+}
+
+
 /**
  * Method that checks for changes between old board state and new board state and propagate in on FE.
+ * 
+ * @param newBoardState new state of the board that arrived as JSON over WebSocket
  */
 function checkForChanges(newBoardState) {
 

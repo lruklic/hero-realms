@@ -1,3 +1,8 @@
+var IMAGES_FOLDER = "images/printplay";
+var IMAGES_FORMAT = ".png";
+var MARKET_CARD_HEIGHT = 150;
+var MARKET_CARD_WIDTH = 98;
+
 function div(id, clazz, content, arg1) {
     if (!arg1) arg1 = "";
     if (!id) { 
@@ -31,7 +36,7 @@ function divCardPermanent(index, id, player, hp, guard, widthPercentage, content
 
 function imgSvg(src) {
     return '<svg height="126px" width="90px" class="scalable mouseenter-trigger">'
-        + '<image xlink:href="images/' + src + '.jpg"/></svg>'
+        + '<image xlink:href="' + IMAGES_FOLDER + '/' + src + IMAGES_FORMAT + '"/></svg>'
 }
 
 function imgCardSvg(index, id, src, type, isFirst) {
@@ -39,9 +44,40 @@ function imgCardSvg(index, id, src, type, isFirst) {
     if (isFirst) rest = "";
 
     return '<svg id="hand-' + index + '" data-id="' + id + '" data-type="' + type + '" class="hand-card scalable ' + rest + '">'
-        + '<image xlink:href="images/' + src + '.jpg"/>' + '</svg>'
+        + '<image xlink:href="' + IMAGES_FOLDER + '/' + src + IMAGES_FORMAT + '"/>' + '</svg>'
 }
 
 function imgCard(src) {
     return '<img class="shadow scalable mouseenter-trigger" src="images/' + src + '.jpg" alt="' + src + '" height="114" width="75"></img>';
+}
+
+function imgMarketFront(i, cardId, cardCode) {
+    return img(
+        "market-slot-img-" + cardId,
+        "shadow scalable rotated rotated90 market-slot market-slot-" + i,
+        IMAGES_FOLDER + '/' + cardCode + IMAGES_FORMAT,
+        "Market slot " + i,
+        MARKET_CARD_HEIGHT,
+        MARKET_CARD_WIDTH
+    )
+}
+
+function imgMarketBack(i, cardId) {
+    return img(
+        "market-slot-img-back-" + cardId,
+        "shadow rotated rotated90 market-slot-" + i,
+        "images/back-rotate-none.jpg", 
+        "Market slot " + i,
+        MARKET_CARD_HEIGHT,
+        MARKET_CARD_WIDTH
+    )
+}
+
+function marketDiv(index, cardId, cardFrontCode) {
+    return '<div class="col-xs-2 col-md-2">' +
+                 '<div id="market-container-' + index + '" class="flip-container">' +
+                    '<div class="flipper">' +
+                        '<div class="front">' + imgMarketFront(index, cardId, cardFrontCode) + '</div>' +
+                        '<div class="back">' + imgMarketBack(index, cardId) + '</div>' +
+            '</div></div></div>';
 }

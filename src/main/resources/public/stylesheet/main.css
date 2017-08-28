@@ -67,23 +67,6 @@ svg image {
     /*flex: 1;*/
 }
 
-/* TEMP solution */
-.opponent-deck-text, .player-deck-text {
-    background: rgba(0,0,0,0.5);
-    color: white;
-    display: table;
-    height: 75px;
-    left: 27%;
-    top: 0;
-    position: absolute;
-    width: 114px;
-    opacity: 0;
-    -webkit-transition: opacity 500ms;
-    -moz-transition: opacity 500ms;
-    -o-transition: opacity 500ms;
-    transition: opacity 500ms;
-}
-
 .opponent-combat-counter, .player-combat-counter {
     position: absolute;
     left: 15%;
@@ -129,16 +112,6 @@ svg image {
 .transparent05 {
     opacity: 0.5;
 }
-
-.opponent-deck-text span, .opponent-combat-counter span, .player-deck-text span, .player-combat-counter span  {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/*.opponent-deck-text:hover, .player-deck-text:hover {
-  opacity: 1;
-}*/
 
 .flip-container {
 	perspective: 1000px;
@@ -197,7 +170,7 @@ svg image {
     z-index: 999;
 }
 
-#opponent-deck-text {
+#deck-text {
     position: absolute;
     display: table;
 }

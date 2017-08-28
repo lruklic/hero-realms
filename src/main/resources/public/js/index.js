@@ -78,13 +78,23 @@ $(function() {
 
 function gui() {
 
-    $("#opponent-deck-image")
+    var decksMap = {"deckSize" : "Deck : ", "discardPileSize" : "Discard pile : "};
+
+    $("#opponent-deck-image, #opponent-discard-pile-image")
         .mouseenter(function() {
+            console.log("enter")
             $(this).css("opacity", 0.3);
             
+            var dataSelector = $(this).attr("data-selector").split("-");
+
+            var player = dataSelector[0];
+            var selector = dataSelector[1];
+
+            $("#deck-text strong").text(decksMap[selector] + board[player][selector]);
+
             var offset = $(this).offset();
 
-            $("#opponent-deck-text")
+            $("#deck-text")
                 .css({
                     "top" : offset.top,
                     "left" : offset.left
@@ -94,9 +104,12 @@ function gui() {
                 .removeClass("hidden");
         })
 
-    $("#opponent-deck-text").mouseleave(function() {
-        $("#opponent-deck-image").css("opacity", 1);
-        $("#opponent-deck-text").addClass("hidden");
+        // riješiti s hover https://stackoverflow.com/questions/20528124/mouseleave-doesnt-trigger-when-mouseenter-is-not-completed-yet
+
+    $("#deck-text").mouseleave(function() {
+        console.log("leave")
+        $("#opponent-deck-image, #opponent-discard-pile-image").css("opacity", 1);
+        $("#deck-text").addClass("hidden");
     });
 
     $("#market-tile").on("click", ".market-slot", function() {
@@ -106,8 +119,7 @@ function gui() {
     });
 
     $('#player-hand-tile').on("click", ".hand-card", function() {
-        var idArray = $(this).attr("id").split("-");
-        var id = idArray[idArray.length - 1];
+        var id = $(this).attr("data-id");
         sendWSMessage("PLAY " + id);
     });
 

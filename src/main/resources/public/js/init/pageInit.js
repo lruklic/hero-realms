@@ -6,6 +6,6 @@ $(function() {
 
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function () {
-        $('<img />').attr('src',"images/" + this).appendTo('body').css('display','none');
+        $('<img />').attr('src', IMAGES_FOLDER + '/' + this).appendTo('body').css('display','none');
     });
 }
