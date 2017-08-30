@@ -6,12 +6,23 @@
  * @param msg message that arrived from BE
  */
 function mapMessage(msg) {
+
+    var backendJSON = JSON.parse(msg.data)
+
     if (jQuery.isEmptyObject(board)) {
-        board = JSON.parse(msg.data);
+        board = backendJSON;
         initBoard();
     } else {
-        checkForChanges(JSON.parse(msg.data));
+        if (board.currentPlayer.userName == backendJSON.currentPlayer.userName) {
+            // SAME PLAYER, SAME TURN
+            checkForChanges(backendJSON);
+        } else {
+            // DIFFERENT PLAYER, NEW TURN
+            changeTurnField(board.currentPlayer.userName, backendJSON.currentPlayer.userName);
+            //newTurnUpdate();
+        }
     }
+
 }
 
 

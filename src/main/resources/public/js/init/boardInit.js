@@ -40,6 +40,8 @@ function playerBoardInit(selector) {
     update("player", "combat", player.combat);
     update("player", "gold", player.gold);  
 
+    updateTurnField(board.currentPlayer.userName, user.username);
+
     var playerPermanent = player.permanent;
 
     for (var i = 0; i < playerPermanent.length; i++) {

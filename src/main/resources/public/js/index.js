@@ -68,6 +68,10 @@ function gui() {
         sendWSMessage("BUY " + id);
     });
 
+    $('#player-hand-tile').on("click", ".player-end-turn", function() {
+        sendWSMessage("END");
+    });
+
     $('#player-hand-tile').on("click", ".hand-card", function() {
         var id = $(this).attr("data-id");
         sendWSMessage("PLAY " + id);

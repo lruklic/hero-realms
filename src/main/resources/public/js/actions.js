@@ -14,6 +14,61 @@ function update(target, category, value) {
     });
 }
 
+function updateTurnField(playerName, currentPlayer) {
+    var container = d3.select("svg.player-end-turn");
+    var text, color;
+    if (playerName == currentPlayer) {
+        text = "End Turn";
+        color = "lightgreen";
+    } else {
+        text = currentPlayer + "'s turn ...";
+        color = "indianred";
+    }
+
+    var g = container
+        .append("g")
+        .attr("class","button");
+    g.append("rect")
+        .attr("x", "1%").attr("y", "1")
+        .attr("height", "50").attr("width", "98%")
+        .attr("fill", color).attr("stroke", "#080808");
+    g.append("text")
+        .attr("x", "50%").attr("y", "25")
+        .attr("alignment-baseline", "middle")
+        .attr("text-anchor", "middle")
+        .attr("font-weight", "bold")
+        .text(text);
+}
+
+function changeTurnField(playerName, currentPlayer) {
+    var text, color;
+    if (playerName == currentPlayer) {
+        text = "End Turn";
+        color = "lightgreen";
+    } else {
+        text = currentPlayer + "'s turn ...";
+        color = "indianred";
+    }
+
+    d3.select(".player-end-turn rect").transition().duration(2500).style("fill", color);
+
+    d3.select(".player-end-turn text")
+        .transition()
+        .duration(2500)
+        .style("opacity", 0)
+        .remove();
+    d3.select(".player-end-turn g")
+        .append("text")
+        .attr("x", "50%").attr("y", "25")
+        .attr("alignment-baseline", "middle")
+        .attr("text-anchor", "middle")
+        .attr("font-weight", "bold")
+        .style("opacity", 0)
+        .text(text)
+        .transition().duration(2500)
+        .style("opacity", 1);
+}
+
 function updateDeckCardsLeft(target, numberOfCards) {
     $("#" + target + "-deck-text strong").text("Deck: " + numberOfCards + " left");
 }
