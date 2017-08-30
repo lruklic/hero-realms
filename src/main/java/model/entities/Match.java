@@ -14,21 +14,20 @@ import ws.MatchWebSocketBridge;
  */
 public class Match {
 
-	private static Match instance;
+	private String uuid;
 
 	private Game game;
 
-	/**
-	 * Prevent standard object creation.
-	 */
-	private Match() {
+	public Match(String uuid) {
+		this.uuid = uuid;
 	}
-
-	public static Match getInstance() {
-		if (instance == null) {
-			instance = new Match();
-		}
-		return instance;
+	
+	public String getUUID() {
+		return uuid;
+	}
+	
+	public void setUUID(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public Game getGame() {
@@ -39,19 +38,21 @@ public class Match {
 		game = new NormalGame(firstUsername, secondUsername);
 		for (Player player : game.getPlayers().values()) {
 			MatchWebSocketBridge.sendMessage(player.getName(),
-					JsonUtils.createBoardStateJson(game, player.getName()).toString());
+					JsonUtils.createBoardStateJson(this, game, player.getName()).toString());
 		}
 	}
 
 	public void handleAction(String message) {
 		String[] information = message.split(" ");
-		String userName = information[0];
-		String action = information[1];
-		int cardId = Integer.parseInt(information[2]);
+		String userName = information[1];
+		String action = information[2];
+		int cardId = Integer.parseInt(information[3]);
 		game.performAction(userName, action, cardId);
 		for (Player player : game.getPlayers().values()) {
 			MatchWebSocketBridge.sendMessage(player.getName(),
-					JsonUtils.createBoardStateJson(game, player.getName()).toString());
+					JsonUtils.createBoardStateJson(this, game, player.getName()).toString());
 		}
 	}
+
+
 }

@@ -22,7 +22,7 @@ function initWS(username) {
 }
 
 function sendWSMessage(message) {
-    webSocket.send(user.username + " " + message);
+    webSocket.send(board.match.uuid + " " + user.username + " " + message);
 }
 
 

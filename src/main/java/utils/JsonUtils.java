@@ -21,6 +21,7 @@ import model.cards.implementation.Action;
 import model.cards.implementation.Champion;
 import model.cards.implementation.Item;
 import model.entities.Game;
+import model.entities.Match;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.AbilityType;
@@ -190,10 +191,13 @@ public class JsonUtils {
 	 * 
 	 * @return board state as JSON
 	 */
-	public static JsonObject createBoardStateJson(Game game, String userName) {
+	public static JsonObject createBoardStateJson(Match match, Game game, String userName) {
 
 		JsonObject boardState = new JsonObject();
 
+		JsonObject matchInfo = new JsonObject();
+		matchInfo.addProperty("uuid", match.getUUID());
+		
 		// Opponent object
 		JsonObject opponent = new JsonObject();
 		Player opponentPlayer = game.getPlayers().values().stream().filter(p -> !p.getName().equals(userName))
@@ -281,6 +285,7 @@ public class JsonUtils {
 		boardState.add("market", market);
 		boardState.add("player", player);
 		boardState.add("currentPlayer", currentPlayer);
+		boardState.add("match", matchInfo);
 
 		return boardState;
 	}
