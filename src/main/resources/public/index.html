@@ -26,7 +26,7 @@
     <div class="container">
         <div id="connect-tile" class="row row-tile">
             <div class="col-xs-6 col-md-6">
-                <input id="username">
+                <input id="username" value="test">
                 <button id="wsconnect">Connect</button>                                                                                                                                                             
             </div>
             <div class="col-xs-6 col-md-6">
@@ -37,22 +37,17 @@
         <div id="opponent-tile" class="row row-tile">
             <div class="col-xs-2 col-md-2">
                 <div class="row center">
-                    <img id="opponent-deck-image" data-selector="opponent-deckSize" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
+                    <img id="opponent-deck-image" data-selector="opponent-deck" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Deck" height="75" width="114">
                 </div>
                 <div class="row center margin2">
-                    <img id="opponent-discard-pile-image" data-selector="opponent-discardPileSize" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                                  
+                    <img id="opponent-discard-pile-image" data-selector="opponent-discardPile" class="deck-image shadow" src="images/back-rotate-right.jpg" alt="Discard pile" height="75" width="114">                                  
                 </div>
             </div>            
             <div class="col-xs-9 col-md-9 center">
                 <div class="opponent-nonpermanent-board row center">
                     <img id="opponent-playable-nonpermanent-image" class="shadow transparent05" src="images/back-rotate-none.jpg" alt="Deck" height="114" width="75">
                 </div>
-                <div class="opponent-permanent-board row center margin2">
-                <!--  <div id="opponent-card-1" data-hp="4" data-guard="true" class="column card-container">
-                        <img class="shadow opponent-playable-nonpermanent scalable mouseenter-trigger" src="images/koska.jpg" alt="Deck" height="114" width="75">
-                    -->
-                </div>
-
+                <div class="opponent-permanent-board row center margin2"></div>
             </div>
             <div class="col-xs-1 col-md-1">
                 <svg class="opponent-health-token" height="50" width="50">

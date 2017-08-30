@@ -1,11 +1,11 @@
 $(function() {
-    var images = ['DARREW.jpg', 'FIRGEM.jpg', 'INFLUE.jpg', 'THEROT.jpg', 'CAPKOS.jpg', 'CULPRI.jpg', 'DEACUL.jpg', 'RAYEND.jpg'];
+    var images = ['DARREW', 'FIRGEM', 'INFLUE', 'THEROT', 'CULPRI', 'DEACUL', 'RAYEND'];
     preload(images);
 
 });
 
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function () {
-        $('<img />').attr('src', IMAGES_FOLDER + '/' + this).appendTo('body').css('display','none');
+        $('<img />').attr('src', IMAGES_FOLDER + '/' + this + IMAGES_FORMAT).appendTo('body').css('display','none');
     });
 }

@@ -1,54 +1,5 @@
 var cardAbilityHover = {"id" : null, "active" : false};
 
-var board = {
-    "opponent" : {
-        "health" : 55,
-        "combat" : 0,
-        "gold" : 0,
-        "deck" : 23,
-        "discard" : [
-
-        ],
-        "permanent" : [
-/*            {"id" : "001", "code" : "CH-CAPKOS"},
-            {"id" : "002", "code" : "CH-CAPKOS"}, 
-            {"id" : "003", "code" : "CH-CAPKOS"}*/            
-        ],
-        "nonpermanent" : [
-        ]
-    },
-    "market" : [
-        {"id" : "004", "code" : "CH-RAYEND"},
-        {"id" : "005", "code" : "CH-CULPRI"},
-        {"id" : "006", "code" : "CH-DEACUL"},
-        {"id" : "007", "code" : "AC-THEROT"},
-        {"id" : "008", "code" : "AC-INFLUE"},
-        {"id" : "009", "code" : "AC-FIRGEM"}
-    ],
-    "player" : {
-        "health" : 55,
-        "combat" : 0,
-        "gold" : 0,
-        "deck" : 20,
-        "discard" : [
-
-        ],
-        "permanent" : [
-            /*{"id" : "010", "code" : "CH-CAPKOS"}*/
-        ],
-        "nonpermanent" : [
-        ],
-        "hand" : [
-            {"id" : "011", "code" : "DAGGER"},
-            {"id" : "016", "code" : "DAGGER"},            
-            {"id" : "012", "code" : "GOLD00"},
-            {"id" : "013", "code" : "GOLD00"},
-            {"id" : "014", "code" : "GOLD00"},
-            {"id" : "015", "code" : "GOLD00"},            
-            /*{"id" : "014", "code" : "CH-VARNEC"} */       
-        ]
-    }
-}
 var board = {};
 var cards = {};
 
@@ -82,15 +33,14 @@ function gui() {
 
     $("#opponent-deck-image, #opponent-discard-pile-image")
         .mouseenter(function() {
-            console.log("enter")
             $(this).css("opacity", 0.3);
             
             var dataSelector = $(this).attr("data-selector").split("-");
 
-            var player = dataSelector[0];
-            var selector = dataSelector[1];
+            var target = dataSelector[0];
+            var deckType = dataSelector[1];
 
-            $("#deck-text strong").text(decksMap[selector] + board[player][selector]);
+            $("#deck-text strong").text(decksMap[selector] + getDeckCount(target, deckType));
 
             var offset = $(this).offset();
 
