@@ -18,7 +18,7 @@ public class GamePlatform {
 	
 	private GamePlatform() {};
 	
-	public static List<Match> activeMatches = new ArrayList<>();
+	private static List<Match> activeMatches = new ArrayList<>();
 	
 	public static void addMatch(Match match) {
 		activeMatches.add(match);
@@ -34,7 +34,7 @@ public class GamePlatform {
 		return null;
 	}
 	
-	public static Match findPlayerInMatch(String username) {
+	public static Match findMatchWithPlayer(String username) {
 		for (Match match : activeMatches) {
 			for (Map.Entry<String, Player> entry : match.getGame().getPlayers().entrySet()) {
 				if (username.equals(entry.getValue().getName())) {

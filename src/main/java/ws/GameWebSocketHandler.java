@@ -10,6 +10,9 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
+import game.GamePlatform;
+import model.entities.Match;
+
 /**
  * Handler for WebSocket that is used for communication between server (game
  * instance) and browser clients (players).
@@ -30,6 +33,14 @@ public class GameWebSocketHandler {
 
 		if (!usernameSessionMap.containsKey(session)) {
 			usernameSessionMap.put(username, session);
+		}
+		
+		// Player is already in the game
+		Match existingMatch = GamePlatform.findMatchWithPlayer(username);
+		if (existingMatch != null) {
+			System.out.println("Player " + username + " reconnected.");
+			existingMatch.sendBoardState(username);
+			return;
 		}
 
 		System.out.println("User " + username + " connected.");

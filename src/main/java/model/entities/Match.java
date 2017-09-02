@@ -50,8 +50,12 @@ public class Match {
 		game.performAction(userName, action, cardId);
 		for (Player player : game.getPlayers().values()) {
 			MatchWebSocketBridge.sendMessage(player.getName(),
-					JsonUtils.createBoardStateJson(this, game, player.getName()).toString());
+					JsonUtils.createBoardStateJson(this, this.game, player.getName()).toString());
 		}
+	}
+	
+	public void sendBoardState(String username) {
+		MatchWebSocketBridge.sendMessage(username, JsonUtils.createBoardStateJson(this, this.game, username).toString());
 	}
 
 
