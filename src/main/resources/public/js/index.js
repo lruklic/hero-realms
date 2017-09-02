@@ -65,16 +65,16 @@ function gui() {
     $("#market-tile").on("click", ".market-slot", function() {
         var idArray = $(this).attr("id").split("-");
         var id = idArray[idArray.length - 1];
-        sendWSMessage("BUY " + id);
+        sendWSMessage({"action" : "BUY", "cardId" : id});
     });
 
     $('#player-hand-tile').on("click", ".player-end-turn", function() {
-        sendWSMessage("END");
+        sendWSMessage({"action" : "END"});
     });
 
     $('#player-hand-tile').on("click", ".hand-card", function() {
         var id = $(this).attr("data-id");
-        sendWSMessage("PLAY " + id);
+        sendWSMessage({"action" : "PLAY", "cardId" : id});
     });
 
     $("#player-hand-tile")

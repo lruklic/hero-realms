@@ -22,7 +22,21 @@ function initWS(username) {
 }
 
 function sendWSMessage(message) {
-    webSocket.send(board.match.uuid + " " + user.username + " " + message);
+    webSocket.send(createSocketMessage(board.match.uuid, user.username, message));    
+    //webSocket.send(board.match.uuid + " " + user.username + " " + message);
+}
+
+function createSocketMessage(matchUUID, username, message) {
+    var socketMessage = {
+        "match" : matchUUID,
+        "user" : username,
+        "message" : {
+            "action" : message.action,
+            "cardId" : message.cardId
+        }
+    };
+
+    return JSON.stringify(socketMessage);
 }
 
 
