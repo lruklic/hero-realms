@@ -13,12 +13,14 @@ function mapMessage(msg) {
         board = backendJSON;
         initBoard();
     } else {
-        if (board.currentPlayer.userName == backendJSON.currentPlayer.userName) {
+        changeTurnField(user.username, backendJSON.currentPlayer.userName);
+        
+        if (user.username == backendJSON.currentPlayer.userName) {
             // SAME PLAYER, SAME TURN
             checkForChanges(backendJSON);
         } else {
             // DIFFERENT PLAYER, NEW TURN
-            changeTurnField(board.currentPlayer.userName, backendJSON.currentPlayer.userName);
+            
             //newTurnUpdate();
         }
     }

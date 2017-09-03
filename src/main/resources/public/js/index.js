@@ -29,7 +29,7 @@ $(function() {
 
 function gui() {
 
-    var decksMap = {"deckSize" : "Deck : ", "discardPileSize" : "Discard pile : "};
+    var decksMap = {"deck" : "Deck : ", "discardPile" : "Discard pile : "};
 
     $("#opponent-deck-image, #opponent-discard-pile-image")
         .mouseenter(function() {
