@@ -63,4 +63,6 @@ public interface Player {
 	public String getNextPlayer();
 
 	public HeroClass getHeroClass();
+
+	public void stunChampion(Champion champion);
 }

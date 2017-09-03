@@ -158,6 +158,15 @@ public class PlayerImplementation implements Player {
 	}
 
 	@Override
+	public void stunChampion(Champion champion) {
+		if (!board.contains(champion)) {
+			throw new IllegalStateException("That champion does not exist!");
+		}
+		board.remove(champion);
+		discardPile.add(champion);
+	}
+
+	@Override
 	public List<Champion> getBoard() {
 		return board;
 	}

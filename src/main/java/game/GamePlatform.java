@@ -1,7 +1,6 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import model.entities.Match;
@@ -15,35 +14,29 @@ import model.entities.Player;
  */
 
 public class GamePlatform {
-	
-	private GamePlatform() {};
-	
-	private static List<Match> activeMatches = new ArrayList<>();
-	
+
+	private GamePlatform() {
+	};
+
+	private static final Map<String, Match> activeMatches = new HashMap<>();
+
 	public static void addMatch(Match match) {
-		activeMatches.add(match);
+		activeMatches.put(match.getUUID(), match);
 	}
-	
+
 	public static Match getMatchById(String uuid) {
-		for (Match match : activeMatches) {
-			if (match.getUUID().equals(uuid)) {
-				return match;
-			}
-		}
-		
-		return null;
+		return activeMatches.get(uuid);
 	}
-	
+
 	public static Match findMatchWithPlayer(String username) {
-		for (Match match : activeMatches) {
-			for (Map.Entry<String, Player> entry : match.getGame().getPlayers().entrySet()) {
-				if (username.equals(entry.getValue().getName())) {
+		for (Match match : activeMatches.values()) {
+			for (Player player : match.getGame().getPlayers().values()) {
+				if (player.getName().equals(username)) {
 					return match;
 				}
 			}
 		}
-		
 		return null;
 	}
-	
+
 }

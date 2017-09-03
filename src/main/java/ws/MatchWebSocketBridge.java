@@ -1,5 +1,8 @@
 package ws;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import game.GamePlatform;
 import model.entities.Match;
 import utils.Util;
@@ -20,7 +23,7 @@ public class MatchWebSocketBridge {
 		match.createGame(player1, player2);
 
 		GamePlatform.addMatch(match);
-		
+
 		return match;
 	}
 
@@ -29,7 +32,8 @@ public class MatchWebSocketBridge {
 	}
 
 	public static void receiveMessage(String message) {
-		Match match = GamePlatform.getMatchById(message.split(" ")[0]);
-		match.handleAction(message);
+		JsonObject jsonMessage = (JsonObject) new JsonParser().parse(message);
+		Match match = GamePlatform.getMatchById(jsonMessage.get("match").getAsString());
+		match.handleAction(jsonMessage);
 	}
 }

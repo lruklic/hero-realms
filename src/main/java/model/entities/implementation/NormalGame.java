@@ -8,6 +8,7 @@ import java.util.Map;
 import model.cards.Card;
 import model.cards.Deck;
 import model.cards.implementation.CardImplementation;
+import model.cards.implementation.Champion;
 import model.cards.implementation.DeckFactory;
 import model.entities.Game;
 import model.entities.Player;
@@ -115,6 +116,20 @@ public class NormalGame implements Game {
 			player.endTurn();
 			currentPlayer = players.get(player.getNextPlayer());
 			currentPlayer.startTurn();
+			break;
+		case "DAMAGE":
+			// TODO improve, current implementation is sloppy
+			Player targetPlayer = players.values().stream().filter(p -> !p.equals(player)).findFirst().get();
+			if (card != null) {
+				Champion champion = (Champion) card;
+				if (champion.getCurrentHealth() <= player.getDamage()) {
+					targetPlayer.stunChampion(champion);
+				}
+				player.increaseDamage(-champion.getCurrentHealth());
+			} else {
+				targetPlayer.increaseHealth(-player.getDamage());
+				player.increaseDamage(-player.getDamage());
+			}
 			break;
 		default:
 			throw new IllegalArgumentException("Illegal action specified!");

@@ -197,7 +197,7 @@ public class JsonUtils {
 
 		JsonObject matchInfo = new JsonObject();
 		matchInfo.addProperty("uuid", match.getUUID());
-		
+
 		// Opponent object
 		JsonObject opponent = new JsonObject();
 		Player opponentPlayer = game.getPlayers().values().stream().filter(p -> !p.getName().equals(userName))
@@ -205,9 +205,9 @@ public class JsonUtils {
 		opponent.addProperty("gold", opponentPlayer.getGold());
 		opponent.addProperty("health", opponentPlayer.getHealth());
 		opponent.addProperty("combat", opponentPlayer.getDamage());
+		opponent.addProperty("deck", opponentPlayer.getDeck().cardsRemaining());
 
 		JsonArray opponentPermanentArray = new JsonArray();
-
 		for (Champion champion : opponentPlayer.getBoard()) {
 			JsonObject permanent = new JsonObject();
 			permanent.addProperty("id", champion.getId());
@@ -218,7 +218,6 @@ public class JsonUtils {
 		opponent.add("permanent", opponentPermanentArray);
 
 		JsonArray opponentNonpermanentArray = new JsonArray();
-
 		for (Card card : opponentPlayer.getActions()) {
 			JsonObject nonpermanent = new JsonObject();
 			nonpermanent.addProperty("id", card.getId());
@@ -229,9 +228,17 @@ public class JsonUtils {
 
 		opponent.addProperty("handSize", opponentPlayer.getHand().size());
 
+		JsonArray opponentDiscardPileArray = new JsonArray();
+		for (Card card : opponentPlayer.getDiscardPile()) {
+			JsonObject discardCard = new JsonObject();
+			discardCard.addProperty("id", card.getId());
+			discardCard.addProperty("code", card.getCode());
+			opponentDiscardPileArray.add(discardCard);
+		}
+		opponent.add("discardPile", opponentDiscardPileArray);
+
 		// Market object
 		JsonArray market = new JsonArray();
-
 		for (Card marketCard : game.getMarket()) {
 			JsonObject marketObj = new JsonObject();
 			marketObj.addProperty("id", marketCard.getId());
@@ -245,9 +252,9 @@ public class JsonUtils {
 		player.addProperty("gold", mainPlayer.getGold());
 		player.addProperty("health", mainPlayer.getHealth());
 		player.addProperty("combat", mainPlayer.getDamage());
+		player.addProperty("deck", mainPlayer.getDeck().cardsRemaining());
 
 		JsonArray playerPermanentArray = new JsonArray();
-
 		for (Champion champion : mainPlayer.getBoard()) {
 			JsonObject permanent = new JsonObject();
 			permanent.addProperty("id", champion.getId());
@@ -258,7 +265,6 @@ public class JsonUtils {
 		player.add("permanent", playerPermanentArray);
 
 		JsonArray playerNonpermanentArray = new JsonArray();
-
 		for (Card card : mainPlayer.getActions()) {
 			JsonObject nonpermanent = new JsonObject();
 			nonpermanent.addProperty("id", card.getId());
@@ -268,7 +274,6 @@ public class JsonUtils {
 		player.add("nonpermanent", playerNonpermanentArray);
 
 		JsonArray playerHandArray = new JsonArray();
-
 		for (Card card : mainPlayer.getHand()) {
 			JsonObject handCard = new JsonObject();
 			handCard.addProperty("id", card.getId());
@@ -276,6 +281,15 @@ public class JsonUtils {
 			playerHandArray.add(handCard);
 		}
 		player.add("hand", playerHandArray);
+
+		JsonArray playerDiscardPileArray = new JsonArray();
+		for (Card card : mainPlayer.getDiscardPile()) {
+			JsonObject discardCard = new JsonObject();
+			discardCard.addProperty("id", card.getId());
+			discardCard.addProperty("code", card.getCode());
+			playerDiscardPileArray.add(discardCard);
+		}
+		player.add("discardPile", playerDiscardPileArray);
 
 		// Current player
 		JsonObject currentPlayer = new JsonObject();

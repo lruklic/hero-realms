@@ -1,5 +1,7 @@
 package model.entities;
 
+import com.google.gson.JsonObject;
+
 import model.entities.implementation.NormalGame;
 import utils.JsonUtils;
 import ws.MatchWebSocketBridge;
@@ -21,11 +23,11 @@ public class Match {
 	public Match(String uuid) {
 		this.uuid = uuid;
 	}
-	
+
 	public String getUUID() {
 		return uuid;
 	}
-	
+
 	public void setUUID(String uuid) {
 		this.uuid = uuid;
 	}
@@ -37,26 +39,23 @@ public class Match {
 	public void createGame(String firstUsername, String secondUsername) {
 		game = new NormalGame(firstUsername, secondUsername);
 		for (Player player : game.getPlayers().values()) {
-			MatchWebSocketBridge.sendMessage(player.getName(),
-					JsonUtils.createBoardStateJson(this, game, player.getName()).toString());
+			sendBoardState(player.getName());
 		}
 	}
 
-	public void handleAction(String message) {
-		String[] information = message.split(" ");
-		String userName = information[1];
-		String action = information[2];
-		int cardId = Integer.parseInt(information[3]);
+	public void handleAction(JsonObject message) {
+		String userName = message.get("user").getAsString();
+		String action = message.get("message").getAsJsonObject().get("action").getAsString();
+		int cardId = message.get("message").getAsJsonObject().get("action").getAsInt();
 		game.performAction(userName, action, cardId);
 		for (Player player : game.getPlayers().values()) {
-			MatchWebSocketBridge.sendMessage(player.getName(),
-					JsonUtils.createBoardStateJson(this, this.game, player.getName()).toString());
+			sendBoardState(player.getName());
 		}
 	}
-	
-	public void sendBoardState(String username) {
-		MatchWebSocketBridge.sendMessage(username, JsonUtils.createBoardStateJson(this, this.game, username).toString());
-	}
 
+	public void sendBoardState(String username) {
+		MatchWebSocketBridge.sendMessage(username,
+				JsonUtils.createBoardStateJson(this, this.game, username).toString());
+	}
 
 }
