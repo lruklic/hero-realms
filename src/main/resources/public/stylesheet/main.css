@@ -191,3 +191,7 @@ svg image {
 .back {
 	transform: rotateY(180deg);
 }
+
+.opponent-health-token {
+    cursor:url(../images/icons/attack.cur), auto;
+}

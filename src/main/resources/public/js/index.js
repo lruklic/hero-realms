@@ -40,7 +40,7 @@ function gui() {
             var target = dataSelector[0];
             var deckType = dataSelector[1];
 
-            $("#deck-text strong").text(decksMap[selector] + getDeckCount(target, deckType));
+            $("#deck-text strong").text(decksMap[deckType] + getDeckCount(target, deckType));
 
             var offset = $(this).offset();
 
@@ -56,8 +56,11 @@ function gui() {
 
         // riješiti s hover https://stackoverflow.com/questions/20528124/mouseleave-doesnt-trigger-when-mouseenter-is-not-completed-yet
 
+    $("#opponent-tile").on("click", ".opponent-health-token", function() {
+        sendWSMessage({"action" : "DAMAGE"});
+    });
+
     $("#deck-text").mouseleave(function() {
-        console.log("leave")
         $("#opponent-deck-image, #opponent-discard-pile-image").css("opacity", 1);
         $("#deck-text").addClass("hidden");
     });
