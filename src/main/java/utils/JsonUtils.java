@@ -293,7 +293,7 @@ public class JsonUtils {
 
 		// Current player
 		JsonObject currentPlayer = new JsonObject();
-		currentPlayer.addProperty("userName", game.getCurrentPlayer().getName());
+		currentPlayer.addProperty("username", game.getCurrentPlayer().getName());
 
 		boardState.add("opponent", opponent);
 		boardState.add("market", market);
