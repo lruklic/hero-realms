@@ -65,6 +65,7 @@ public class PlayerImplementation implements Player {
 	public void draw() {
 		if (deck.isEmpty()) {
 			deck.fillWithCards(discardPile);
+			discardPile.clear();
 		}
 		hand.add(deck.drawCard());
 	}
