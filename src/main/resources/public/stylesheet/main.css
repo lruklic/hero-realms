@@ -113,7 +113,7 @@ svg image {
     opacity: 0.5;
 }
 
-.flip-container {
+.flip-container, .vertical-flip-container {
 	perspective: 1000px;
     position: absolute;
     z-index: 99;
@@ -122,6 +122,11 @@ svg image {
 .flip-container, .front, .back {
 	width: 150px;
 	height: 98px;
+}
+
+.vertical-flip-container, .vertical-front, .vertical-back {
+    width: 98px;
+    height: 150px;
 }
 
 #market-tile {
@@ -144,7 +149,7 @@ svg image {
 	position: relative;
 }
 
-.front, .back {
+.front, .back, .vertical-front, .vertical-back {
 	backface-visibility: hidden;
 
 	position: absolute;
@@ -168,6 +173,7 @@ svg image {
 #animation {
     position: absolute;
     z-index: 999;
+    transform-origin: 80% 50%;
 }
 
 #deck-text {
@@ -181,17 +187,27 @@ svg image {
     vertical-align: middle;
 }
 /* front pane, placed above back */
-.front {
+.front, .vertical-front {
 	z-index: 2;
 	/* for firefox 31 */
 	transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
-.back {
+.back, .vertical-back {
 	transform: rotateY(180deg);
 }
 
 .opponent-health-token {
     cursor:url(../images/icons/attack.cur), auto;
+}
+
+.animation {
+    position: absolute;
+    z-index: 999;
+    transform-origin: 80% 50%;
+/*     -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -o-transform-origin: center center; */
+
 }

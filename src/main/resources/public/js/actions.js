@@ -97,12 +97,12 @@ function playCard(id, type) {
     }
     // check if permanent or nonpermanent
 
-    var animation = d3.select("#animation");
-    var playedCard = d3.select('.hand-card[data-id="' + id + '"]') //d3.select("#hand-" + id);
+    var animation = d3.select("#animation-0");
+    var playedCard = d3.select('.hand-card[data-id="' + id + '"]'); //d3.select("#hand-" + id);
     
-    var playedCardImg = playedCard.select("image").attr("xlink:href");
+    var playedCardImg = playedCard.select(".vertical-front image").attr("xlink:href");
 
-    d3.select("#animation image")
+    animation.select("image")
         .attr("xlink:href", playedCardImg);
 
     animation
