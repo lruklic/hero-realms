@@ -40,7 +40,7 @@ function playerBoardInit(selector) {
     update("player", "combat", player.combat);
     update("player", "gold", player.gold);  
 
-    updateTurnField(user.username, board.currentPlayer.userName);
+    updateTurnField(user.username, board.currentPlayer.username);
 
     var playerPermanent = player.permanent;
 
@@ -53,7 +53,7 @@ function playerBoardInit(selector) {
     var playerNonPermanent = player.nonpermanent;
     for (var i = 0; i < playerNonPermanent.length; i++) {
         $(selector + " .player-nonpermanent-board").append(
-            divCardPermanent(i, playerNonPermanent[i].id, "player", 0, 0, 100 / playerNonPermanent.length, imgCard(playerNonPermanent[i].code))
+            divCardPermanent(i, 100 / playerNonPermanent.length, imgSvg(playerNonPermanent[i].code))
         )
     }
 }
@@ -63,7 +63,7 @@ function playerHandInit(selector) {
 
     for (var i = 0; i < playerHand.length; i++) {
         $(selector + " .player-hand").append(
-            imgCardSvg(i, playerHand[i].id, playerHand[i].code, cards[playerHand[i].code].type, (i == 0))
+            handDiv(i, playerHand[i], cards[playerHand[i].code], 40 * i) //imgCardSvg(i, playerHand[i].id, playerHand[i].code, cards[playerHand[i].code].type), 40 * i)
         )
     }
 }

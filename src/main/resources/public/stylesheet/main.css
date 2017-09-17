@@ -161,10 +161,6 @@ svg image {
     display: inline-flex;
 }
 
-.rest {
-    margin-left: -40px;
-}
-
 .hand-card:hover {
     transition: all 200ms ease-in-out;
     /*transform: translate(0px, -20px);*/

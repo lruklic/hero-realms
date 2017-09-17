@@ -39,7 +39,13 @@ function updateTurnField(playerName, currentPlayer) {
         .attr("font-weight", "bold")
         .text(text);
 }
-
+/**
+ * Change End turn button text and color.
+ * 
+ * @param playerName name of the player that controls the browser
+ * @param currentPlayer name of the player that has the turn
+ * 
+ */
 function changeTurnField(playerName, currentPlayer) {
     var text, color;
     if (playerName == currentPlayer) {
@@ -122,16 +128,18 @@ function playCard(id, type) {
     var lastElement = d3.select(boardSelector + " .player-playable-" + (oldSelectionSize + 1) + " svg");
     lastElement.transition().duration(500).on("end", function() { 
         var endPoint = $(boardSelector + " .player-playable-" + (oldSelectionSize + 1) + " svg").offset();
-
+        
         animation
             .transition().delay(510).duration(500)
             .style("top", endPoint.top + "px")
             .style("left", endPoint.left + "px")
-            .attr("width", lastElement.attr("width"))
-            .attr("height", lastElement.attr("height"));
+            .style("width", lastElement.attr("width"))
+            .style("height", lastElement.attr("height"));
         
         setTimeout(function() {
-            animation.style("display", "none");
+            animation
+                .style("width", 0)
+                .style("height", 0);
         }, 1400);
 /*        animation
             .transition().delay(1050).duration(1)
@@ -139,6 +147,7 @@ function playCard(id, type) {
             .style("opacity", 0);*/
         setTimeout(function() {
             lastElement.style("opacity", 1);
+            playedCard.remove();
         }, 1010);
 /*        lastElement
             .transition().delay(1020).duration(1)
@@ -149,8 +158,8 @@ function playCard(id, type) {
     var startPoint = $(playedCard.node()).offset();
 
     animation
-        .attr("width", playedCard.style("width"))
-        .attr("height", playedCard.style("height"))    
+        .style("width", playedCard.style("width"))
+        .style("height", playedCard.style("height"))    
         .attr("src", playedCardImg)    
         .style("top", startPoint.top + "px")
         .style("left", startPoint.left + "px") 
@@ -315,7 +324,6 @@ function acquire(id, oldCard, newCard) {
     animationImage
         .attr("xlink:href", "images/back-rotate-right.jpg")
     
-    //console.log(endPoint.top + " " + endPoint.left);
     animation.transition().delay(710).duration(500)
         .style("top", endPoint.top + "px")
         .style("left", endPoint.left + "px")

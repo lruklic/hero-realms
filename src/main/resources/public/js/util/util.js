@@ -29,9 +29,13 @@ function itag(clazz) {
     return '<i class="' + clazz + '"></i>';
 }
 
-function divCardPermanent(index, id, player, hp, guard, widthPercentage, content) {
+/* function divCardPermanent(index, id, player, hp, guard, widthPercentage, content) {
     return '<div id="' + player + '-card-' + index + '" data-id="' + id + '" data-hp="' + hp + '"' +
         ' data-guard="' + guard + '" class="card-container" style="width:' + widthPercentage +'%">' + content + '</div>'; 
+} */
+
+function divCardPermanent(i, widthPercentage, playedCardImg) {
+    return '<div class="card-container player-playable-' + i + '" style="width:' + widthPercentage + '%">' + playedCardImg + '</div>'
 }
 
 function imgSvg(src) {
@@ -71,7 +75,7 @@ function imgMarketBack(i, cardId) {
 
 function marketDiv(index, cardId, cardFrontCode) {
     return '<div class="col-xs-2 col-md-2">' +
-                 '<div id="market-container-' + index + '" class="flip-container">' +
+                 '<div id="market-container-' + index + '" class="scale-container flip-container">' +
                     '<div class="flipper">' +
                         '<div class="front">' + imgMarketFront(index, cardId, cardFrontCode) + '</div>' +
                         '<div class="back">' + imgMarketBack(index, cardId) + '</div>' +

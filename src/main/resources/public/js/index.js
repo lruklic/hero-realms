@@ -81,11 +81,15 @@ function gui() {
     });
 
     $("#player-hand-tile")
-        .on("mouseenter", ".hand-card", function() {       
-            $(this).css("transform", "translate(0px, -20px)")
+        .on("mouseenter", ".hand-card", function() {   
+            if (!$(this).hasClass('scaled')) {
+                $(this).css("transform", "translate(0px, -20px)")                
+            } 
         })
         .on("mouseleave", ".hand-card", function() {
-            $(this).css("transform", "translate(0px, 0px)")
+            if (!$(this).hasClass('scaled')) {                
+                $(this).css("transform", "translate(0px, 0px)")
+            }
         })
 
     $(".container").on("contextmenu", ".scalable", function() {
@@ -96,20 +100,20 @@ function gui() {
             }
             $(this).removeClass('scaled')
                 .css("transform", transform);
-            d3.select($(this).parents(".flip-container").get(0))
+            d3.select($(this).parents(".scale-container").get(0))
                 .transition().duration(200)
                 .style("z-index", 99);
         } else {
             var maxZIndex = 0;
 
-            $(".scalable").parents(".flip-container").each(function() {
+            $(".scalable").parents(".scale-container").each(function() {
                 var zIndex = Number(d3.select(this).style("z-index"));
                 if (zIndex > maxZIndex) maxZIndex = zIndex;
             });
             
             $(this).addClass("scaled")
                 .css("transform", "scale(3.5)")
-            $(this).parents(".flip-container")
+            $(this).parents(".scale-container")
                 .css("z-index", Number(maxZIndex) + 2);        
         }       
         return false;
@@ -133,7 +137,6 @@ function gui() {
         d3.select(this).select("div")
             .transition().duration(500)
             .style("opacity", 0)
-            //.classed("hidden", true);
     });
 
     d3.selectAll(".ability-picker").on("click", function() {
