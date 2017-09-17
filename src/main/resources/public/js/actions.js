@@ -161,6 +161,138 @@ function playCard(id, type) {
 
 }
 
+function drawHand(hand) {
+
+    $(".player-hand").empty();
+
+    for (var i = 0; i < hand.length; i++) {
+        drawCard(i, hand[i]);
+    }
+}
+
+function drawCard(i, cardDrawn) {
+
+    var offset = $("#player-deck-image").offset();
+
+    var animation = d3.select("#animation-" + i);
+    var animationImage = animation.select("image");
+
+    var d3PlayerHand = d3.select(".player-hand");
+    d3PlayerHand
+        .transition().delay(300).duration(300)
+        .style("padding-left", (parseInt(d3PlayerHand.style("padding-left")) + 20) + "px"); 
+
+    animationImage
+        .attr("xlink:href", "images/back-rotate-right.jpg");
+
+    animation
+        .style("transform-origin", "40% 60%")
+        .style("top", offset.top + "px")
+        .style("left", offset.left + "px")
+        .attr("width", 114)
+        .attr("height", 75)
+        .style("transform", "rotate(0deg)")
+        .transition().delay(700).duration(1)
+        .style("opacity", 1);
+
+    var playerHand = $(".player-hand");    
+
+    var handCardsCount = playerHand.find(".vertical-front .hand-card").length;
+
+    var handCard = $($.parseHTML(handDiv(handCardsCount, cardDrawn, cards[cardDrawn.code], 40 * handCardsCount)));
+    handCard.css("opacity", 0);
+
+    playerHand.append(handCard);
+    var newCardOffset = handCard.offset();
+
+    var d3HandCard = d3.select("#hand-card-" + handCardsCount);
+    d3HandCard.select(".flipper").style("transform", "rotateY(180deg)");
+    //var newCardOffset = d3HandCard.offset();
+
+    animation
+        .transition().delay(710).duration(700)
+        .style("top", (newCardOffset.top + 25) + "px")
+        .style("left", newCardOffset.left + 15 + "px")
+        .style("transform", "rotate(-90deg)")
+        .attr("height", 110)
+        .attr("width", 145)
+
+    animation
+        .transition().delay(1410).duration(1)
+        .style("opacity", 0)
+        
+    d3HandCard
+        .transition().delay(1410).duration(1)
+        .style("opacity", 1);
+
+    var rotateInterpolator = d3.interpolateString("rotateY(180deg)", "rotateY(0deg)");
+
+    d3HandCard.select(".flipper")
+        .transition().delay(1420)
+        .styleTween('transform', function (d) {
+            return rotateInterpolator;
+        });
+    
+    animation
+        .transition().delay(1430).duration(1)
+        .attr("width", 0)
+        .attr("height", 0)
+}
+
+function discardHand(hand) {
+    for (var i = 0; i < hand.length; i++) {
+
+        var handCard = d3.select("#hand-card-" + i);
+
+        if (!handCard.empty() && handCard.style("opacity") > 0) {
+            handCard.select(".flipper").style("transform", "rotateY(180deg)");
+            
+            var offset = $("#hand-card-" + i + " .flipper svg").offset();
+            var endPoint = $("#player-discard-pile-image").offset();
+    
+            var animation = d3.select("#animation-" + i);
+            var animationImage = animation.select("image");
+            
+            animationImage
+                .attr("xlink:href", "images/printplay/card-back-vertical.png");
+        
+            animation
+                .attr("width", 100)
+                .attr("height", 150)
+                .style("top", offset.top + "px")
+                .style("left", offset.left + "px")
+                .transition().delay(700).duration(1)
+                .style("opacity", 1)
+                .style("display", "inherit")
+        
+            animation.transition().delay(710).duration(1000)
+                .style("transform", "rotate(90deg)")
+                .style("top", endPoint.top + "px")
+                .style("left", endPoint.left + "px")
+                .attr("width", 75)
+                .attr("height", 114);
+    
+            animation.transition().delay(1710).duration(100)
+                // pomaknuti u lijevo, povecaj height
+                .style("opacity", 0)
+    
+            handCard.transition().delay(700).duration(1)
+                .style("opacity", 0);
+        }
+    }
+}
+
+function discardNonPermanent(nonPermanent, delay) {
+    var delay = (delay ? delay : 0);
+
+    var nonPermanent = d3.selectAll(".player-nonpermanent-board .card-container");
+
+    nonPermanent.transition().delay(delay).duration(1000)
+        .style("opacity", 0);
+    nonPermanent.transition().delay(delay + 1000)
+        .remove();
+}
+
 function acquire(id, oldCard, newCard) {
     d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(180deg)");
 

@@ -142,13 +142,6 @@ function gui() {
         update("opponent", "combat", 5);
     });
 
-/*    d3.selectAll(".hand-card").on("click", function() {
-        var handCard = d3.select(this);
-        var id = handCard.attr("id").split("-")[1];
-        var type = handCard.attr("data-type");
-        playCard(id, type);
-    });*/
-
 }
 
 

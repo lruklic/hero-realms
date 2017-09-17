@@ -13,20 +13,41 @@ function mapMessage(msg) {
         board = backendJSON;
         initBoard();
     } else {
-        changeTurnField(user.username, backendJSON.currentPlayer.userName);
+        var browserPlayerName = user.username;
+        var oldCurrentPlayerName = board.currentPlayer.username;
+        var newCurrentPlayerName = backendJSON.currentPlayer.username;
+
+        if (oldCurrentPlayerName != newCurrentPlayerName) {
+            // Turn changed
+            changeTurnField(browserPlayerName, newCurrentPlayerName);
+            newTurnUpdate(backendJSON);            
+        } else {
+            checkForChanges(backendJSON);            
+        }
         
-        if (user.username == backendJSON.currentPlayer.userName) {
+        // Old board is overwritten with the new board
+        board = backendJSON;
+/*         if (user.username == backendJSON.currentPlayer.username) {
             // SAME PLAYER, SAME TURN
-            checkForChanges(backendJSON);
         } else {
             // DIFFERENT PLAYER, NEW TURN
-            
-            //newTurnUpdate();
-        }
+        } */
     }
 
 }
+/**
+ * Update the board when the player ended his turn.
+ */
+function newTurnUpdate(newBoardState) {
 
+    // PLAYER BOARD SIDE
+    var boardPlayerOld = board.player;
+    var boardPlayerNew = newBoardState.player;    
+
+    discardHand(boardPlayerOld.hand);
+    discardNonPermanent(boardPlayerOld.nonpermanent, 1900);
+    drawHand(boardPlayerNew.hand);
+}
 
 /**
  * Method that checks for changes between old board state and new board state and propagate in on FE.

@@ -39,16 +39,12 @@ function imgSvg(src) {
         + '<image xlink:href="' + IMAGES_FOLDER + '/' + src + IMAGES_FORMAT + '"/></svg>'
 }
 
-function imgCardSvg(index, id, src, type, isFirst) {
-    var rest = "rest";
-    if (isFirst) rest = "";
-
-    return '<svg id="hand-' + index + '" data-id="' + id + '" data-type="' + type + '" class="hand-card scalable ' + rest + '">'
+/**
+ * Create card image SVG for hand card.
+ */
+function imgCardSvg(index, id, src, type) {
+    return '<svg id="hand-' + index + '" data-id="' + id + '" data-type="' + type + '" class="hand-card scalable">'
         + '<image xlink:href="' + IMAGES_FOLDER + '/' + src + IMAGES_FORMAT + '"/>' + '</svg>'
-}
-
-function imgCard(src) {
-    return '<img class="shadow scalable mouseenter-trigger" src="images/' + src + '.jpg" alt="' + src + '" height="114" width="75"></img>';
 }
 
 function imgMarketFront(i, cardId, cardCode) {
@@ -80,4 +76,24 @@ function marketDiv(index, cardId, cardFrontCode) {
                         '<div class="front">' + imgMarketFront(index, cardId, cardFrontCode) + '</div>' +
                         '<div class="back">' + imgMarketBack(index, cardId) + '</div>' +
             '</div></div></div>';
+}
+
+/**
+ * Create container for one hand card.
+ * 
+ * @param i index of card
+ * @param handCard single hand card element from board
+ * @param card selected card prototype stored in memory retrieved by unique ID
+ * 
+ */
+// i, playerHand[i], cards[playerHand[i].code]
+function handDiv(i, handCard, card, margin) {
+    return '<div id="hand-card-' + i + '" class="scale-container vertical-flip-container" style="margin-left:-' + margin + 'px"><div class="flipper"><div class="vertical-front">' 
+        + imgCardSvg(i, handCard.id, handCard.code, card.type)  + '</div>'
+        + '<div class="vertical-back">' + imgCardSvg(i, "back-" + handCard.id, "card-back-vertical", "NONE") + '</div></div></div>'
+}
+
+function animationSvg(i) {
+    return '<svg id="animation-' + i + '" width="0px" class="animation absolute transparent0">' +
+        '<image xlink:href="" height="100%" width="100%"/></svg>';
 }
