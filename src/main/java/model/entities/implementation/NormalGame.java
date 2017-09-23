@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import exceptions.InvalidUserActionException;
 import model.cards.Card;
 import model.cards.Deck;
 import model.cards.implementation.CardImplementation;
@@ -92,6 +93,9 @@ public class NormalGame implements Game {
 	public void performAction(String userName, String action, int cardId) {
 		Player player = players.get(userName);
 		Card card = CardImplementation.getCardById(cardId);
+		if (!player.equals(getCurrentPlayer())) {
+			throw new InvalidUserActionException("It is not your turn!");
+		}
 		// TODO check for validity
 		switch (action) {
 		case "PLAY":
@@ -132,7 +136,7 @@ public class NormalGame implements Game {
 			}
 			break;
 		default:
-			throw new IllegalArgumentException("Illegal action specified!");
+			throw new InvalidUserActionException("Illegal action specified!");
 		}
 	}
 }

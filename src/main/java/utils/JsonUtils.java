@@ -303,4 +303,10 @@ public class JsonUtils {
 
 		return boardState;
 	}
+
+	public static JsonObject createErrorJson(String message) {
+		JsonObject errorMessage = new JsonObject();
+		errorMessage.add("error", errorMessage);
+		return errorMessage;
+	}
 }

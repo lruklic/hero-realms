@@ -3,6 +3,7 @@ package model.entities.implementation;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.InvalidUserActionException;
 import model.cards.Card;
 import model.cards.Deck;
 import model.cards.implementation.Champion;
@@ -85,7 +86,7 @@ public class PlayerImplementation implements Player {
 	@Override
 	public void buy(Card card) {
 		if (gold < card.getCost()) {
-			// TODO can't buy this
+			throw new InvalidUserActionException("Not enough gold to buy that card!");
 		} else {
 			gold -= card.getCost();
 			discardPile.add(card);
@@ -161,7 +162,7 @@ public class PlayerImplementation implements Player {
 	@Override
 	public void stunChampion(Champion champion) {
 		if (!board.contains(champion)) {
-			throw new IllegalStateException("That champion does not exist!");
+			throw new InvalidUserActionException("That champion does not exist!");
 		}
 		board.remove(champion);
 		discardPile.add(champion);

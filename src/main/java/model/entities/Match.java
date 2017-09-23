@@ -2,6 +2,7 @@ package model.entities;
 
 import com.google.gson.JsonObject;
 
+import exceptions.InvalidUserActionException;
 import model.entities.implementation.NormalGame;
 import utils.JsonUtils;
 import ws.MatchWebSocketBridge;
@@ -51,10 +52,18 @@ public class Match {
 		if (message.get("message").getAsJsonObject().get("cardId") != null) {
 			cardId = message.get("message").getAsJsonObject().get("cardId").getAsInt();
 		}
-		game.performAction(userName, action, cardId);
-		for (Player player : game.getPlayers().values()) {
-			sendBoardState(player.getName());
+		try {
+			game.performAction(userName, action, cardId);
+			for (Player player : game.getPlayers().values()) {
+				sendBoardState(player.getName());
+			}
+		} catch (InvalidUserActionException e) {
+			sendErrorMessage(game.getCurrentPlayer().getName(), e.getMessage());
 		}
+	}
+
+	private void sendErrorMessage(String username, String message) {
+		MatchWebSocketBridge.sendMessage(username, JsonUtils.createErrorJson(message).toString());
 	}
 
 	public void sendBoardState(String username) {
