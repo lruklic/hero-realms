@@ -306,7 +306,7 @@ public class JsonUtils {
 
 	public static JsonObject createErrorJson(String message) {
 		JsonObject errorMessage = new JsonObject();
-		errorMessage.add("error", errorMessage);
+		errorMessage.addProperty("error", message);
 		return errorMessage;
 	}
 }
