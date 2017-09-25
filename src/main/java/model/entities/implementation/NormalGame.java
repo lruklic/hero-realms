@@ -94,7 +94,7 @@ public class NormalGame implements Game {
 		Player player = players.get(userName);
 		Card card = CardImplementation.getCardById(cardId);
 		if (!player.equals(getCurrentPlayer())) {
-			throw new InvalidUserActionException("It is not your turn!");
+			throw new InvalidUserActionException("It is not your turn!", player);
 		}
 		// TODO check for validity
 		switch (action) {
@@ -136,7 +136,7 @@ public class NormalGame implements Game {
 			}
 			break;
 		default:
-			throw new InvalidUserActionException("Illegal action specified!");
+			throw new InvalidUserActionException("Illegal action specified!", player);
 		}
 	}
 }
