@@ -31,7 +31,7 @@ function gui() {
 
     var decksMap = {"deck" : "Deck : ", "discardPile" : "Discard pile : "};
 
-    $("#opponent-deck-image, #opponent-discard-pile-image")
+    $("#opponent-deck-image, #opponent-discard-pile-image, #player-deck-image, #player-discard-pile-image")
         .mouseenter(function() {
             $(this).css("opacity", 0.3);
             
@@ -61,7 +61,7 @@ function gui() {
     });
 
     $("#deck-text").mouseleave(function() {
-        $("#opponent-deck-image, #opponent-discard-pile-image").css("opacity", 1);
+        $("#opponent-deck-image, #opponent-discard-pile-image, #player-deck-image, #player-discard-pile-image").css("opacity", 1);
         $("#deck-text").addClass("hidden");
     });
 
