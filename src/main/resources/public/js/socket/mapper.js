@@ -9,6 +9,11 @@ function mapMessage(msg) {
 
     var backendJSON = JSON.parse(msg.data)
 
+    if (backendJSON.error) {
+        alert(backendJSON.error);
+        return;
+    }
+
     if (jQuery.isEmptyObject(board)) {
         board = backendJSON;
         initBoard();
@@ -20,9 +25,9 @@ function mapMessage(msg) {
         if (oldCurrentPlayerName != newCurrentPlayerName) {
             // Turn changed
             changeTurnField(browserPlayerName, newCurrentPlayerName);
-            newTurnUpdate(backendJSON);            
+            newTurnUpdate(backendJSON, browserPlayerName == newCurrentPlayerName);            
         } else {
-            checkForChanges(backendJSON);            
+            checkForChanges(backendJSON, browserPlayerName == newCurrentPlayerName);            
         }
         
         // Old board is overwritten with the new board
@@ -38,23 +43,27 @@ function mapMessage(msg) {
 /**
  * Update the board when the player ended his turn.
  */
-function newTurnUpdate(newBoardState) {
+function newTurnUpdate(newBoardState, isPlayerTurn) {
 
     // PLAYER BOARD SIDE
     var boardPlayerOld = board.player;
     var boardPlayerNew = newBoardState.player;    
 
-    discardHand(boardPlayerOld.hand);
-    discardNonPermanent(boardPlayerOld.nonpermanent, 1900);
-    drawHand(boardPlayerNew.hand);
+    if (!isPlayerTurn) {
+        discardHand(boardPlayerOld.hand);
+        discardNonPermanent(boardPlayerOld.nonpermanent, 1900);
+        drawHand(boardPlayerNew.hand);
+    }
+
 }
 
 /**
  * Method that checks for changes between old board state and new board state and propagate in on FE.
  * 
  * @param newBoardState new state of the board that arrived as JSON over WebSocket
+ * @param isPlayerTurn value is true if player that controls the browser also holds the current turn
  */
-function checkForChanges(newBoardState) {
+function checkForChanges(newBoardState, isPlayerTurn) {
 
     // PLAYER BOARD SIDE
     var boardPlayerOld = board.player;
@@ -92,7 +101,7 @@ function checkForChanges(newBoardState) {
     for (var i = 0; i < board.market.length; i++) {
         var newMarket = newBoardState.market;
         if (board.market[i].id != newMarket[i].id) {
-            acquire(i, board.market[i], newMarket[i]);
+            acquire(i, board.market[i], newMarket[i], isPlayerTurn);
         }
     }
 

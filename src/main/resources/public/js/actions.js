@@ -113,7 +113,8 @@ function playCard(id, type) {
 
     animation
         .classed("shadow", false)
-        .style("display", "inherit");
+        .style("display", "inherit")
+        .style("transform", "rotate(0deg)");
 
     var selection = d3.selectAll(boardSelector + " .card-container");
     var oldSelectionSize = selection.size();
@@ -141,17 +142,11 @@ function playCard(id, type) {
                 .style("width", 0)
                 .style("height", 0);
         }, 1400);
-/*        animation
-            .transition().delay(1050).duration(1)
-            //.style("display", "none");
-            .style("opacity", 0);*/
+
         setTimeout(function() {
             lastElement.style("opacity", 1);
-            playedCard.remove();
+            $(playedCard.node()).parents(".scale-container").remove();
         }, 1010);
-/*        lastElement
-            .transition().delay(1020).duration(1)
-            .style("opacity", 1);*/
 
     })
 
@@ -302,12 +297,18 @@ function discardNonPermanent(nonPermanent, delay) {
         .remove();
 }
 
-function acquire(id, oldCard, newCard) {
+function acquire(id, oldCard, newCard, isPlayerTurn) {
     d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(180deg)");
 
     var offset = $("#market-container-" + id + " .flipper img").offset(); 
 
-    var endPoint = $("#player-discard-pile-image").offset();
+
+    var endPoint; 
+    if (isPlayerTurn) {
+        endPoint = $("#player-discard-pile-image").offset();
+    } else {
+        endPoint = $("#opponent-discard-pile-image").offset();
+    }
 
     var animation = d3.select("#animation");
     var animationImage = d3.select("#animation image");
@@ -335,7 +336,7 @@ function acquire(id, oldCard, newCard) {
         .attr("height", 75);*/
 
     animation.transition().delay(1220).duration(100)
-        .style("opacity", 0)
+        .style("opacity", 0);
 
     setTimeout(function() {
         d3.select("#market-slot-img-" + oldCard.id)
@@ -345,7 +346,11 @@ function acquire(id, oldCard, newCard) {
 
     setTimeout(function() {
         d3.select("#market-container-" + id + " .flipper").style("transform", "rotateY(0deg)")
-        animation.attr("width", 150).attr("height", 98);
+        animation
+            .attr("width", 150)
+            .attr("height", 98)
+            .style("top", 0)
+            .style("left", 0);
     }, 1330);
     
 }

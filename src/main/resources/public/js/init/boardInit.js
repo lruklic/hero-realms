@@ -46,7 +46,7 @@ function playerBoardInit(selector) {
 
     for (var i = 0; i < playerPermanent.length; i++) {
         $(selector + " .player-permanent-board").append(
-            divCardPermanent(i, playerPermanent[i].id, "player", 0, 0, 100 / playerPermanent.length, imgCard(playerPermanent[i].code))
+            divCardPermanent(i, 100 / playerPermanent.length, imgSvg(playerPermanent[i].code))
         )
     }
 
