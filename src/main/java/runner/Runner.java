@@ -25,7 +25,7 @@ public class Runner {
 		externalStaticFileLocation("src/main/resources/public");
 
 		webSocket("/gamesocket/*", GameWebSocketHandler.class);
-		webSocketIdleTimeoutMillis(5 * 60000);
+		webSocketIdleTimeoutMillis(5 * 180000);
 
 		// System.out.println(createDummyJson().toString());
 
