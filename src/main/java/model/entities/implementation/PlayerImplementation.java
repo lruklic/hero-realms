@@ -86,7 +86,7 @@ public class PlayerImplementation implements Player {
 	@Override
 	public void buy(Card card) {
 		if (gold < card.getCost()) {
-			throw new InvalidUserActionException("Not enough gold to buy that card!", this);
+			throw new InvalidUserActionException("Not enough gold to buy that card!");
 		} else {
 			gold -= card.getCost();
 			discardPile.add(card);
@@ -130,6 +130,8 @@ public class PlayerImplementation implements Player {
 		for (Champion champion : board) {
 			champion.setTapped(false);
 		}
+		gold = 0;
+		damage = 0;
 	}
 
 	@Override
@@ -162,7 +164,7 @@ public class PlayerImplementation implements Player {
 	@Override
 	public void stunChampion(Champion champion) {
 		if (!board.contains(champion)) {
-			throw new InvalidUserActionException("That champion does not exist!", this);
+			throw new InvalidUserActionException("That champion does not exist!");
 		}
 		board.remove(champion);
 		discardPile.add(champion);

@@ -58,7 +58,7 @@ public class Match {
 				sendBoardState(player.getName());
 			}
 		} catch (InvalidUserActionException e) {
-			sendErrorMessage(e.getOffendingPlayer().getName(), e.getMessage());
+			sendErrorMessage(userName, e.getMessage());
 		}
 	}
 
