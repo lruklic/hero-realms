@@ -1,14 +1,10 @@
 package model.enums;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import model.abilities.BuyModifier;
+import model.abilities.implementation.DefaultBuyModifier;
 import model.cards.Card;
-import model.cards.implementation.Champion;
-import model.entities.Option;
+import model.cards.implementation.Action;
 import model.entities.Player;
-import model.entities.implementation.OptionFactory;
 
 public enum AbilityType {
 
@@ -39,39 +35,83 @@ public enum AbilityType {
 	DISCARD {
 		@Override
 		public void activate(Player player) {
-			// TODO
+			player.setQuery("TARGET DISCARD");
 		}
 	},
 	SELFDISCARD {
 		@Override
 		public void activate(Player player) {
-			Option<Card> option = player.pickAnOption(OptionFactory.getOptions(player.getHand()));
-			player.discard(option.getStoredEntity());
+			player.setQuery("TARGET SELFDISCARD");
 		}
 	},
 	SACRIFICE {
 		@Override
 		public void activate(Player player) {
-			List<Card> cards = new ArrayList<>();
-			cards.addAll(player.getDiscardPile());
-			cards.addAll(player.getHand());
-			Card card = player.pickAnOption(OptionFactory.getOptions(cards)).getStoredEntity();
-			player.getDiscardPile().remove(card);
-			player.getHand().remove(card);
+			player.setQuery("TARGET SACRIFICE");
 		}
 	},
 	STUN {
 		@Override
 		public void activate(Player player) {
-			// TODO
+			player.setQuery("TARGET STUN");
 		}
 	},
 	PREPARE {
 		@Override
 		public void activate(Player player) {
-			List<Option<Champion>> options = OptionFactory
-					.getOptions(player.getBoard().stream().filter(c -> c.isTapped()).collect(Collectors.toList()));
-			player.pickAnOption(options).getStoredEntity().setTapped(false);
+			player.setQuery("TARGET PREPARE");
+		}
+	},
+	CHAMPION_TO_TOP {
+		@Override
+		public void activate(Player player) {
+			player.setQuery("TARGET CHAMPION_TO_TOP");
+		}
+	},
+	CARD_TO_TOP {
+		@Override
+		public void activate(Player player) {
+			player.setQuery("TARGET CARD_TO_TOP");
+		}
+	},
+	BUY_ACTION_TO_TOP {
+		@Override
+		public void activate(Player player) {
+			player.setBuyModifier(new BuyModifier() {
+				@Override
+				public void apply(Player player, Card card) {
+					if (card instanceof Action) {
+						player.getDeck().putCardOnTop(card);
+						player.setBuyModifier(new DefaultBuyModifier());
+					} else {
+						player.getDiscardPile().add(card);
+					}
+				}
+			});
+		}
+	},
+	BUY_CARD_TO_HAND {
+		@Override
+		public void activate(Player player) {
+			player.setBuyModifier(new BuyModifier() {
+				@Override
+				public void apply(Player player, Card card) {
+					player.getHand().add(card);
+					player.setBuyModifier(new DefaultBuyModifier());
+				}
+			});
+		}
+	},
+	BUY_CARD_TO_TOP {
+		@Override
+		public void activate(Player player) {
+			player.setBuyModifier(new BuyModifier() {
+				@Override
+				public void apply(Player player, Card card) {
+					player.getDeck().putCardOnTop(card);
+					player.setBuyModifier(new DefaultBuyModifier());
+				}
+			});
 		}
 	};
 

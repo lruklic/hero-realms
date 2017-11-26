@@ -2,6 +2,7 @@ package model.entities;
 
 import java.util.List;
 
+import model.abilities.BuyModifier;
 import model.cards.Card;
 import model.cards.Deck;
 import model.cards.implementation.Champion;
@@ -58,11 +59,15 @@ public interface Player {
 
 	public void activate(Card card, AbilityTrigger trigger);
 
-	public <T> Option<T> pickAnOption(List<Option<T>> options);
-
 	public String getNextPlayer();
 
 	public HeroClass getHeroClass();
 
 	public void stunChampion(Champion champion);
+
+	public void setBuyModifier(BuyModifier buyModifier);
+
+	public void setQuery(String query);
+
+	public String getQuery();
 }

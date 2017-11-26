@@ -107,13 +107,16 @@ public class NormalGame implements Game {
 			break;
 		case "TAP":
 		case "FACTION":
-		case "SACRIFICE":
 			player.activate(card, AbilityTrigger.valueOf(action));
+			break;
+		case "TRASH":
+			player.activate(card, AbilityTrigger.valueOf(action));
+			player.getActions().remove(card);
 			break;
 		case "DISCARD":
 			player.discard(card);
 			break;
-		case "TRASH":
+		case "SACRIFICE":
 			player.trash(card);
 			break;
 		case "END":
@@ -133,6 +136,17 @@ public class NormalGame implements Game {
 			} else {
 				targetPlayer.increaseHealth(-player.getDamage());
 				player.increaseDamage(-player.getDamage());
+			}
+			break;
+		case "PREPARE":
+			((Champion) card).setTapped(false);
+			break;
+		case "STUN":
+			for (Player championPlayer : players.values()) {
+				if (championPlayer.getBoard().contains(card)) {
+					championPlayer.stunChampion((Champion) card);
+					break;
+				}
 			}
 			break;
 		default:

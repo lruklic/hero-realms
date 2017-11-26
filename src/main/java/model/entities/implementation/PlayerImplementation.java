@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.InvalidUserActionException;
+import model.abilities.BuyModifier;
+import model.abilities.implementation.DefaultBuyModifier;
 import model.cards.Card;
 import model.cards.Deck;
 import model.cards.implementation.Champion;
-import model.entities.Option;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.HeroClass;
@@ -45,6 +46,10 @@ public class PlayerImplementation implements Player {
 
 	private String nextPlayer;
 
+	private BuyModifier buyModifier;
+
+	private String query;
+
 	private static final int NORMAL_NUMBER_OF_CARDS_IN_HAND = 5;
 
 	public PlayerImplementation(HeroClass heroClass, String userName, String nextPlayer) {
@@ -59,6 +64,8 @@ public class PlayerImplementation implements Player {
 		this.userName = userName;
 		this.nextPlayer = nextPlayer;
 		this.hand = new ArrayList<>();
+		this.buyModifier = new DefaultBuyModifier();
+		this.query = "";
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 	}
 
@@ -89,7 +96,8 @@ public class PlayerImplementation implements Player {
 			throw new InvalidUserActionException("Not enough gold to buy that card!");
 		} else {
 			gold -= card.getCost();
-			discardPile.add(card);
+			buyModifier.apply(this, card);
+			buyModifier = new DefaultBuyModifier();
 		}
 	}
 
@@ -116,8 +124,7 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void startTurn() {
-		// TODO Auto-generated method stub
-
+		query = "";
 	}
 
 	@Override
@@ -130,6 +137,8 @@ public class PlayerImplementation implements Player {
 		for (Champion champion : board) {
 			champion.setTapped(false);
 		}
+		buyModifier = new DefaultBuyModifier();
+		query = "";
 		gold = 0;
 		damage = 0;
 	}
@@ -196,11 +205,6 @@ public class PlayerImplementation implements Player {
 	}
 
 	@Override
-	public <T> Option<T> pickAnOption(List<Option<T>> options) {
-		return null;
-	}
-
-	@Override
 	public String getName() {
 		return userName;
 	}
@@ -213,5 +217,20 @@ public class PlayerImplementation implements Player {
 	@Override
 	public HeroClass getHeroClass() {
 		return heroClass;
+	}
+
+	@Override
+	public void setBuyModifier(BuyModifier buyModifier) {
+		this.buyModifier = buyModifier;
+	}
+
+	@Override
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	@Override
+	public String getQuery() {
+		return query;
 	}
 }

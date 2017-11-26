@@ -632,10 +632,10 @@
 							}			
 						},
 						{
-							"trigger" : "SACRIFICE",
+							"trigger" : "TRASH",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "SACRIFICE",
+								"trigger" : "TRASH",
 								"type" : "DAMAGE"
 							}
 						}
@@ -689,7 +689,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "NEXTCARDACQUIREDTOTOPDECK"
+							"type" : "BUY_CARD_TO_TOP"
 						}
 					]
 				},
@@ -837,7 +837,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "NEXTACTIONACQUIREDTOTOPDECK"
+							"type" : "BUY_ACTION_TO_TOP"
 						}
 					]
 				},
@@ -927,7 +927,7 @@
 						},
 						{
 							"trigger" : "FACTION",
-							"type" : "NEXTCARDACQUIREDTOHAND"
+							"type" : "BUY_CARD_TO_HAND"
 						}
 					]
 				},
@@ -1018,10 +1018,10 @@
 							]
 						},
 						{
-							"trigger" : "SACRIFICE",
+							"trigger" : "TRASH",
 							"type" : "REPEATING5",
 							"ability" : {
-								"trigger" : "SACRIFICE",
+								"trigger" : "TRASH",
 								"type" : "DAMAGE"
 							}
 						}
@@ -1055,7 +1055,7 @@
 									"abilities" : [
 										{
 											"trigger" : "DEFAULT",
-											"type" : "CARDFROMDISCARDTOTOPDECK"
+											"type" : "CARD_TO_TOP"
 										},
 										{
 											"trigger" : "DEFAULT",
@@ -1550,7 +1550,7 @@
 							}
 						},
 						{
-							"trigger" : "SACRIFICE",
+							"trigger" : "TRASH",
 							"type" : "REPEATING5",
 							"ability" : {
 								"trigger" : "DEFAULT",
@@ -1699,7 +1699,7 @@
 					"abilities" : [
 						{
 							"trigger" : "TAP",
-							"type" : "CARDFROMDISCARDTOTOPDECK"
+							"type" : "CHAMPION_TO_TOP"
 						},
 						{
 							"trigger" : "FACTION",
@@ -1994,10 +1994,10 @@
 							}
 						},
 						{
-							"trigger" : "SACRIFICE",
+							"trigger" : "TRASH",
 							"type" : "REPEATING3",
 							"ability" : {
-								"trigger" : "SACRIFICE",
+								"trigger" : "TRASH",
 								"type" : "DAMAGE"
 							}
 						}
@@ -2606,7 +2606,7 @@
 							]
 						},
 						{
-							"trigger" : "SACRIFICE",
+							"trigger" : "TRASH",
 							"type" : "DISCARD"
 						}
 					]
@@ -2634,10 +2634,10 @@
 							"type" : "DISCARD"
 						},
 						{
-							"trigger" : "SACRIFICE",
+							"trigger" : "TRASH",
 							"type" : "REPEATING4",
 							"ability" : {
-								"trigger" : "SACRIFICE",
+								"trigger" : "TRASH",
 								"type" : "DAMAGE"
 							}
 						}

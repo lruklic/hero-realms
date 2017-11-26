@@ -236,6 +236,7 @@ public class JsonUtils {
 			opponentDiscardPileArray.add(discardCard);
 		}
 		opponent.add("discardPile", opponentDiscardPileArray);
+		opponent.addProperty("query", opponentPlayer.getQuery());
 
 		// Market object
 		JsonArray market = new JsonArray();
@@ -290,6 +291,7 @@ public class JsonUtils {
 			playerDiscardPileArray.add(discardCard);
 		}
 		player.add("discardPile", playerDiscardPileArray);
+		player.addProperty("query", mainPlayer.getQuery());
 
 		// Current player
 		JsonObject currentPlayer = new JsonObject();

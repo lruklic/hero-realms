@@ -2,9 +2,6 @@ package model.enums;
 
 public enum AbilityTrigger {
 
-	DEFAULT,
-	FACTION,
-	SACRIFICE,
-	TAP
-	
+	DEFAULT, FACTION, TRASH, TAP
+
 }

@@ -3,9 +3,7 @@ package model.abilities.implementation;
 import java.util.List;
 
 import model.abilities.Ability;
-import model.entities.Option;
 import model.entities.Player;
-import model.entities.implementation.OptionFactory;
 import model.enums.AbilityTrigger;
 
 public class ChoiceAbility implements Ability {
@@ -22,8 +20,8 @@ public class ChoiceAbility implements Ability {
 
 	@Override
 	public void activate(Player player) {
-		Option<Ability> option = player.pickAnOption(OptionFactory.getOptions(abilities));
-		option.getStoredEntity().activate(player);
+		// TODO verify that this works
+		player.setQuery("TARGET CHOICE");
 	}
 
 	@Override
