@@ -25,7 +25,7 @@ function mapMessage(msg) {
         if (oldCurrentPlayerName != newCurrentPlayerName) {
             // Turn changed
             changeTurnField(browserPlayerName, newCurrentPlayerName);
-            newTurnUpdate(backendJSON, browserPlayerName == newCurrentPlayerName);            
+            newTurnUpdate(backendJSON, browserPlayerName == newCurrentPlayerName);         
         } else {
             checkForChanges(backendJSON, browserPlayerName == newCurrentPlayerName);            
         }
@@ -53,6 +53,9 @@ function newTurnUpdate(newBoardState, isPlayerTurn) {
         discardHand(boardPlayerOld.hand);
         discardNonPermanent(boardPlayerOld.nonpermanent, 1900);
         drawHand(boardPlayerNew.hand);
+        resetTokens("player", boardPlayerNew);
+    } else {
+        resetTokens("opponent", boardPlayerNew);
     }
 
 }
@@ -117,6 +120,8 @@ function checkForChanges(newBoardState, isPlayerTurn) {
     for (i = 0; i < board.opponent.permanent.length; i++) {
         var newOpponentPermanent = newBoardState.permanent;
     } 
+
+
 
     board = newBoardState;
 }

@@ -43,16 +43,16 @@ function updateTurnField(playerName, currentPlayer) {
  * Change End turn button text and color.
  * 
  * @param playerName name of the player that controls the browser
- * @param currentPlayer name of the player that has the turn
+ * @param currentPlayerName name of the player that has the turn
  * 
  */
-function changeTurnField(playerName, currentPlayer) {
+function changeTurnField(playerName, currentPlayerName) {
     var text, color;
-    if (playerName == currentPlayer) {
+    if (playerName == currentPlayerName) {
         text = "End Turn";
         color = "lightgreen";
     } else {
-        text = currentPlayer + "'s turn ...";
+        text = currentPlayerName + "'s turn ...";
         color = "indianred";
     }
 
@@ -295,6 +295,11 @@ function discardNonPermanent(nonPermanent, delay) {
         .style("opacity", 0);
     nonPermanent.transition().delay(delay + 1000)
         .remove();
+}
+
+function resetTokens(target, player) {
+    update(target, "combat", player.combat);
+    update(target, "gold", player.gold);
 }
 
 function acquire(id, oldCard, newCard, isPlayerTurn) {
