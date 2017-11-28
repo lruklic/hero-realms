@@ -2,6 +2,7 @@ package model.cards.implementation;
 
 import java.util.List;
 
+import exceptions.InvalidUserActionException;
 import model.abilities.Ability;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
@@ -43,7 +44,7 @@ public class Champion extends CardImplementation {
 	public void activate(Player player, AbilityTrigger trigger) {
 		if (trigger.equals(AbilityTrigger.TAP)) {
 			if (tapped) {
-				// TODO cannot be tapped again
+				throw new InvalidUserActionException("Champion is already tapped!");
 			} else {
 				tapped = true;
 			}

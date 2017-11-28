@@ -64,7 +64,7 @@ public class PlayerImplementation implements Player {
 		this.userName = userName;
 		this.nextPlayer = nextPlayer;
 		this.hand = new ArrayList<>();
-		this.buyModifier = new DefaultBuyModifier();
+		this.buyModifier = new DefaultBuyModifier(this);
 		this.query = "";
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 	}
@@ -80,8 +80,12 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void discard(Card card) {
-		hand.remove(card);
-		discardPile.add(card);
+		if (!hand.contains(card)) {
+			throw new InvalidUserActionException("Select a card in your hand to discard!");
+		} else {
+			hand.remove(card);
+			discardPile.add(card);
+		}
 	}
 
 	@Override
@@ -96,15 +100,18 @@ public class PlayerImplementation implements Player {
 			throw new InvalidUserActionException("Not enough gold to buy that card!");
 		} else {
 			gold -= card.getCost();
-			buyModifier.apply(this, card);
-			buyModifier = new DefaultBuyModifier();
+			buyModifier.apply(card);
 		}
 	}
 
 	@Override
-	public void trash(Card card) {
-		hand.remove(card);
-		discardPile.remove(card);
+	public void sacrifice(Card card) {
+		if (!hand.contains(card) && !discardPile.contains(card)) {
+			throw new InvalidUserActionException("Select a card in your hand or discard pile to sacrifice!");
+		} else {
+			hand.remove(card);
+			discardPile.remove(card);
+		}
 	}
 
 	@Override
@@ -137,7 +144,7 @@ public class PlayerImplementation implements Player {
 		for (Champion champion : board) {
 			champion.setTapped(false);
 		}
-		buyModifier = new DefaultBuyModifier();
+		buyModifier = new DefaultBuyModifier(this);
 		query = "";
 		gold = 0;
 		damage = 0;

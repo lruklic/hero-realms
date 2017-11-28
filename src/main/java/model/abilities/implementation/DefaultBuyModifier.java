@@ -6,8 +6,14 @@ import model.entities.Player;
 
 public class DefaultBuyModifier implements BuyModifier {
 
+	private Player player;
+
+	public DefaultBuyModifier(Player player) {
+		this.player = player;
+	}
+
 	@Override
-	public void apply(Player player, Card card) {
+	public void apply(Card card) {
 		player.getDiscardPile().add(card);
 	}
 

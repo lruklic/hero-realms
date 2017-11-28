@@ -117,7 +117,7 @@ public class NormalGame implements Game {
 			player.discard(card);
 			break;
 		case "SACRIFICE":
-			player.trash(card);
+			player.sacrifice(card);
 			break;
 		case "END":
 			player.endTurn();

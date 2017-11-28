@@ -25,7 +25,7 @@ public interface Player {
 
 	public void play(Card card);
 
-	public void trash(Card card);
+	public void sacrifice(Card card);
 
 	public List<Card> getHand();
 

@@ -1,6 +1,5 @@
 package model.enums;
 
-import model.abilities.BuyModifier;
 import model.abilities.implementation.DefaultBuyModifier;
 import model.cards.Card;
 import model.cards.implementation.Action;
@@ -77,12 +76,12 @@ public enum AbilityType {
 	BUY_ACTION_TO_TOP {
 		@Override
 		public void activate(Player player) {
-			player.setBuyModifier(new BuyModifier() {
+			player.setBuyModifier(new DefaultBuyModifier(player) {
 				@Override
-				public void apply(Player player, Card card) {
+				public void apply(Card card) {
 					if (card instanceof Action) {
 						player.getDeck().putCardOnTop(card);
-						player.setBuyModifier(new DefaultBuyModifier());
+						player.setBuyModifier(new DefaultBuyModifier(player));
 					} else {
 						player.getDiscardPile().add(card);
 					}
@@ -93,11 +92,11 @@ public enum AbilityType {
 	BUY_CARD_TO_HAND {
 		@Override
 		public void activate(Player player) {
-			player.setBuyModifier(new BuyModifier() {
+			player.setBuyModifier(new DefaultBuyModifier(player) {
 				@Override
-				public void apply(Player player, Card card) {
+				public void apply(Card card) {
 					player.getHand().add(card);
-					player.setBuyModifier(new DefaultBuyModifier());
+					player.setBuyModifier(new DefaultBuyModifier(player));
 				}
 			});
 		}
@@ -105,11 +104,11 @@ public enum AbilityType {
 	BUY_CARD_TO_TOP {
 		@Override
 		public void activate(Player player) {
-			player.setBuyModifier(new BuyModifier() {
+			player.setBuyModifier(new DefaultBuyModifier(player) {
 				@Override
-				public void apply(Player player, Card card) {
+				public void apply(Card card) {
 					player.getDeck().putCardOnTop(card);
-					player.setBuyModifier(new DefaultBuyModifier());
+					player.setBuyModifier(new DefaultBuyModifier(player));
 				}
 			});
 		}
