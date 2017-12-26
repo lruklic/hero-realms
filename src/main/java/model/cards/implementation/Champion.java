@@ -56,8 +56,12 @@ public class Champion extends CardImplementation {
 		return tapped;
 	}
 
-	public void setTapped(boolean tapped) {
-		this.tapped = tapped;
+	public void prepare() {
+		if (tapped) {
+			throw new InvalidUserActionException("Champion is already prepared!");
+		} else {
+			tapped = false;
+		}
 	}
 
 	public int getHealth() {

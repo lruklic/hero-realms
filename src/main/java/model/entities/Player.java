@@ -65,6 +65,10 @@ public interface Player {
 
 	public void stunChampion(Champion champion);
 
+	public void prepareChampion(Champion champion);
+
+	public void sendCardToTop(Card card, Class<? extends Card> selectionCriteria);
+
 	public void setBuyModifier(BuyModifier buyModifier);
 
 	public void setQuery(String query);

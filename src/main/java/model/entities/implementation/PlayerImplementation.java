@@ -80,7 +80,9 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void discard(Card card) {
-		if (!hand.contains(card)) {
+		if (!query.equals("DISCARD")) {
+			throw new InvalidUserActionException("Invalid state encountered, DISCARD query was not issued!");
+		} else if (!hand.contains(card)) {
 			throw new InvalidUserActionException("Select a card in your hand to discard!");
 		} else {
 			hand.remove(card);
@@ -90,8 +92,12 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void play(Card card) {
-		hand.remove(card);
-		card.goIntoPlay(this);
+		if (!hand.contains(card)) {
+			throw new InvalidUserActionException("That card is not in your hand?!");
+		} else {
+			hand.remove(card);
+			card.goIntoPlay(this);
+		}
 	}
 
 	@Override
@@ -106,7 +112,9 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void sacrifice(Card card) {
-		if (!hand.contains(card) && !discardPile.contains(card)) {
+		if (!query.equals("SACRIFICE")) {
+			throw new InvalidUserActionException("Invalid state encountered, SACRIFICE query was not issued!");
+		} else if (!hand.contains(card) && !discardPile.contains(card)) {
 			throw new InvalidUserActionException("Select a card in your hand or discard pile to sacrifice!");
 		} else {
 			hand.remove(card);
@@ -142,7 +150,7 @@ public class PlayerImplementation implements Player {
 		hand.clear();
 		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
 		for (Champion champion : board) {
-			champion.setTapped(false);
+			champion.prepare();
 		}
 		buyModifier = new DefaultBuyModifier(this);
 		query = "";
@@ -179,11 +187,25 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void stunChampion(Champion champion) {
-		if (!board.contains(champion)) {
+		if (!query.equals("STUN")) {
+			throw new InvalidUserActionException("Invalid state encountered, STUN query was not issued!");
+		} else if (!board.contains(champion)) {
 			throw new InvalidUserActionException("That champion does not exist!");
+		} else {
+			board.remove(champion);
+			discardPile.add(champion);
 		}
-		board.remove(champion);
-		discardPile.add(champion);
+	}
+
+	@Override
+	public void prepareChampion(Champion champion) {
+		if (!query.equals("PREPARE")) {
+			throw new InvalidUserActionException("Invalid state encountered, PREPARE query was not issued!");
+		} else if (!board.contains(champion)) {
+			throw new InvalidUserActionException("That champion does not exist!");
+		} else {
+			champion.prepare();
+		}
 	}
 
 	@Override
@@ -239,5 +261,21 @@ public class PlayerImplementation implements Player {
 	@Override
 	public String getQuery() {
 		return query;
+	}
+
+	@Override
+	public void sendCardToTop(Card card, Class<? extends Card> selectionCriteria) {
+		String expectedQuery = selectionCriteria.getName().toUpperCase() + "_TO_TOP";
+		if (!query.equals(expectedQuery)) {
+			throw new InvalidUserActionException(
+					"Invalid state encountered, " + expectedQuery + " query was not issued!");
+		} else if (!discardPile.contains(card)) {
+			throw new InvalidUserActionException("You must select a card in your discard pile!");
+		} else if (!selectionCriteria.isInstance(card)) {
+			throw new InvalidUserActionException("Please select a " + selectionCriteria.getName() + "!");
+		} else {
+			discardPile.remove(card);
+			deck.putCardOnTop(card);
+		}
 	}
 }

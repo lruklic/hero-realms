@@ -34,43 +34,43 @@ public enum AbilityType {
 	DISCARD {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET DISCARD");
+			player.setQuery("DISCARD");
 		}
 	},
 	SELFDISCARD {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET SELFDISCARD");
+			player.setQuery("SELFDISCARD");
 		}
 	},
 	SACRIFICE {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET SACRIFICE");
+			player.setQuery("SACRIFICE");
 		}
 	},
 	STUN {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET STUN");
+			player.setQuery("STUN");
 		}
 	},
 	PREPARE {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET PREPARE");
+			player.setQuery("PREPARE");
 		}
 	},
 	CHAMPION_TO_TOP {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET CHAMPION_TO_TOP");
+			player.setQuery("CHAMPION_TO_TOP");
 		}
 	},
 	CARD_TO_TOP {
 		@Override
 		public void activate(Player player) {
-			player.setQuery("TARGET CARD_TO_TOP");
+			player.setQuery("CARD_TO_TOP");
 		}
 	},
 	BUY_ACTION_TO_TOP {

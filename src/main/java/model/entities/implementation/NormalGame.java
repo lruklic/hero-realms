@@ -96,7 +96,6 @@ public class NormalGame implements Game {
 		if (!player.equals(getCurrentPlayer())) {
 			throw new InvalidUserActionException("It is not your turn!");
 		}
-		// TODO check for validity
 		switch (action) {
 		case "PLAY":
 			player.play(card);
@@ -139,7 +138,12 @@ public class NormalGame implements Game {
 			}
 			break;
 		case "PREPARE":
-			((Champion) card).setTapped(false);
+			if (player.getBoard().contains(card)) {
+				player.prepareChampion((Champion) card);
+				break;
+			} else {
+				// TODO handle
+			}
 			break;
 		case "STUN":
 			for (Player championPlayer : players.values()) {
@@ -148,6 +152,13 @@ public class NormalGame implements Game {
 					break;
 				}
 			}
+			// TODO handle if not found
+			break;
+		case "CHAMPION_TO_TOP":
+			player.sendCardToTop(card, Champion.class);
+			break;
+		case "CARD_TO_TOP":
+			player.sendCardToTop(card, Card.class);
 			break;
 		default:
 			throw new InvalidUserActionException("Illegal action specified!");
