@@ -6,28 +6,27 @@ import model.abilities.Ability;
 import model.enums.Faction;
 import model.enums.TargetSubtype;
 
-public class Item extends CardImplementation {
+public class Spell extends CardImplementation {
 
-	protected Item(Item item) {
-		super(item);
+	protected Spell(Spell spell) {
+		super(spell);
 	}
 
-	public Item(List<Ability> abilities, Faction faction, int cost, String name, String code, String description) {
+	public Spell(List<Ability> abilities, Faction faction, int cost, String name, String code, String description) {
 		super(abilities, faction, cost, name, code, description);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void takeMessage(String message) {
-
 	}
 
 	@Override
 	public void alert(TargetSubtype subtype) {
-
 	}
 
 	@Override
-	public Item copy() {
-		return new Item(this);
+	public Spell copy() {
+		return new Spell(this);
 	}
 }

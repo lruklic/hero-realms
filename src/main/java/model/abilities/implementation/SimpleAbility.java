@@ -1,29 +1,39 @@
 package model.abilities.implementation;
 
+import java.util.Map;
+
 import model.abilities.Ability;
-import model.entities.Player;
+import model.abilities.AbilityArgument;
+import model.entities.Targetable;
 import model.enums.AbilityTrigger;
 import model.enums.AbilityType;
 
-public class SimpleAbility implements Ability {
+public class SimpleAbility extends AbilityImplementation {
 
 	private AbilityType type;
 
-	private AbilityTrigger trigger;	
-	
-	public SimpleAbility(AbilityType type, AbilityTrigger trigger) {
+	private AbilityArgument argument;
+
+	protected SimpleAbility(SimpleAbility ability) {
+		super(ability);
+		this.type = ability.type;
+		this.argument = ability.argument;
+	}
+
+	public SimpleAbility(AbilityType type, Map<String, Integer> arguments) {
 		super();
 		this.type = type;
-		this.trigger = trigger;
+		arguments.forEach((K, V) -> put(K, V));
+		this.argument = AbilityArgumentFactory.getArgument(this, type);
 	}
 
 	@Override
-	public void activate(Player player) {
-		type.activate(player);
+	public void trigger(Targetable target, AbilityTrigger abilityTrigger) {
+		type.activate(target, argument);
 	}
 
 	@Override
-	public AbilityTrigger getTrigger() {
-		return trigger;
+	public Ability copy() {
+		return new SimpleAbility(this);
 	}
 }

@@ -1,19 +1,17 @@
 package model.cards.implementation;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import model.abilities.Ability;
 import model.cards.Card;
 import model.entities.Player;
+import model.entities.implementation.TargetableImplementation;
 import model.enums.AbilityTrigger;
 import model.enums.Faction;
-import model.enums.HeroClass;
+import model.enums.TargetSubtype;
 
-public abstract class CardImplementation implements Card {
-
-	private static int currentId = 0;
+public abstract class CardImplementation extends TargetableImplementation implements Card {
 
 	private List<Ability> abilities;
 
@@ -23,39 +21,29 @@ public abstract class CardImplementation implements Card {
 
 	private String name;
 
-	private int id;
-
 	private String code;
 
 	private String description;
 
-	private HeroClass heroClass;
-
-	private static final Map<Integer, Card> CARD_MAP = new HashMap<>();
+	protected CardImplementation(CardImplementation card) {
+		super(card);
+		List<Ability> abilities = this.abilities.stream().map(Ability::copy).collect(Collectors.toList());
+		this.abilities = abilities;
+		this.code = card.code;
+		this.cost = card.cost;
+		this.description = card.description;
+		this.faction = card.faction;
+		this.name = card.name;
+	}
 
 	public CardImplementation(List<Ability> abilities, Faction faction, int cost, String name, String code,
-			String description, HeroClass heroClass) {
+			String description) {
 		this.abilities = abilities;
 		this.faction = faction;
 		this.cost = cost;
 		this.name = name;
 		this.code = code;
 		this.description = description;
-		this.heroClass = heroClass;
-		this.id = getUniqueCardId();
-		CARD_MAP.put(this.id, this);
-	}
-
-	public CardImplementation(Card card) {
-		this.abilities = card.getAbilities();
-		this.faction = card.getFaction();
-		this.cost = card.getCost();
-		this.name = card.getName();
-		this.code = card.getCode();
-		this.description = card.getDescription();
-		this.heroClass = card.getHeroClass();
-		this.id = getUniqueCardId();
-		CARD_MAP.put(this.id, this);
 	}
 
 	@Override
@@ -74,22 +62,8 @@ public abstract class CardImplementation implements Card {
 	}
 
 	@Override
-	public void activate(Player player, AbilityTrigger trigger) {
-		for (Ability ability : abilities) {
-			if (ability.getTrigger().equals(trigger)) {
-				ability.activate(player);
-			}
-		}
-	}
-
-	@Override
 	public List<Ability> getAbilities() {
 		return abilities;
-	}
-
-	@Override
-	public int getId() {
-		return id;
 	}
 
 	@Override
@@ -103,15 +77,24 @@ public abstract class CardImplementation implements Card {
 	}
 
 	@Override
-	public HeroClass getHeroClass() {
-		return heroClass;
+	public void goIntoPlay(Player player) {
+		checkBeforePlayRestrictions(player);
+		activateOnPlayAbilities(player);
 	}
 
-	private static int getUniqueCardId() {
-		return currentId++;
+	private void activateOnPlayAbilities(Player player) {
+		triggerAbilities(player, AbilityTrigger.BEFORE_PLAY);
 	}
 
-	public static Card getCardById(int id) {
-		return CARD_MAP.get(id);
+	private void checkBeforePlayRestrictions(Player player) {
+		triggerAbilities(player, AbilityTrigger.BEFORE_PLAY);
+		if (isSubtype(TargetSubtype.UNFULFILLED)) {
+			removeSubtype(TargetSubtype.UNFULFILLED);
+			throw new IllegalArgumentException("Cannot be played, restrictions are not fulfilled!");
+		}
+	}
+
+	private void triggerAbilities(Player player, AbilityTrigger trigger) {
+		abilities.forEach(ability -> ability.trigger(player, trigger));
 	}
 }

@@ -9,6 +9,6 @@ package model.enums;
  */
 public enum Faction {
 
-	GUILD, NECROS, EMPIRE, WILD, NONE
-	
+	GUILDS, EXIAN, BEYONDERS, MISTBORN, NEUTRAL
+
 }

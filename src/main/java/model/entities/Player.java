@@ -2,12 +2,9 @@ package model.entities;
 
 import java.util.List;
 
-import model.abilities.BuyModifier;
 import model.cards.Card;
 import model.cards.Deck;
-import model.cards.implementation.Champion;
-import model.enums.AbilityTrigger;
-import model.enums.HeroClass;
+import model.cards.implementation.Creature;
 
 /**
  * 
@@ -17,61 +14,32 @@ import model.enums.HeroClass;
  * @author Ivan
  *
  */
-public interface Player {
+public interface Player extends Targetable {
 
-	public void draw();
+	public final static int STARTING_HEALTH = 30;
 
-	public void discard(Card card);
+	public final static String CURRENT_SUPPLY = "CURRENT_SUPPLY";
 
-	public void play(Card card);
+	public final static String PLAY = "PLAY";
 
-	public void sacrifice(Card card);
+	public final static String DRAW = "DRAW";
 
 	public List<Card> getHand();
 
 	public Deck getDeck();
 
-	public List<Card> getDiscardPile();
-
 	public void startTurn();
 
 	public void endTurn();
 
-	public void increaseGold(int number);
-
-	public void increaseHealth(int number);
-
-	public void increaseDamage(int number);
-
-	public List<Champion> getBoard();
-
-	public List<Card> getActions();
-
-	public void buy(Card card);
-
-	public int getHealth();
-
-	public int getDamage();
-
-	public int getGold();
-
 	public String getName();
 
-	public void activate(Card card, AbilityTrigger trigger);
+	public List<Creature> getBoard();
 
-	public String getNextPlayer();
+	public List<Card> getGraveyard();
 
-	public HeroClass getHeroClass();
+	public List<Card> getMarket();
 
-	public void stunChampion(Champion champion);
-
-	public void prepareChampion(Champion champion);
-
-	public void sendCardToTop(Card card, Class<? extends Card> selectionCriteria);
-
-	public void setBuyModifier(BuyModifier buyModifier);
-
-	public void setQuery(String query);
-
-	public String getQuery();
+	@Override
+	public Player copy();
 }

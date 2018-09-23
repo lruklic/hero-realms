@@ -1,5 +1,10 @@
 package model.entities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gson.JsonObject;
 
 import exceptions.InvalidUserActionException;
@@ -47,13 +52,12 @@ public class Match {
 	public void handleAction(JsonObject message) {
 		String userName = message.get("user").getAsString();
 		String action = message.get("message").getAsJsonObject().get("action").getAsString();
-		// TODO this is a bad way of checking
-		int cardId = -1;
-		if (message.get("message").getAsJsonObject().get("cardId") != null) {
-			cardId = message.get("message").getAsJsonObject().get("cardId").getAsInt();
-		}
+		List<String> arguments = new ArrayList<>();
+		message.getAsJsonArray("arguments").forEach(element -> arguments.add(element.getAsString()));
+		Map<String, Integer> argumentMap = new HashMap<>();
+		arguments.forEach(element -> argumentMap.put(element, message.get("element").getAsInt()));
 		try {
-			game.performAction(userName, action, cardId);
+			game.performAction(userName, action, argumentMap);
 			for (Player player : game.getPlayers().values()) {
 				sendBoardState(player.getName());
 			}

@@ -1,6 +1,8 @@
 package model.cards;
 
-import java.util.List;
+import java.util.Collection;
+
+import model.entities.Targetable;
 
 /**
  * 
@@ -9,17 +11,20 @@ import java.util.List;
  * @author Ivan
  *
  */
-public interface Deck {
+public interface Deck extends Targetable {
 
 	public Card drawCard();
-	
+
 	public void shuffle();
-	
+
 	public void putCardOnTop(Card card);
-	
+
 	public int cardsRemaining();
-	
+
 	public boolean isEmpty();
-	
-	public void fillWithCards(List<Card> cards);
+
+	public void fillWithCards(Collection<Card> cards);
+
+	@Override
+	public Deck copy();
 }

@@ -1,12 +1,12 @@
 package model.abilities;
 
-import model.entities.Player;
+import model.entities.Targetable;
 import model.enums.AbilityTrigger;
 
-public interface Ability {
+public interface Ability extends Targetable {
 
-	public void activate(Player player);
-	
-	public AbilityTrigger getTrigger();
-	
+	public void trigger(Targetable target, AbilityTrigger abilityTrigger);
+
+	@Override
+	public Ability copy();
 }

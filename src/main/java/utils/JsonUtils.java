@@ -15,18 +15,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import model.abilities.Ability;
-import model.abilities.implementation.AbilityFactory;
+import model.abilities.implementation.ComplexAbility;
+import model.abilities.implementation.EmptyAbility;
+import model.abilities.implementation.SimpleAbility;
 import model.cards.Card;
-import model.cards.implementation.Action;
-import model.cards.implementation.Champion;
+import model.cards.implementation.Creature;
 import model.cards.implementation.Item;
+import model.cards.implementation.Spell;
 import model.entities.Game;
 import model.entities.Match;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
 import model.enums.AbilityType;
 import model.enums.Faction;
-import model.enums.HeroClass;
 
 public class JsonUtils {
 
@@ -66,24 +67,27 @@ public class JsonUtils {
 		Map<String, Card> cards = new HashMap<>();
 		for (JsonElement element : jarray) {
 			JsonObject object = element.getAsJsonObject();
+			// mandatory
 			String name = object.get("name").getAsString();
 			Faction faction = Faction.valueOf(object.get("faction").getAsString());
 			int cost = Integer.parseInt(object.get("cost").getAsString());
-			JsonArray jAbilities = object.getAsJsonArray("abilities");
-			List<Ability> abilities = parseAbilities(jAbilities);
 			String code = object.get("code").getAsString();
 			String description = object.get("description").getAsString();
-			HeroClass heroClass = HeroClass.valueOf(object.get("class").getAsString());
+			String flavour = object.get("flavour").getAsString();
 			String type = object.get("type").getAsString();
-			if (type.equals("ACTION")) {
-				cards.put(code, new Action(abilities, faction, cost, name, code, description, heroClass));
+
+			// abilities
+			JsonArray jAbilities = object.getAsJsonArray("abilities");
+			List<Ability> abilities = parseAbilities(jAbilities);
+
+			// creation
+			if (type.equals("SPELL")) {
+				cards.put(code, new Spell(abilities, faction, cost, name, code, description));
 			} else if (type.equals("ITEM")) {
-				cards.put(code, new Item(abilities, faction, cost, name, code, description, heroClass));
-			} else if (type.equals("CHAMPION")) {
+				cards.put(code, new Item(abilities, faction, cost, name, code, description));
+			} else if (type.equals("CREATURE")) {
 				int health = Integer.parseInt(object.get("health").getAsString());
-				boolean isGuard = object.get("guard").getAsString().equals("YES");
-				cards.put(code,
-						new Champion(abilities, faction, cost, name, code, description, heroClass, isGuard, health));
+				cards.put(code, new Creature(abilities, faction, cost, name, code, description, health));
 			}
 		}
 		return cards;
@@ -99,66 +103,33 @@ public class JsonUtils {
 		return abilities;
 	}
 
-	private static boolean isSimpleAbilityType(String abilityType) {
-		try {
-			AbilityType.valueOf(abilityType);
-			return true;
-		} catch (IllegalArgumentException e) {
-			return false;
-		}
-	}
-
 	private static Ability parseAbility(JsonObject object) {
-		String abilityType = object.get("type").getAsString();
-		if (isSimpleAbilityType(abilityType)) {
-			return parseSimpleAbility(object);
-		} else if (abilityType.startsWith("REPEATING")) {
-			return parseRepeatingAbility(object);
-		} else if (abilityType.contains("CHOICE")) {
-			return parseChoiceAbility(object);
-		} else if (abilityType.contains("COMPOSITE")) {
-			return parseCompositeAbility(object);
-		} else if (abilityType.contains("CONDITIONAL")) {
-			return parseConditionalAbility(object);
-		} else if (abilityType.contains("EMPTY")) {
-			return AbilityFactory.getEmptyAbility();
+		if (object.has("effect")) {
+			return parseComplexAbility(object);
 		} else {
-			// throw new IllegalArgumentException("Unknown ability type
-			// provided: " + abilityType);
-			// TODO change this when all abilities are covered
-			return AbilityFactory.getEmptyAbility();
+			return parseSimpleAbility(object);
 		}
 	}
 
-	private static Ability parseConditionalAbility(JsonObject object) {
-		String condition = object.get("condition").getAsString();
-		Ability fulfilledAbility = parseAbility(object.getAsJsonObject("fulfilled"));
-		Ability unfulfilledAbility = parseAbility(object.getAsJsonObject("unfulfilled"));
-		return AbilityFactory.getConditionalAbility(fulfilledAbility, unfulfilledAbility, condition);
-	}
-
-	private static Ability parseChoiceAbility(JsonObject object) {
-		JsonArray jAbilities = object.getAsJsonArray("abilities");
-		List<Ability> abilities = parseAbilities(jAbilities);
-		return AbilityFactory.getChoiceAbility(abilities);
-	}
-
-	private static Ability parseCompositeAbility(JsonObject object) {
-		JsonArray jAbilities = object.getAsJsonArray("abilities");
-		List<Ability> abilities = parseAbilities(jAbilities);
-		return AbilityFactory.getCompositeAbility(abilities);
-	}
-
-	private static Ability parseRepeatingAbility(JsonObject object) {
-		String abilityType = object.get("type").getAsString();
-		String counter = abilityType.split("REPEATING")[1];
-		Ability ability = parseAbility(object.get("ability").getAsJsonObject());
-		return AbilityFactory.getRepeatingAbility(ability, counter);
+	private static Ability parseComplexAbility(JsonObject object) {
+		Ability effect = parseAbility(object.getAsJsonObject("effect"));
+		Ability precondition = object.has("precondition") ? parseAbility(object.getAsJsonObject("precondition"))
+				: EmptyAbility.getInstance();
+		Ability postcondition = object.has("postcondition") ? parseAbility(object.getAsJsonObject("postcondition"))
+				: EmptyAbility.getInstance();
+		AbilityTrigger abilityTrigger = AbilityTrigger.valueOf(object.get("trigger").getAsString());
+		return new ComplexAbility(effect, precondition, postcondition, abilityTrigger);
 	}
 
 	private static Ability parseSimpleAbility(JsonObject object) {
-		return AbilityFactory.getSimpleAbility(AbilityType.valueOf(object.get("type").getAsString()),
-				AbilityTrigger.valueOf(object.get("trigger").getAsString()));
+		AbilityType type = AbilityType.valueOf(object.get("condition").getAsString());
+		JsonArray arguments = object.getAsJsonArray("arguments");
+		Map<String, Integer> argumentMap = new HashMap<>();
+		for (JsonElement argument : arguments) {
+			JsonObject argumentObject = argument.getAsJsonObject();
+			argumentMap.put(argumentObject.get("key").getAsString(), argumentObject.get("value").getAsInt());
+		}
+		return new SimpleAbility(type, argumentMap);
 	}
 
 	public static List<Card> createGameDeck() {
@@ -167,23 +138,7 @@ public class JsonUtils {
 	}
 
 	public static Card getCardByCode(String code) {
-		Card card = CARD_MAP.get(code);
-
-		String name = card.getName();
-		Faction faction = card.getFaction();
-		int cost = card.getCost();
-		List<Ability> abilities = card.getAbilities();
-		String description = card.getDescription();
-		HeroClass heroClass = card.getHeroClass();
-		if (card instanceof Action) {
-			return new Action(abilities, faction, cost, name, code, description, heroClass);
-		} else if (card instanceof Item) {
-			return new Item(abilities, faction, cost, name, code, description, heroClass);
-		} else {
-			int health = ((Champion) card).getHealth();
-			boolean isGuard = ((Champion) card).isGuard();
-			return new Champion(abilities, faction, cost, name, code, description, heroClass, isGuard, health);
-		}
+		return CARD_MAP.get(code).copy();
 	}
 
 	/**
@@ -202,77 +157,58 @@ public class JsonUtils {
 		JsonObject opponent = new JsonObject();
 		Player opponentPlayer = game.getPlayers().values().stream().filter(p -> !p.getName().equals(userName))
 				.findFirst().get();
-		opponent.addProperty("gold", opponentPlayer.getGold());
-		opponent.addProperty("health", opponentPlayer.getHealth());
-		opponent.addProperty("combat", opponentPlayer.getDamage());
+		opponent.addProperty("supply", opponentPlayer.get(Player.CURRENT_SUPPLY));
+		opponent.addProperty("health", opponentPlayer.get(Player.CURRENT_HEALTH));
 		opponent.addProperty("deck", opponentPlayer.getDeck().cardsRemaining());
 
 		JsonArray opponentPermanentArray = new JsonArray();
-		for (Champion champion : opponentPlayer.getBoard()) {
+		for (Creature creature : opponentPlayer.getBoard()) {
 			JsonObject permanent = new JsonObject();
-			permanent.addProperty("id", champion.getId());
-			permanent.addProperty("code", champion.getCode());
-			permanent.addProperty("health", champion.getHealth());
+			permanent.addProperty("id", creature.getId());
+			permanent.addProperty("code", creature.getCode());
+			permanent.addProperty("health", creature.get(Creature.CURRENT_HEALTH));
 			opponentPermanentArray.add(permanent);
 		}
 		opponent.add("permanent", opponentPermanentArray);
 
-		JsonArray opponentNonpermanentArray = new JsonArray();
-		for (Card card : opponentPlayer.getActions()) {
-			JsonObject nonpermanent = new JsonObject();
-			nonpermanent.addProperty("id", card.getId());
-			nonpermanent.addProperty("code", card.getCode());
-			opponentNonpermanentArray.add(nonpermanent);
-		}
-		opponent.add("nonpermanent", opponentNonpermanentArray);
-
 		opponent.addProperty("handSize", opponentPlayer.getHand().size());
-
 		JsonArray opponentDiscardPileArray = new JsonArray();
-		for (Card card : opponentPlayer.getDiscardPile()) {
+		for (Card card : opponentPlayer.getGraveyard()) {
 			JsonObject discardCard = new JsonObject();
 			discardCard.addProperty("id", card.getId());
 			discardCard.addProperty("code", card.getCode());
 			opponentDiscardPileArray.add(discardCard);
 		}
 		opponent.add("discardPile", opponentDiscardPileArray);
-		opponent.addProperty("query", opponentPlayer.getQuery());
+
+		opponent.addProperty("marketSize", opponentPlayer.getMarket().size());
+
+		// Player object
+		JsonObject player = new JsonObject();
+		Player mainPlayer = game.getPlayers().get(userName);
+		player.addProperty("supply", mainPlayer.get(Player.CURRENT_SUPPLY));
+		player.addProperty("health", mainPlayer.get(Creature.CURRENT_HEALTH));
+		player.addProperty("deck", mainPlayer.getDeck().cardsRemaining());
+
+		JsonArray playerPermanentArray = new JsonArray();
+		for (Creature creature : mainPlayer.getBoard()) {
+			JsonObject permanent = new JsonObject();
+			permanent.addProperty("id", creature.getId());
+			permanent.addProperty("code", creature.getCode());
+			permanent.addProperty("health", creature.get(Creature.CURRENT_HEALTH));
+			playerPermanentArray.add(permanent);
+		}
+		player.add("permanent", playerPermanentArray);
 
 		// Market object
 		JsonArray market = new JsonArray();
-		for (Card marketCard : game.getMarket()) {
+		for (Card marketCard : mainPlayer.getMarket()) {
 			JsonObject marketObj = new JsonObject();
 			marketObj.addProperty("id", marketCard.getId());
 			marketObj.addProperty("code", marketCard.getCode());
 			market.add(marketObj);
 		}
-
-		// Player object
-		JsonObject player = new JsonObject();
-		Player mainPlayer = game.getPlayers().get(userName);
-		player.addProperty("gold", mainPlayer.getGold());
-		player.addProperty("health", mainPlayer.getHealth());
-		player.addProperty("combat", mainPlayer.getDamage());
-		player.addProperty("deck", mainPlayer.getDeck().cardsRemaining());
-
-		JsonArray playerPermanentArray = new JsonArray();
-		for (Champion champion : mainPlayer.getBoard()) {
-			JsonObject permanent = new JsonObject();
-			permanent.addProperty("id", champion.getId());
-			permanent.addProperty("code", champion.getCode());
-			permanent.addProperty("health", champion.getHealth());
-			playerPermanentArray.add(permanent);
-		}
-		player.add("permanent", playerPermanentArray);
-
-		JsonArray playerNonpermanentArray = new JsonArray();
-		for (Card card : mainPlayer.getActions()) {
-			JsonObject nonpermanent = new JsonObject();
-			nonpermanent.addProperty("id", card.getId());
-			nonpermanent.addProperty("code", card.getCode());
-			playerNonpermanentArray.add(nonpermanent);
-		}
-		player.add("nonpermanent", playerNonpermanentArray);
+		player.add("market", market);
 
 		JsonArray playerHandArray = new JsonArray();
 		for (Card card : mainPlayer.getHand()) {
@@ -284,21 +220,19 @@ public class JsonUtils {
 		player.add("hand", playerHandArray);
 
 		JsonArray playerDiscardPileArray = new JsonArray();
-		for (Card card : mainPlayer.getDiscardPile()) {
-			JsonObject discardCard = new JsonObject();
-			discardCard.addProperty("id", card.getId());
-			discardCard.addProperty("code", card.getCode());
-			playerDiscardPileArray.add(discardCard);
+		for (Card card : mainPlayer.getGraveyard()) {
+			JsonObject graveyardCard = new JsonObject();
+			graveyardCard.addProperty("id", card.getId());
+			graveyardCard.addProperty("code", card.getCode());
+			playerDiscardPileArray.add(graveyardCard);
 		}
 		player.add("discardPile", playerDiscardPileArray);
-		player.addProperty("query", mainPlayer.getQuery());
 
 		// Current player
 		JsonObject currentPlayer = new JsonObject();
 		currentPlayer.addProperty("username", game.getCurrentPlayer().getName());
 
 		boardState.add("opponent", opponent);
-		boardState.add("market", market);
 		boardState.add("player", player);
 		boardState.add("currentPlayer", currentPlayer);
 		boardState.add("match", matchInfo);

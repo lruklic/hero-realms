@@ -2,129 +2,73 @@ package model.entities.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import exceptions.InvalidUserActionException;
-import model.abilities.BuyModifier;
-import model.abilities.implementation.DefaultBuyModifier;
+import model.abilities.Ability;
 import model.cards.Card;
 import model.cards.Deck;
-import model.cards.implementation.Champion;
+import model.cards.implementation.Creature;
 import model.entities.Player;
 import model.enums.AbilityTrigger;
-import model.enums.HeroClass;
+import model.enums.TargetSubtype;
 
-/**
- * Implementation of player.
- * 
- * @author lruklic
- *
- */
+public class PlayerImplementation extends TargetableImplementation implements Player {
 
-public class PlayerImplementation implements Player {
-
-	private HeroClass heroClass;
-	/**
-	 * Health left. Initial value if defined by hero class.
-	 */
-	private int health;
-
-	private int damage;
-
-	private int gold;
-
-	private Deck deck;
-
-	private List<Card> discardPile;
+	private String name;
 
 	private List<Card> hand;
 
-	private List<Champion> board;
+	private Deck deck;
 
-	private List<Card> actions;
+	private List<Card> graveyard;
 
-	private String userName;
+	private List<Creature> board;
 
-	private String nextPlayer;
+	private List<Card> market;
 
-	private BuyModifier buyModifier;
-
-	private String query;
-
-	private static final int NORMAL_NUMBER_OF_CARDS_IN_HAND = 5;
-
-	public PlayerImplementation(HeroClass heroClass, String userName, String nextPlayer) {
-		this.heroClass = heroClass;
-		this.health = heroClass.getHealth();
-		this.deck = heroClass.getDeck();
-		this.gold = 0;
-		this.damage = 0;
-		this.board = new ArrayList<>();
-		this.actions = new ArrayList<>();
-		this.discardPile = new ArrayList<>();
-		this.userName = userName;
-		this.nextPlayer = nextPlayer;
-		this.hand = new ArrayList<>();
-		this.buyModifier = new DefaultBuyModifier(this);
-		this.query = "";
-		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
+	protected PlayerImplementation(PlayerImplementation player) {
+		super(player);
+		this.name = player.name;
+		this.deck = player.deck.copy();
+		this.hand = player.hand.stream().map(Card::copy).collect(Collectors.toList());
+		this.graveyard = player.graveyard.stream().map(Card::copy).collect(Collectors.toList());
+		this.board = player.board.stream().map(Creature::copy).collect(Collectors.toList());
+		this.market = player.market.stream().map(Card::copy).collect(Collectors.toList());
 	}
 
-	@Override
-	public void draw() {
-		if (deck.isEmpty()) {
-			deck.fillWithCards(discardPile);
-			discardPile.clear();
-		}
-		hand.add(deck.drawCard());
+	public PlayerImplementation(String name) {
+		put(CURRENT_HEALTH, STARTING_HEALTH);
+		put(CURRENT_SUPPLY, 0);
+		addSubtype(TargetSubtype.HAS_HEALTH);
+		this.name = name;
 	}
 
-	@Override
-	public void discard(Card card) {
-		if (!query.equals("DISCARD")) {
-			throw new InvalidUserActionException("Invalid state encountered, DISCARD query was not issued!");
-		} else if (!hand.contains(card)) {
-			throw new InvalidUserActionException("Select a card in your hand to discard!");
-		} else {
-			hand.remove(card);
-			discardPile.add(card);
-		}
-	}
-
-	@Override
-	public void play(Card card) {
-		if (!hand.contains(card)) {
-			throw new InvalidUserActionException("That card is not in your hand?!");
-		} else {
-			hand.remove(card);
-			card.goIntoPlay(this);
-		}
-	}
-
-	@Override
-	public void buy(Card card) {
-		if (gold < card.getCost()) {
-			throw new InvalidUserActionException("Not enough gold to buy that card!");
-		} else {
-			gold -= card.getCost();
-			buyModifier.apply(card);
-		}
-	}
-
-	@Override
-	public void sacrifice(Card card) {
-		if (!query.equals("SACRIFICE")) {
-			throw new InvalidUserActionException("Invalid state encountered, SACRIFICE query was not issued!");
-		} else if (!hand.contains(card) && !discardPile.contains(card)) {
-			throw new InvalidUserActionException("Select a card in your hand or discard pile to sacrifice!");
-		} else {
-			hand.remove(card);
-			discardPile.remove(card);
-		}
+	public PlayerImplementation(String name, Deck deck) {
+		this(name);
+		this.deck = deck;
 	}
 
 	@Override
 	public List<Card> getHand() {
-		return hand;
+		return new ArrayList<>(hand);
+	}
+
+	@Override
+	public void startTurn() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void endTurn() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override
@@ -133,149 +77,54 @@ public class PlayerImplementation implements Player {
 	}
 
 	@Override
-	public List<Card> getDiscardPile() {
-		return discardPile;
-	}
-
-	@Override
-	public void startTurn() {
-		query = "";
-	}
-
-	@Override
-	public void endTurn() {
-		discardPile.addAll(actions);
-		discardPile.addAll(hand);
-		actions.clear();
-		hand.clear();
-		drawAHand(NORMAL_NUMBER_OF_CARDS_IN_HAND);
-		for (Champion champion : board) {
-			champion.prepare();
-		}
-		buyModifier = new DefaultBuyModifier(this);
-		query = "";
-		gold = 0;
-		damage = 0;
-	}
-
-	@Override
-	public void activate(Card card, AbilityTrigger trigger) {
-		card.activate(this, trigger);
-	}
-
-	@Override
-	public void increaseGold(int number) {
-		gold += number;
-	}
-
-	@Override
-	public void increaseDamage(int number) {
-		damage += number;
-	}
-
-	@Override
-	public void increaseHealth(int number) {
-		health += number;
-	}
-
-	private void drawAHand(int numberOfCards) {
-		hand.clear();
-		for (int i = 0; i < numberOfCards; i++) {
-			draw();
+	public void alert(TargetSubtype subtype) {
+		if (subtype == TargetSubtype.HAS_HEALTH) {
+			if (get(Player.CURRENT_HEALTH) <= 0) {
+				addSubtype(TargetSubtype.DEAD);
+			}
 		}
 	}
 
 	@Override
-	public void stunChampion(Champion champion) {
-		if (!query.equals("STUN")) {
-			throw new InvalidUserActionException("Invalid state encountered, STUN query was not issued!");
-		} else if (!board.contains(champion)) {
-			throw new InvalidUserActionException("That champion does not exist!");
-		} else {
-			board.remove(champion);
-			discardPile.add(champion);
+	public void takeMessage(String message) {
+		switch (message) {
+		case PLAY:
+			int cardId = get("cardId");
+			Card card = hand.stream().filter(c -> c.getId() == cardId).findFirst()
+					.orElseThrow(() -> new IllegalArgumentException("Card not found"));
+			card.goIntoPlay(this);
+			hand.remove(card);
+			break;
+		case DRAW:
+			hand.add(deck.drawCard());
+			break;
+		case ACTIVATE:
+			int abilityId = get("abilityId");
+			Ability ability = (Ability) TargetableImplementation.getById(abilityId);
+			ability.trigger(this, AbilityTrigger.CLICK);
+			break;
+		default:
+			throw new InvalidUserActionException("Invalid action specified!");
 		}
 	}
 
 	@Override
-	public void prepareChampion(Champion champion) {
-		if (!query.equals("PREPARE")) {
-			throw new InvalidUserActionException("Invalid state encountered, PREPARE query was not issued!");
-		} else if (!board.contains(champion)) {
-			throw new InvalidUserActionException("That champion does not exist!");
-		} else {
-			champion.prepare();
-		}
+	public List<Creature> getBoard() {
+		return new ArrayList<>(board);
 	}
 
 	@Override
-	public List<Champion> getBoard() {
-		return board;
+	public Player copy() {
+		return new PlayerImplementation(this);
 	}
 
 	@Override
-	public List<Card> getActions() {
-		return actions;
+	public List<Card> getGraveyard() {
+		return new ArrayList<>(graveyard);
 	}
 
 	@Override
-	public int getHealth() {
-		return health;
-	}
-
-	@Override
-	public int getDamage() {
-		return damage;
-	}
-
-	@Override
-	public int getGold() {
-		return gold;
-	}
-
-	@Override
-	public String getName() {
-		return userName;
-	}
-
-	@Override
-	public String getNextPlayer() {
-		return nextPlayer;
-	}
-
-	@Override
-	public HeroClass getHeroClass() {
-		return heroClass;
-	}
-
-	@Override
-	public void setBuyModifier(BuyModifier buyModifier) {
-		this.buyModifier = buyModifier;
-	}
-
-	@Override
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
-	@Override
-	public String getQuery() {
-		return query;
-	}
-
-	@Override
-	public void sendCardToTop(Card card, Class<? extends Card> selectionCriteria) {
-		String expectedQuery = selectionCriteria.getName().toUpperCase() + "_TO_TOP";
-		if (!query.equals(expectedQuery)) {
-			throw new InvalidUserActionException(
-					"Invalid state encountered, " + expectedQuery + " query was not issued!");
-		} else if (!discardPile.contains(card)) {
-			throw new InvalidUserActionException("You must select a card in your discard pile!");
-		} else if (!selectionCriteria.isInstance(card)) {
-			throw new InvalidUserActionException("Please select a " + selectionCriteria.getName() + "!");
-		} else {
-			discardPile.remove(card);
-			deck.putCardOnTop(card);
-		}
+	public List<Card> getMarket() {
+		return market;
 	}
 }

@@ -1,10 +1,6 @@
 package model.entities;
 
-import java.util.List;
 import java.util.Map;
-
-import model.cards.Card;
-import model.cards.Deck;
 
 /**
  * 
@@ -15,17 +11,11 @@ import model.cards.Deck;
  */
 public interface Game {
 
-	public Deck getGameDeck();
-
-	public void removeCardFromMarket(Card card);
-
-	public List<Card> getMarket();
-
 	public Player getCurrentPlayer();
 
 	public Map<String, Player> getPlayers();
 
-	public void performAction(String userName, String action, int cardId);
+	public void performAction(String userName, String action, Map<String, Integer> arguments);
 
 	public void start();
 }

@@ -1,5 +1,6 @@
 package model.cards.implementation;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -7,6 +8,8 @@ import java.util.Stack;
 
 import model.cards.Card;
 import model.cards.Deck;
+import model.entities.implementation.TargetableImplementation;
+import model.enums.TargetSubtype;
 
 /**
  * Deck implementation
@@ -15,9 +18,17 @@ import model.cards.Deck;
  *
  */
 
-public class DeckImplementation implements Deck {
+public class DeckImplementation extends TargetableImplementation implements Deck {
 
 	private Stack<Card> cards;
+
+	protected DeckImplementation(DeckImplementation deck) {
+		super(deck);
+		this.cards = new Stack<>();
+		Stack<Card> reverseStack = new Stack<>();
+		deck.cards.forEach(card -> reverseStack.push(card.copy()));
+		reverseStack.forEach(card -> this.cards.push(card));
+	}
 
 	public DeckImplementation(List<Card> cards) {
 		this.cards = new Stack<>();
@@ -54,10 +65,23 @@ public class DeckImplementation implements Deck {
 	}
 
 	@Override
-	public void fillWithCards(List<Card> cards) {
-		for (Card card : cards) {
-			this.cards.push(card);
-		}
+	public void fillWithCards(Collection<Card> cards) {
+		cards.forEach(card -> this.cards.push(card));
 		shuffle();
+	}
+
+	@Override
+	public void alert(TargetSubtype subtype) {
+	}
+
+	@Override
+	public void takeMessage(String message) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Deck copy() {
+		return new DeckImplementation(this);
 	}
 }

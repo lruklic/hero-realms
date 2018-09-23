@@ -4,9 +4,8 @@ import java.util.List;
 
 import model.abilities.Ability;
 import model.entities.Player;
-import model.enums.AbilityTrigger;
+import model.entities.Targetable;
 import model.enums.Faction;
-import model.enums.HeroClass;
 
 /**
  * 
@@ -16,7 +15,9 @@ import model.enums.HeroClass;
  * @author Ivan
  *
  */
-public interface Card {
+public interface Card extends Targetable {
+
+	public static final String SUPPLY_COST = "SUPPLY_COST";
 
 	public String getName();
 
@@ -24,17 +25,14 @@ public interface Card {
 
 	public Faction getFaction();
 
-	public int getId();
-
 	public String getCode();
 
 	public String getDescription();
 
-	public HeroClass getHeroClass();
+	public List<Ability> getAbilities();
 
 	public void goIntoPlay(Player player);
 
-	public void activate(Player player, AbilityTrigger trigger);
-
-	public List<Ability> getAbilities();
+	@Override
+	public Card copy();
 }
